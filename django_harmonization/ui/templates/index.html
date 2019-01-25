@@ -1,0 +1,17 @@
+
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<script>
+    function do_on_load() { }
+</script>
+
+<h2>UCD Harmonization Main</h2>
+    <ul>
+    <li><a href="/ui/login/">Login</a>
+    <li> <a href="/ui/harmonization_sheet/">Define Harmonization Mappings</a> </li>
+    <li><a href="/ui/pipeline.html">Run Pipeline</a>
+    <li><a href="/ui/reports.html">Run Reports, Tests</a>
+    <li><a href="/ui/logout/">Logout</a>
+    </ul>
+{% endblock %}

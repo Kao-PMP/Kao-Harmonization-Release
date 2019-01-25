@@ -1,0 +1,72 @@
+FROM python:3
+
+
+WORKDIR /home/croeder/harmonization_ui
+
+
+# Install Python Packages
+ADD requirements.txt /home/croeder/harmonization_ui
+RUN pip install -r requirements.txt
+
+add id_rsa /home/croeder
+add id_rsa.pub /home/croeder
+add .bash_profile /home/croeder
+add vimrc /home/croeder
+copy vimrc /home/croeder/.vimrc
+
+
+# Install PostgreSQL Client
+RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main' >> /etc/apt/sources.list.d/pgdg.list
+RUN apt-get update
+RUN wget --no-check-certificate -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O- | apt-key add -
+RUN apt-get install -y --allow-unauthenticated postgresql-client-9.6 # TODO
+
+
+# misc
+RUN apt-get update
+RUN apt-get install -y lsof
+RUN apt-get install -y vim
+
+
+# dev, the app 
+EXPOSE 8000
+
+RUN mkdir /home/croeder/harmonization_ui/django_harmonization
+COPY django_harmonization  /home/croeder/harmonization_ui/django_harmonization/django_harmonization
+
+COPY backups /home/croeder/harmonization_ui/django_harmonization/backups
+COPY bin /home/croeder/harmonization_ui/django_harmonization/bin
+COPY ddl /home/croeder/harmonization_ui/django_harmonization/ddl
+COPY r_lang /home/croeder/harmonization_ui/django_harmonization/r_lang
+COPY sql /home/croeder/harmonization_ui/django_harmonization/sql
+
+ENV PGHOST harmonization.cn8ajfa2f2hx.us-east-1.rds.amazonaws.com
+ENV PGDATABASE harmonization
+ENV PGUSER master
+ENV PGPORT 5432
+
+
+
+RUN mkdir /opt/local
+RUN mkdir /opt/local/harmonization
+RUN mkdir /opt/local/harmonization/output
+RUN mkdir /opt/local/harmonization/deployment
+
+# CRON
+CMD [ "echo" "'*/15 * * * * sync /home/croeder/ /opt/local/harmonization/output/home_backup'" ">>" "/etc/cron.d/backup_home" ]
+
+WORKDIR /home/croeder/harmonization_ui/django_harmonization/django_harmonization
+CMD ["pwd"]
+CMD ["ls"]
+CMD ["./docker-entrypoint-rds.sh"]
+
+
+
+# notes:
+# docker build -t harmonization_ui 
+# docker run --env-file env.list -p 8010:8000 harmonization_ui
+# docker container ls 
+# docker exec -it <id> /bin/bash
+# docker container stop <id>
+
+

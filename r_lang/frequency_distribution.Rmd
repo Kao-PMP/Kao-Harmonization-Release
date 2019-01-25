@@ -1,0 +1,92 @@
+---
+title: "Frequency Distribution of analysis matrix"
+author: "Roeder"
+date: "02/06/2018"
+output: html_document
+params:
+    echo=TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r Load required packages, echo=F,include=F}
+## install.packages("Hmisc","reshape2","poLCA","descr","rmeta","readstata13")
+#install.packages("plotrix")
+#library(plotrix)
+#library(Hmisc)
+#library(reshape2)
+#library(poLCA)
+#library(descr)
+#library(readstata13)
+#library(rmeta)
+#library(knitr)
+#install.packages("gmodels")
+
+# file paths are relative to this script's location, not the CWD?
+#source("../heart_analysis/r_lang/frequency_grob.R")
+#source("../../heart_analysis/r_lang/frequency_grob.R")
+#if (!('devtools' %in% rownames(installed.packages()))) {
+    install.packages('devtools')
+    library(devtools)
+#}
+
+remove.packages('heart.analysis.utils')
+###uninstall.packages('heart.analysis.utils')
+#if (! ('devtools' %in% rownames(installed.packages()))) {
+    install_bitbucket('hfclinicaldata/heart_analysis_utils')
+    library(heart.analysis.utils)
+#}
+
+#print(installed.packages())
+```
+
+
+# Load the Data, Show the Freq Dist
+```{r Load data files, echo=T, include=T} 
+# file paths are relative to this script's location, not the CWD?
+# hdcp_data <- read.table('../../orig_data/paradigm.csv', header=TRUE, na.strings = "NA", sep=",", skipNul = FALSE) 
+hdcp_data <- read.table('../../orig_data/short_paradigm.csv', header=TRUE, na.strings = "NA", sep=",", skipNul = FALSE) 
+```
+
+
+```{r}
+# divide the grobs up into pages, each displaying num_col * num_row grobs
+ranges <- get_ranges_and_ranks(5001, names(hdcp_data), 'localhost', 'christopherroeder', 'heart_db')
+print("-------ranges>")
+print(ranges)
+grobs_list = create_freq_grobs(subset(hdcp_data, select=-c(person_id)), ranges)
+print("-------<ranges")
+print(paste("grobs list length:", length(grobs_list)))
+for (g in grobs_list) {
+    print(typeof(g))
+    #print(g)
+}
+print("-------")
+display_freq_grobs(2,2,grobs_list)
+```
+```
+num_col=3
+num_row=1
+num_per_page=num_row * num_colkk
+num_pages=as.integer(length(grobs_list)/num_per_page) 
+print(paste(num_col, num_row, num_per_page, num_pages))
+```
+
+```{r}
+for (i in seq(1, length(grobs_list))) {
+    print(paste(i, typeof(grobs_list[1])))
+}
+
+```
+
+
+```{r}
+print("displaying grobs")
+for (i in seq(1, num_pages)) {
+    from=1 + (i-1)*num_per_page
+    to= min(i*num_per_page, length(grobs_list))
+    grid.arrange(grobs=grobs_list[from:to], ncol=num_col, nrow=num_row, top=paste("Frequency Distributions", i))
+}
+```

@@ -1,0 +1,59 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<script type="text/javascript" src="{% static "ui/js/utility.js" %}"></script> 
+<script type="text/javascript" src="{% static "ui/js/study_choice.js" %}"></script>
+<script type="text/javascript" src="{% static "ui/js/extract_study_choice.js" %}"></script>
+<script type="text/javascript" src="{% static "ui/js/pipeline.js" %}"></script>
+<script>
+    function do_on_load() { 
+        createPipelineModule().init();
+    }
+</script>
+
+<h2>Run Pipeline</h2>
+
+<h4>Initialize New Install</h4>
+<em>Do this first, then reload the page (for now). A menu of studies should appear below under "Migrate and Extract Study".</em>
+    <table>
+    <tr>
+        <td>OHDSI load:</td><td><span id="pm_ohdsi_status">      </span></td>
+        <td><button type="button" id="pm_ohdsi_button">Run Step</button></td>
+    </tr>
+    <tr>
+        <td>Mapping load:</td><td><span id="pm_mapping_status">    </span></td>
+        <td><button type="button" id="pm_mapping_button">Run Step</button></td>
+    </tr>
+    <tr>
+        <td>Studies load:</td><td><span id="pm_studies_status">    </span></td>
+        <td><button type="button" id="pm_studies_button">Run Step</button></td>
+    </tr>
+    <tr>
+        <td>Combined</td>
+        <td><button type="button" id="pm_button">Start Pipeline</button></td>
+    </tr>
+    </table>
+    DB Status:<span id=pm_message> - </div>
+    <span> 
+    </span>
+
+    <hr>
+<h4>Import New  Study</h4>
+
+    <hr>
+<h4>Migrate and Extract Study</h4>
+    {% include 'study_choice.html' %}
+    <br>
+    <button type="button" id="pm_migrate_button">Migrate</button> 
+    Migrate Status:<span id=pm_migrate_message> - </span> 
+    <br>
+    <button type="button" id="pm_calculate_button">Calculate</button> 
+    Calculate Status:<span id=pm_calculate_message> - </span> 
+    <br>
+    {% include 'extract_study_choice.html' %}
+    <button type="button" id="pm_extract_button">Extract</button> 
+    Extract Status:<span id=pm_extract_message> - </span> 
+    <div id="status_p"></dvi>
+
+{% endblock %}

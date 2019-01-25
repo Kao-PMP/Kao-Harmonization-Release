@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link type="text/css" rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="js/utility.js"></script> 
+
+    <title>Concept Lookup Demo</title>
+</head>
+<script>
+
+
+function build_mapping_list(json_list) {
+    document.getElementById("status_p").innerHTML = " build_concept_list " + extract_study_url + " " + json_list.length;
+    html_string = '<table><tr><th>Long Name</th><th>Short</th><th>Vocabulary</th><th>Concept</th><th>Name</th><th>Table</th><th>Column</th><th>Function</th>';
+    for (var i=0; i<json_list.length; i++) {
+        html_string = html_string + "<tr>"
+           + "<td>" + json_list[i].long_name + "</td>" 
+           + "<td>" + json_list[i].short_name + "</td>" 
+           + "<td>" + json_list[i].from_vocabulary_id + "</td>" 
+           + "<td>" + json_list[i].from_concept_code + "</td>" 
+           + "<td>" + json_list[i].from_concept_name + "</td>"  // WTF? need concept name
+           + "<td>" + json_list[i].from_table + "</td> "
+            + "<td>(not yet)</td>"
+           + "<td>" + json_list[i].function_name +"</td>"
+            + "</tr>" ;
+    } 
+    html_string = html_string + "</table>";
+    document.getElementById("mapping_div").innerHTML = html_string;
+}
+
+function do_mapping_list() {  // TBD
+    //vocab = get_checked_radio_button("vocabulary_id")
+    var extract_study_id = document.getElementById("extract_study_choice").value;
+    extract_study_url = "/ui/get_extract_mapping_list/" + extract_study_id;
+    json_list = load_url(extract_study_url, build_mapping_list, false);
+}
+
+function build_concept_list(json_list) {
+    var concepts_div = document.getElementById("concepts_div");
+    while (concepts_div.hasChildNodes()) {
+        concepts_div.removeChild(concepts_div.firstChild);
+    }
+    for (var i=0; i< json_list.length; i++) {
+        var radioHtml = '<input type="radio" name="concept_choice"' + ' value="' + json_list[i].concept_id + '"/> "'
+            + json_list[i].concept_name + '" (' + json_list[i].vocabulary_id + ', '  + json_list[i].concept_code + ') '
+            + json_list[i].to_table + " "
+            + json_list[i].to_column + " "
+            + json_list[i].from_where_column + " "
+            + json_list[i].from_where_clause + " "
+            ;
+        var radioFragment = document.createElement('div');
+        radioFragment.innerHTML = radioHtml; 
+        concepts_div.append(radioFragment);
+    } 
+    //document.getElementById("status_p").innerHTML =  "....ending" + json_list.length;
+}
+
+function do_concept_search() {
+    vocabulary_id = get_checked_radio_button("vocabulary_id")
+    concepts_url = "/ui/get_used_concepts_for_vocabulary/" + vocabulary_id + "/";
+    document.getElementById("status_p").innerHTML = "do_concept_search " + concepts_url;
+    json_list = load_url(concepts_url, build_concept_list, false);
+
+}
+
+function build_extract_study_list(json_list) {
+    //{"extract_study_id": 1, "study_id": null, "name": "general-purpose", "comment": null}
+    the_div = document.getElementById("extract_study_select_div");
+    select_fragment = document.createElement("select");
+    select_fragment.id = "extract_study_choice";
+    select_fragment.addEventListener('change', do_mapping_list, false); // CHRIS
+    for (var i=0; i< json_list.length; i++) {
+        var option_fragment = document.createElement('option');
+        option_fragment.value=json_list[i].extract_study_id;
+        option_fragment.text=json_list[i].name + " " + json_list[i].extract_study_id + " " + json_list[i].study_id;
+        select_fragment.appendChild(option_fragment);
+    } 
+    the_div.append(select_fragment);
+}
+function do_extract_study_list() {
+    extract_study_url = "/ui/get_extract_study_list/" ;
+    json_list = load_url(extract_study_url, build_extract_study_list, false);
+}
+
+function do_load() {
+    document.getElementById("status_p").innerHTML = "do_load";
+    do_extract_study_list()
+    do_concept_search()
+}
+</script>
+
+
+
+<!-- -- HTML ----- -->
+<body onload="javascript:do_load()"> 
+<div class="container">
+    <h3>UCDenver Clinical HF Data Extraction</h3>
+        <fieldset class="section-border"><legend class="section-border">Cohort Selection (TBD)</legend>
+        </fieldset>
+        <fieldset class="section-border"><legend class="section-border">Extract Study Selection/Creation (TBD)</legend>
+            name:<input type="text" id="string">
+            id:<input type="text" id="string">
+            <button type="button" >Create New (TBD)</button></th></tr>
+        </fieldset>
+        <fieldset class="section-border"><legend class="section-border">Mappings</legend>
+            Still needs entries from categorization_function_table, value ranges, etc. Categorization
+            <div id="extract_study_select_div"></div></td>  
+            <div id="mapping_div"></div>
+        </fieldset>
+
+        <fieldset class="section-border"><legend class="section-border">Source: Available Concept String Search</legend>
+            <table>
+            <tr><th valign="top" align="left">Vocabulary Name: </th>
+                <td> 
+                    <input type="radio" id="vocabulary_id" name="vocabulary_id" value="SNOMED" checked onclick="do_concept_search()"> SNOMED 
+                    <input type="radio" id="vocabulary_id" name="vocabulary_id" value="LOINC" onclick="do_concept_search()"> LOINC 
+                    <input type="radio" id="vocabulary_id" name="vocabulary_id" value="UCD.Kao" onclick="do_concept_search()"> UCD.Kao 
+                </td>
+            </tr>
+            <tr><th align="left">Source Study:</th>
+                <td> wanna know this? Will relate to cohort selection or NA tolerance. Would also be cool so show the related short-name on thsi concept list, short names are above in the mapping</td></tr>
+              
+            </table>
+            <div id="concepts_div"></div>
+        </fieldset>
+
+        <fieldset class="section-border"><legend class="section-border">Transformation Choice and Categorization (TBD)</legend>
+            <table>
+            <tr><th align="left">Select Function:</th><td><div id="select_function_div"></div></td></tr>
+            </table>
+        </fieldset>
+
+        <fieldset class="section-border"><legend class="section-border">Destination</legend>
+            <table>
+                <tr><th>Long Name</th></tr>
+                <tr><th>Short Name</th></tr>
+                <tr><th>Table</th></tr>
+                <tr><th>Column</th><td>Comes from domain in concept on OHDSI?</td></tr>
+            </table>
+        </fieldset>
+
+        <fieldset class="section-border"><legend class="section-border">Submit Mapping (TBD)</legend>
+            <button type="button" onclick="do_mapping_row_preview()">Preview</button>
+            <div id="mapping_row_source"><b>Source:</b></div>
+            <div id="mapping_row_destination"><b>Destination:</b></div>
+            <div id="mapping_row_function"><b>Function:</b></div>
+            <button type="button" >INSERT</button></th></tr>
+        </fieldset>
+        <fieldset class="section-border"><legend class="section-border">Status</legend>
+            <p id="status_p">OK</p>
+            <p id='debug_text'>--debug notes here--</p>
+        </fieldset>
+</div>
+</body>
+</html>
+

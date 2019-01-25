@@ -1,0 +1,186 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.6
+-- Dumped by pg_dump version 9.6.10
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: study_files; Type: TABLE; Schema: public; Owner: docker
+--
+
+CREATE TABLE public.study_files (
+    study_id integer NOT NULL,
+    file_path character varying(250)
+);
+
+
+ALTER TABLE public.study_files OWNER TO docker;
+
+--
+-- Data for Name: study_files; Type: TABLE DATA; Schema: public; Owner: docker
+--
+
+COPY public.study_files (study_id, file_path) FROM stdin;
+4	/TOPCAT/data/t002.csv
+4	/TOPCAT/data/t003.csv
+4	/TOPCAT/data/t004.csv
+4	/TOPCAT/data/t005.csv
+4	/TOPCAT/data/t003.csv
+4	/TOPCAT/data/t010.csv
+4	/TOPCAT/data/t011.csv
+4	/TOPCAT/data/t006.csv
+4	/TOPCAT/data/t007_allvisits_bysub.csv
+4	/TOPCAT/data/t008.csv
+4	/TOPCAT/data/t031.csv
+4	/TOPCAT/data/t030.csv
+4	/TOPCAT/data/t079.csv
+4	/TOPCAT/data/q002.csv
+3	/SCD-HeFT/data/baseline_new.csv
+3	/SCD-HeFT/data/basecrf.csv
+3	/SCD-HeFT/data/ecg.csv
+3	/SCD-HeFT/data/rdemog.csv
+3	/SCD-HeFT/data/death.csv
+3	/SCD-HeFT/data/endpt_new.csv
+2	HF_ACTION_2015a/Data_DR/analysis.csv
+2	HF_ACTION_2015a/Data_DR/barrier.csv
+2	HF_ACTION_2015a/Data_DR/bdi1.csv
+2	HF_ACTION_2015a/Data_DR/bdi2.csv
+2	HF_ACTION_2015a/Data_DR/cardvist.csv
+2	HF_ACTION_2015a/Data_DR/cecdeath.csv
+2	HF_ACTION_2015a/Data_DR/cechosp.csv
+2	HF_ACTION_2015a/Data_DR/chfevent.csv
+2	HF_ACTION_2015a/Data_DR/cmed.csv
+2	HF_ACTION_2015a/Data_DR/cmedloop.csv
+2	HF_ACTION_2015a/Data_DR/cmeds.csv
+2	HF_ACTION_2015a/Data_DR/cmeds2.csv
+2	HF_ACTION_2015a/Data_DR/cmeds3.csv
+2	HF_ACTION_2015a/Data_DR/cpx.csv
+2	HF_ACTION_2015a/Data_DR/cpxmissv.csv
+2	HF_ACTION_2015a/Data_DR/death.csv
+2	HF_ACTION_2015a/Data_DR/decbal.csv
+2	HF_ACTION_2015a/Data_DR/demog.csv
+2	HF_ACTION_2015a/Data_DR/etpchg.csv
+2	HF_ACTION_2015a/Data_DR/euro.csv
+2	HF_ACTION_2015a/Data_DR/exself.csv
+2	HF_ACTION_2015a/Data_DR/homexcom.csv
+2	HF_ACTION_2015a/Data_DR/hospital.csv
+2	HF_ACTION_2015a/Data_DR/hospno.csv
+2	HF_ACTION_2015a/Data_DR/kccq1.csv
+2	HF_ACTION_2015a/Data_DR/kccq2.csv
+2	HF_ACTION_2015a/Data_DR/kccq3.csv
+2	HF_ACTION_2015a/Data_DR/labs.csv
+2	HF_ACTION_2015a/Data_DR/medhx1.csv
+2	HF_ACTION_2015a/Data_DR/medhx2.csv
+2	HF_ACTION_2015a/Data_DR/medhx3.csv
+2	HF_ACTION_2015a/Data_DR/mievent.csv
+2	HF_ACTION_2015a/Data_DR/mvisitfm.csv
+2	HF_ACTION_2015a/Data_DR/othevent.csv
+2	HF_ACTION_2015a/Data_DR/outpat.csv
+2	HF_ACTION_2015a/Data_DR/outpat2.csv
+2	HF_ACTION_2015a/Data_DR/outpat3.csv
+2	HF_ACTION_2015a/Data_DR/outpat4.csv
+2	HF_ACTION_2015a/Data_DR/outpatot.csv
+2	HF_ACTION_2015a/Data_DR/output.csv
+2	HF_ACTION_2015a/Data_DR/output2.csv
+2	HF_ACTION_2015a/Data_DR/paq.csv
+2	HF_ACTION_2015a/Data_DR/patins.csv
+2	HF_ACTION_2015a/Data_DR/postfvc.csv
+2	HF_ACTION_2015a/Data_DR/psss.csv
+2	HF_ACTION_2015a/Data_DR/qolr.csv
+2	HF_ACTION_2015a/Data_DR/randvit.csv
+2	HF_ACTION_2015a/Data_DR/resutil.csv
+2	HF_ACTION_2015a/Data_DR/saarrh.csv
+2	HF_ACTION_2015a/Data_DR/stage.csv
+2	HF_ACTION_2015a/Data_DR/studcomp.csv
+2	HF_ACTION_2015a/Data_DR/survey.csv
+2	HF_ACTION_2015a/Data_DR/telelog.csv
+2	HF_ACTION_2015a/Data_DR/tpref.csv
+2	HF_ACTION_2015a/Data_DR/unstang.csv
+2	HF_ACTION_2015a/Data_DR/walkt.csv
+2	HF_ACTION_2015a/Data_DR/wksheet.csv
+1	BEST/best_csv/adju.csv
+1	BEST/best_csv/ame.csv
+1	BEST/best_csv/bestgenotype.csv
+1	BEST/best_csv/br.csv
+1	BEST/best_csv/clab1.csv
+1	BEST/best_csv/clab2.csv
+1	BEST/best_csv/cotx1.csv
+1	BEST/best_csv/cotx2.csv
+1	BEST/best_csv/cvh1.csv
+1	BEST/best_csv/cvh2.csv
+1	BEST/best_csv/cvs.csv
+1	BEST/best_csv/diab.csv
+1	BEST/best_csv/ecg.csv
+1	BEST/best_csv/eos.csv
+1	BEST/best_csv/hv.csv
+1	BEST/best_csv/lab1.csv
+1	BEST/best_csv/lab2.csv
+1	BEST/best_csv/mi.csv
+1	BEST/best_csv/miadju.csv
+1	BEST/best_csv/mort1.csv
+1	BEST/best_csv/mort2.csv
+1	BEST/best_csv/muga.csv
+1	BEST/best_csv/ne.csv
+1	BEST/best_csv/pcsf.csv
+1	BEST/best_csv/pe.csv
+1	BEST/best_csv/permdc.csv
+1	BEST/best_csv/phyga.csv
+1	BEST/best_csv/pnelab.csv
+1	BEST/best_csv/ptga.csv
+1	BEST/best_csv/qol1.csv
+1	BEST/best_csv/qol2.csv
+1	BEST/best_csv/qol3.csv
+1	BEST/best_csv/sct1.csv
+1	BEST/best_csv/smed.csv
+1	BEST/best_csv/t.csv
+1	BEST/best_csv/wd.csv
+1	BEST/best_csv/xp.csv
+1	BEST/best_csv/xray.csv
+5	/PARADIGM/test.csv
+6	/ATMOSPHERE/test.csv
+10	/TEST/data.csv
+21	ACCORD/3-Data Sets - Analysis/3a-Analysis Data Sets/ACCORD_KEY.csv
+21	ACCORD/3-Data Sets - Analysis/3a-Analysis Data Sets/OTHERLABS_201604.csv
+21	ACCORD/3-Data Sets - Analysis/3a-Analysis Data Sets/BLOODPRESSURE_201604.csv
+21	ACCORD/4-Data Sets - CRFs/4a-CRF Data Sets/F01_INCLUSIONEXCLUSIONSUMMARY.csv
+21	ACCORD/4-Data Sets - CRFs/4a-CRF Data Sets/F07_BASELINEHISTORYPHYSICALEXAM.csv
+22	AIM-HIGH/SASData/Tabulations/PE.csv
+22	AIM-HIGH/SASData/Tabulations/HX.csv
+22	AIM-HIGH/SASData/Tabulations/FOLLA6.csv
+22	AIM-HIGH/SASData/Tabulations/EXC.csv
+22	AIM-HIGH/SASData/Tabulations/DEMO.csv
+22	AIM-HIGH/SASData/Analysis/LAB.csv
+22	AIM-HIGH/SASData/Analysis/PATIENT.csv
+24	BARI-2D/data/BARI2D_BL.csv
+24	BARI-2D/data/BARI2D_LONG.csv
+24	BARI-2D/data/BARI2D_PE.csv
+24	BARI-2D/data/BARI2D_ENDPTs.csv
+21	ACCORD/3-Data Sets - Analysis/3a-Analysis Data Sets/LIPIDS_201604.csv
+21	ACCORD/3-Data Sets - Analysis/3a-Analysis Data Sets/CONCOMITANTMEDS.csv
+22	AIM-HIGH/SASData/Tabulations/CONMED.csv
+22	AIM-HIGH/SASData/Tabulations/INCL.csv
+4	/TOPCAT/data/t003.csv
+4	/TOPCAT/data/t007_allvisits_bysub.csv
+4	/TOPCAT/data/t013.csv
+\.
+
+
+--
+-- PostgreSQL database dump complete
+--
+

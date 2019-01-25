@@ -1,0 +1,661 @@
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.6
+-- Dumped by pg_dump version 9.6.10
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: study_to_ohdsi_mapping; Type: TABLE; Schema: public; Owner: docker
+--
+
+CREATE TABLE public.study_to_ohdsi_mapping (
+    study_id integer NOT NULL,
+    from_table character varying(100) NOT NULL,
+    from_column character varying(100) NOT NULL,
+    function_name character varying(100),
+    vocabulary_id character varying(100),
+    concept_code character varying(100),
+    to_table character varying(100),
+    to_column character varying(100),
+    addl_value_1 character varying(20),
+    addl_column_1 character varying(20),
+    from_where_clause character varying(100),
+    comment character varying(250),
+    from_where_column character varying(100),
+    units character varying(20),
+    has_date boolean DEFAULT true,
+    id integer NOT NULL
+);
+
+
+ALTER TABLE public.study_to_ohdsi_mapping OWNER TO docker;
+
+--
+-- Name: study_to_ohdsi_mapping_id_seq; Type: SEQUENCE; Schema: public; Owner: docker
+--
+
+CREATE SEQUENCE public.study_to_ohdsi_mapping_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.study_to_ohdsi_mapping_id_seq OWNER TO docker;
+
+--
+-- Name: study_to_ohdsi_mapping_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: docker
+--
+
+ALTER SEQUENCE public.study_to_ohdsi_mapping_id_seq OWNED BY public.study_to_ohdsi_mapping.id;
+
+
+--
+-- Name: study_to_ohdsi_mapping id; Type: DEFAULT; Schema: public; Owner: docker
+--
+
+ALTER TABLE ONLY public.study_to_ohdsi_mapping ALTER COLUMN id SET DEFAULT nextval('public.study_to_ohdsi_mapping_id_seq'::regclass);
+
+
+--
+-- Data for Name: study_to_ohdsi_mapping; Type: TABLE DATA; Schema: public; Owner: docker
+--
+
+COPY public.study_to_ohdsi_mapping (study_id, from_table, from_column, function_name, vocabulary_id, concept_code, to_table, to_column, addl_value_1, addl_column_1, from_where_clause, comment, from_where_column, units, has_date, id) FROM stdin;
+1	best.lab2	latri	identity	LOINC	2571-8	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	1
+1	best.clab2	clatrix	identity	LOINC	12951-0	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	2
+1	best.clab2	clauax	identity	LOINC	3084-1	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	3
+1	best.muga	murve	identity	LOINC	10231-9	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	4
+1	best.lab2	laua	identity	LOINC	3084-1	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	5
+2	hfaction.cecdeath	dthdays	identity	UCD.Kao	UCD-Kao-26	observation	value_as_number	\N	\N	\N	\N	\N	\N	\N	6
+2	hfaction.analysis	etiology	hfaction_yes_no_to_concept12	LOINC	8610-8	observation	value_as_concept_id	\N	\N	\N	note odd yes/no coding	\N	\N	t	7
+2	hfaction.analysis	nyhacl	identity	SNOMED	420816009	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	8
+2	hfaction.analysis	weightkg	kg_to_lb	LOINC	29463-7	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	9
+2	hfaction.analysis	bun	identity	LOINC	6299-2	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	10
+2	hfaction.analysis	sbp	identity	LOINC	8480-6	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	11
+1	best.qol3	ql_13	identity	LOINC	85605-4	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	12
+1	best.qol3	ql_14	identity	LOINC	85616-1	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	13
+1	best.qol3	ql_15	identity	LOINC	85612-0	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	14
+2	hfaction.analysis	dbp	identity	LOINC	8462-4	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	15
+2	hfaction.analysis	basehr	identity	LOINC	8867-4	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	16
+2	hfaction.analysis	heightcm	cm_to_in	LOINC	8302-2	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	17
+1	best.clab2	clacho	not_used	LOINC	14647-2	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	18
+1	best.clab2	claua	not_used	LOINC	14933-6	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	19
+2	hfaction.analysis	bmi	identity	LOINC	39156-5	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	20
+2	hfaction.analysis	age	identity	SNOMED	424144002	observation	value_as_number	\N	\N	\N	\N	\N	years (assumed)	t	21
+2	hfaction.analysis	smoking	hfaction_yes_no_to_concept	LOINC	39240-7	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	22
+2	hfaction.analysis	racec	hfaction_race_to_concept	SNOMED	103579009	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	23
+2	hfaction.analysis	sex	hfaction_sex_to_concept	SNOMED	263495000	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	111
+1	best.br	brang	identity	SNOMED	4557003	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	24
+1	best.br	brsex	identity	\N	\N	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	25
+1	best.diab	diaret	identity	LOINC	45672-3	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	26
+1	best.pcsf	pcage	identity	SNOMED	424144002	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	27
+1	best.pcsf	pcmihx	identity	SNOMED	428752002	observation	value_as_string	\N	\N	\N	\N	\N	\N	t	28
+1	best.pcsf	pcangina	identity	SNOMED	4557003	observation	value_as_string	\N	\N	\N	\N	\N	\N	t	29
+1	best.pcsf	pcpregnt	identity	SNOMED	169449001	observation	value_as_string	\N	\N	\N	\N	\N	\N	t	30
+1	best.pcsf	pccomorb	identity	SNOMED	398192003	observation	value_as_string	\N	\N	\N	\N	\N	\N	t	31
+1	best.ecg	eclbb	string_yes_no_to_concept	SNOMED	63467002	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	32
+1	best.ecg	ecrbb	string_yes_no_to_concept	SNOMED	59118001	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	33
+1	best.cvs	cvnyh	identity	SNOMED	420816009	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	34
+1	best.clab1	clahctx	identity	SNOMED	365616005	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	35
+1	best.clab1	clacalx	identity	LOINC	17861-6	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	36
+1	best.diab	dianeu	identity	LOINC	66613-1	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	37
+1	best.clab1	clapot	identity	LOINC	2823-3	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	38
+1	best.lab1	lapot	identity	LOINC	2823-3	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	39
+1	best.clab1	clamag	identity	LOINC	2601-3	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	40
+1	best.lab1	lamag	identity	LOINC	2601-3	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	41
+1	best.clab1	clasdm	identity	LOINC	2951-2	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	42
+1	best.lab1	lasdm	identity	LOINC	2951-2	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	43
+1	best.clab1	clachl	identity	LOINC	2075-0	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	44
+1	best.lab1	lachl	identity	LOINC	2075-0	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	45
+1	best.lab1	lahgb	identity	LOINC	4635-9	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	46
+1	best.clab1	clabic	identity	LOINC	1963-8	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	47
+1	best.lab1	labic	identity	LOINC	1963-8	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	48
+1	best.lab1	labil	identity	LOINC	1975-2	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	49
+1	best.clab1	clabilx	identity	LOINC	1975-2	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	50
+1	best.clab2	claalbx	identity	LOINC	1751-7	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	51
+1	best.lab2	laalb	identity	LOINC	1751-7	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	52
+1	best.lab2	lacho	identity	LOINC	2093-3	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	53
+1	best.clab2	clachox	identity	LOINC	2093-3	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	54
+1	best.cvh2	cvenzyme	best_yes_no_to_concept	SNOMED	314207007	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	55
+1	best.cvh2	cvaortic	best_yes_no_to_concept	SNOMED	8722008	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	56
+1	best.cvh2	cvmitral	best_yes_no_to_concept	SNOMED	11851006	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	57
+1	best.cvh2	cvowave	best_yes_no_to_concept	SNOMED	304914007	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	58
+1	best.clab2	clainr	identity	LOINC	34714-6	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	59
+1	best.lab2	lainr	identity	LOINC	34714-6	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	60
+1	best.clab2	claalt	identity	LOINC	76625-3	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	61
+1	best.lab2	laalt	identity	LOINC	76625-3	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	62
+1	best.clab2	claast	identity	LOINC	1920-8	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	63
+1	best.lab2	laast	identity	LOINC	1920-8	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	64
+1	best.pe	peht	identity	LOINC	8302-2	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	65
+1	best.pe	pewt	identity	LOINC	29463-7	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	66
+1	best.pe	pebps	identity	LOINC	8480-6	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	67
+1	best.pe	pebpd	identity	LOINC	8462-4	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	68
+1	best.pe	peedm	identity	LOINC	44966-0	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	69
+1	best.pe	pehr	identity	LOINC	8867-4	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	70
+1	best.pe	pejvd	identity	LOINC	44965-2	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	71
+1	best.clab1	claglux	identity	LOINC	2345-7	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	72
+1	best.lab1	lacal	identity	LOINC	17861-6	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	73
+1	best.lab1	laglu	identity	LOINC	2345-7	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	74
+1	best.lab1	lacre	identity	LOINC	2160-0	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	75
+1	best.lab1	labun	identity	LOINC	6299-2	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	76
+1	best.lab1	lawbc	identity	LOINC	30406-3	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	77
+1	best.clab1	clawbc	identity	LOINC	30406-3	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	78
+1	best.clab1	clabunx	identity	LOINC	6299-2	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	79
+1	best.lab1	lahct	identity	SNOMED	365616005	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	80
+1	best.qol2	ql_1	identity	LOINC	85598-1	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	81
+1	best.qol2	ql_2	identity	LOINC	85600-5	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	82
+1	best.qol2	ql_3	identity	LOINC	85603-9	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	83
+1	best.qol2	ql_4	identity	LOINC	85619-5	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	84
+1	best.qol2	ql_5	identity	LOINC	85620-3	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	85
+1	best.qol2	ql_6	identity	LOINC	85604-7	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	86
+1	best.qol2	ql_7	identity	LOINC	85599-9	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	87
+1	best.clab1	clabil	not_used	LOINC	35194-0	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	88
+1	best.qol2	ql_8	identity	LOINC	85608-8	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	89
+1	best.qol2	ql_9	identity	LOINC	85602-1	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	90
+1	best.qol2	ql_10	identity	LOINC	85607-0	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	91
+1	best.qol2	ql_11	identity	LOINC	85601-3	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	93
+1	best.qol2	ql_12	identity	LOINC	85606-2	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	94
+1	best.cvh1	cvang	best_yes_no_to_concept	SNOMED	194828000	measurement	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	95
+1	best.qol3	ql_16	identity	LOINC	85615-3	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	96
+1	best.qol3	ql_17	identity	LOINC	85617-9	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	97
+1	best.qol3	ql_18	identity	LOINC	85611-2	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	98
+1	best.qol3	ql_19	identity	LOINC	85614-6	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	99
+1	best.qol3	ql_20	identity	LOINC	85610-4	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	100
+1	best.qol3	ql_21	identity	LOINC	85613-8	observation	value_as_number	\N	\N	\N	TBD	\N	\N	t	101
+1	best.cvh1	cvbypas	best_yes_no_to_concept	SNOMED	81266008	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	102
+1	best.cvh1	cvdefibr	best_yes_no_to_concept	SNOMED	19257004	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	103
+1	best.cvh1	cvangiop	best_yes_no_to_concept	SNOMED	41339005	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	104
+1	best.cvh1	cvafib	best_yes_no_to_concept	SNOMED	49436004	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	105
+1	best.cvh2	cvhxlip	best_yes_no_to_concept	SNOMED	55822004	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	106
+1	best.cvh2	cvhxhtxn	best_yes_no_to_concept	SNOMED	38341003	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	107
+1	best.cvh1	cvsmoker	best_yes_no_to_concept	LOINC	39240-7	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	108
+1	best.pcsf	pcsex	best_sex_to_concept	SNOMED	263495000	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	109
+1	best.pcsf	pcrace	best_race_to_concept	SNOMED	103579009	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	110
+2	hfaction.analysis	ecgcond2	hfaction_yes_no_to_concept	SNOMED	63467002	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	112
+2	hfaction.analysis	ecgcond5	hfaction_yes_no_to_concept	SNOMED	59118001	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	113
+2	hfaction.analysis	afibflut	hfaction_yes_no_to_concept	SNOMED	49436004	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	114
+2	hfaction.analysis	priorpci	hfaction_yes_no_to_concept	SNOMED	41339005	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	115
+2	hfaction.analysis	hyperten	hfaction_yes_no_to_concept	SNOMED	38341003	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	116
+2	hfaction.analysis	angina	hfaction_yes_no_to_concept	SNOMED	194828000	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	117
+2	hfaction.analysis	aicd	hfaction_yes_no_to_concept	SNOMED	19257004	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	118
+2	hfaction.analysis	stroke	hfaction_yes_no_to_concept	SNOMED	230690007	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	119
+2	hfaction.analysis	copd	hfaction_yes_no_to_concept	LOINC	45670-7	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	120
+2	hfaction.analysis	priormi	hfaction_yes_no_to_concept	SNOMED	22298006	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	121
+2	hfaction.analysis	cabg	hfaction_yes_no_to_concept	SNOMED	81266008	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	122
+2	hfaction.analysis	kccqosb	identity	LOINC	71940-1	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	123
+2	hfaction.analysis	bivpacer	hfaction_yes_no_to_concept	SNOMED	414987002	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	124
+1	best.ame	amcod	true	SNOMED	410429000	observation	value_as_concept_id	\N	\N	DC04	\N	amcod	\N	t	125
+2	hfaction.analysis	eurother	identity	SNOMED	273447005	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	126
+2	hfaction.analysis	bnp	identity	LOINC	42637-9	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	127
+2	hfaction.analysis	probnp	identity	LOINC	33762-6	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	128
+1	best.cvh1	cvpacemk	best_yes_no_to_concept	SNOMED	414987002	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	129
+2	hfaction.medhx2	hlipid	hfaction_yes_no_to_concept	SNOMED	55822004	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	130
+1	best.ame	amcod	true	SNOMED	410430005	observation	value_as_concept_id	\N	\N	DC16	\N	amcod	\N	t	131
+1	best.ame	amcod	true	SNOMED	410429000	observation	value_as_concept_id	\N	\N	DH08	\N	amcod	\N	t	132
+1	best.ame	amcod	true	SNOMED	397829000	observation	value_as_concept_id	\N	\N	DS20	\N	amcod	\N	t	133
+1	best.ame	amcod	true	SNOMED	397829000	observation	value_as_concept_id	\N	\N	DV30	\N	amcod	\N	t	134
+1	best.ame	amcod	true	SNOMED	40593004	observation	value_as_concept_id	\N	\N	DF10	\N	amcod	\N	t	135
+1	best.ame	amcod	true	SNOMED	40593004	observation	value_as_concept_id	\N	\N	DF13	\N	amcod	\N	t	136
+1	best.ame	amcod	true	SNOMED	233915000	observation	value_as_concept_id	\N	\N	DF15	\N	amcod	\N	t	137
+1	best.ame	amcod	true	SNOMED	71908006	observation	value_as_concept_id	\N	\N	DF16	\N	amcod	\N	t	138
+1	best.ame	amcod	true	SNOMED	71908006	observation	value_as_concept_id	\N	\N	DV32	\N	amcod	\N	t	139
+1	best.ame	amcod	true	SNOMED	233915000	observation	value_as_concept_id	\N	\N	DV33	\N	amcod	\N	t	140
+1	best.ame	amcod	true	SNOMED	66657009	observation	value_as_concept_id	\N	\N	DP09	\N	amcod	\N	t	141
+1	best.ame	amcod	true	SNOMED	66657009	observation	value_as_concept_id	\N	\N	DT07	\N	amcod	\N	t	142
+1	best.ame	amcod	true	SNOMED	31722008	observation	value_as_concept_id	\N	\N	DT60	\N	amcod	\N	t	143
+1	best.ame	amcod	true	SNOMED	25569003	observation	value_as_concept_id	\N	\N	DV36	\N	amcod	\N	t	144
+2	hfaction.analysis	diabetes	hfaction_yes_no_to_concept	SNOMED	161445009	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	145
+2	hfaction.labs	labval	identity	LOINC	4635-9	measurement	value_as_number	\N	\N	9	\N	labtest	\N	t	146
+1	best.br	brcad	best_yes_no_to_concept	SNOMED	53741008	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	147
+2	hfaction.cpx	qrsint	identity	SNOMED	251208001	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	149
+1	best.cvh2	cvcad	not_used	SNOMED	53741008	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	150
+1	best.cvh2	cvhxdiab	best_yes_no_to_concept	SNOMED	161445009	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	151
+1	best.diab	diahis	not_used	SNOMED	161445009	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	152
+1	best.clab2	clatri	not_used	LOINC	14927-8	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	153
+3	scdheft.basecrf	bcabg	scdheft_yes_no_to_concept	SNOMED	81266008	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	154
+3	scdheft.baseline_new	gender	scdheft_sex_to_concept	SNOMED	263495000	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	155
+3	scdheft.baseline_new	bun	identity	LOINC	6299-2	measurement	value_as_number	\N	\N	\N	\N	\N	MG/DL	t	156
+3	scdheft.basecrf	bhypert	scdheft_yes_no_to_concept	SNOMED	38341003	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	157
+3	scdheft.baseline_new	afecg	scdheft_yes_no_to_concept	SNOMED	49436004	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	158
+3	scdheft.basecrf	cnyha	identity	SNOMED	420816009	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	159
+3	scdheft.basecrf	bptca	scdheft_yes_no_to_concept	SNOMED	41339005	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	160
+3	scdheft.basecrf	bsmoke	scdheft_yes_no_to_concept	LOINC	39240-7	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	161
+3	scdheft.basecrf	cmdiab	scdheft_yes_no_to_concept	SNOMED	161445009	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	162
+3	scdheft.basecrf	cvalvdz	scdheft_yes_no_to_concept	SNOMED	368009	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	164
+3	scdheft.rdemog	race_redact	scdheft_race_to_concept	SNOMED	103579009	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	165
+3	scdheft.basecrf	bhyperl	scdheft_yes_no_to_concept	SNOMED	55822004	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	166
+3	scdheft.basecrf	cpesys	identity	LOINC	8480-6	measurement	value_as_number	\N	\N	\N	\N	\N	mm Hg (assumed)	t	168
+3	scdheft.basecrf	cpedias	identity	LOINC	8462-4	measurement	value_as_number	\N	\N	\N	\N	\N	mm Hg (assumed)	t	169
+2	hfaction.labs	labval	identity	LOINC	2951-2	measurement	value_as_number	\N	\N	1	Hb	labtest	\N	t	170
+3	scdheft.basecrf	cpepulse	identity	LOINC	8867-4	measurement	value_as_number	\N	\N	\N	\N	\N	beat/min (assumed)	t	171
+3	scdheft.baseline_new	sodium	identity	LOINC	2951-2	measurement	value_as_number	\N	\N	\N	\N	\N	MEQ/L	t	172
+3	scdheft.baseline_new	age	identity	SNOMED	424144002	observation	value_as_number	\N	\N	\N	\N	\N	years (assumed)	t	173
+3	scdheft.ecg	ecgqrs	identity	SNOMED	251208001	measurement	value_as_number	\N	\N	\N	\N	\N	milliseconds (max)	t	174
+3	scdheft.basecrf	cstroke	scdheft_yes_no_to_concept	SNOMED	230690007	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	175
+3	scdheft.baseline_new	weightkg	kg_to_lb	LOINC	29463-7	measurement	value_as_number	\N	\N	\N	\N	\N	lb	t	176
+3	scdheft.baseline_new	chfdxmo	identity	UCD.Kao	UCD-Kao-1	observation	value_as_number	\N	\N	\N	\N	\N	months	t	177
+1	best.cvh1	cvduratn	identity	UCD.Kao	UCD-Kao-1	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	178
+4	topcat.t008	bun_mgdl	identity	LOINC	6299-2	measurement	value_as_number	\N	\N	\N	\N	\N	mg/dl	t	179
+4	topcat.t008	na_mmoll	identity	LOINC	2951-2	measurement	value_as_number	\N	\N	\N	\N	\N	mmol/L	t	180
+4	topcat.t008	alt_ul	identity	LOINC	76625-3	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	181
+4	topcat.t008	ast_ul	identity	LOINC	1920-8	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	182
+4	topcat.t003	gender	topcat_sex_to_concept	SNOMED	263495000	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	183
+4	topcat.t008	hct_p	identity	SNOMED	365616005	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	184
+4	topcat.t003	age_entry	identity	SNOMED	424144002	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	185
+3	scdheft.baseline_new	lvef	identity	LOINC	10230-1	measurement	value_as_number	\N	\N	\N	LV ejection fraction	\N	ratio	t	186
+4	topcat.t004	ef	identity	LOINC	10230-1	measurement	value_as_number	\N	\N	\N	LV ejection fraction	\N	\N	t	187
+4	topcat.t008	alb_gdl	identity	LOINC	1751-7	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	188
+4	topcat.t008	hb_gdl	identity	LOINC	4635-9	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	189
+4	topcat.t010	qrs_dur	identity	SNOMED	251208001	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	190
+4	topcat.t005	cabg	topcat_yes_no_to_concept	SNOMED	81266008	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	191
+1	best.ecg	ecqr	centiseconds_to_milliseconds	SNOMED	251208001	measurement	value_as_number	\N	\N	\N	\N	\N	centiseconds	t	148
+4	topcat.t005	htn	topcat_yes_no_to_concept	SNOMED	38341003	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	192
+4	topcat.t005	afib	topcat_yes_no_to_concept	SNOMED	49436004	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	193
+4	topcat.t005	pci	topcat_yes_no_to_concept	SNOMED	41339005	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	194
+4	topcat.t005	smoke_ever	topcat_yes_no_to_concept	LOINC	39240-7	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	195
+4	topcat.t005	dm	topcat_yes_no_to_concept	SNOMED	161445009	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	196
+3	scdheft.basecrf	cstay	identity	LOINC	85610-4	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	197
+3	scdheft.basecrf	cburden	identity	LOINC	85613-8	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	198
+3	scdheft.basecrf	ceffect	identity	LOINC	85612-0	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	199
+3	scdheft.basecrf	cswell	identity	LOINC	85598-1	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	200
+3	scdheft.basecrf	cwork	identity	LOINC	85600-5	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	201
+3	scdheft.basecrf	cremem	identity	LOINC	85616-1	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	202
+3	scdheft.basecrf	cfriends	identity	LOINC	85603-9	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	203
+3	scdheft.basecrf	crest	identity	LOINC	85619-5	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	204
+3	scdheft.basecrf	cenergy	identity	LOINC	85620-3	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	205
+3	scdheft.basecrf	cdiff	identity	LOINC	85604-7	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	206
+3	scdheft.basecrf	chobbie	identity	LOINC	85605-4	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	207
+3	scdheft.basecrf	cbreath	identity	LOINC	85608-8	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	208
+3	scdheft.basecrf	csleep	identity	LOINC	85602-1	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	209
+3	scdheft.basecrf	ceat	identity	LOINC	85607-0	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	210
+3	scdheft.basecrf	caway	identity	LOINC	85601-3	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	211
+3	scdheft.basecrf	csex	identity	LOINC	85606-2	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	212
+3	scdheft.basecrf	cworry	identity	LOINC	85615-3	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	213
+3	scdheft.basecrf	cdeprs	identity	LOINC	85617-9	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	214
+3	scdheft.basecrf	ccost	identity	LOINC	85611-2	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	215
+3	scdheft.basecrf	closs	identity	LOINC	85614-6	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	216
+3	scdheft.basecrf	cwalkc	identity	LOINC	85599-9	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	217
+4	topcat.t006	nyha_class_cat	identity	SNOMED	420816009	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	218
+4	topcat.t006	sbp	identity	LOINC	8480-6	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	219
+4	topcat.t006	dbp	identity	LOINC	8462-4	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	220
+4	topcat.t006	hr	identity	LOINC	8867-4	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	221
+4	topcat.t006	height	identity	LOINC	8302-2	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	223
+4	topcat.t008	tbili_mgdl	identity	LOINC	1975-2	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	224
+4	topcat.t006	weight	identity	LOINC	29463-7	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	222
+4	topcat.t010	ecg_bbb2	topcat_yes_no_to_concept	SNOMED	6374002	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	226
+4	topcat.t005	stroke	topcat_yes_no_to_concept	SNOMED	230690007	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	227
+4	topcat.t008	wbc_kul	identity	LOINC	30406-3	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	228
+4	topcat.t005	icd	topcat_yes_no_to_concept	SNOMED	19257004	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	229
+4	topcat.t005	mi	topcat_yes_no_to_concept	SNOMED	22298006	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	230
+4	topcat.t005	dyslipid	topcat_yes_no_to_concept	SNOMED	55822004	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	231
+4	topcat.t003	race_cat	topcat_race_to_concept	SNOMED	103579009	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	232
+3	scdheft.basecrf	crang	scdheft_yes_no_to_concept	SNOMED	59021001	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	233
+3	scdheft.basecrf	ceang	scdheft_yes_no_to_concept	SNOMED	30995000	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	234
+5	paradigm.test	sgpt_1	identity	LOINC	1920-8	measurement	value_as_number	\N	\N	\N	AST	\N	\N	t	235
+5	paradigm.test	sex1c	paradigm_sex_to_concept	SNOMED	263495000	observation	value_as_concept_id	\N	\N	\N	Gender	\N	\N	t	236
+5	paradigm.test	sod_1	identity	LOINC	2951-2	measurement	value_as_number	\N	\N	\N	Sodium	\N	mmol/L	t	237
+5	paradigm.test	bun_1	identity	LOINC	6299-2	measurement	value_as_number	\N	\N	\N	BUN	\N	mg/dl	t	238
+5	paradigm.test	sgot_1	identity	LOINC	76625-3	measurement	value_as_number	\N	\N	\N	ALT	\N	\N	t	239
+5	paradigm.test	alb_1	identity	LOINC	1751-7	measurement	value_as_number	\N	\N	\N	Albumin	\N	\N	t	240
+5	paradigm.test	qrs_ecg	identity	SNOMED	251208001	measurement	value_as_number	\N	\N	\N	QRS interval	\N	\N	t	241
+5	paradigm.test	wgt_b1	kg_to_lb	LOINC	29463-7	measurement	value_as_number	\N	\N	\N	Weight Kg	\N	\N	t	242
+5	paradigm.test	nyh_b1	identity	SNOMED	420816009	observation	value_as_number	\N	\N	\N	NYHA	\N	\N	t	243
+5	paradigm.test	kcqscans_baseline	identity	LOINC	71940-1	observation	value_as_number	\N	\N	\N	KCCQ	\N	\N	t	244
+5	paradigm.test	dbp_b1	identity	LOINC	8462-4	measurement	value_as_number	\N	\N	\N	Diastolic blood pressure	\N	\N	t	245
+5	paradigm.test	copd_flg1	paradigm_yes_no_to_concept	LOINC	45670-7	observation	value_as_concept_id	\N	\N	\N	COPD	\N	\N	t	246
+5	paradigm.test	hr_b2	identity	LOINC	8867-4	measurement	value_as_number	\N	\N	\N	Heart Rate	\N	\N	t	247
+5	paradigm.test	hgt_b1	identity	LOINC	8302-2	measurement	value_as_number	\N	\N	\N	Height cm	\N	\N	t	248
+5	paradigm.test	stabang	paradigm_yes_no_to_concept	SNOMED	194828000	observation	value_as_concept_id	\N	\N	\N	Angina	\N	\N	t	249
+4	topcat.t005	angina	topcat_yes_no_to_concept	SNOMED	194828000	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	250
+5	paradigm.test	bmi_b1	identity	LOINC	39156-5	measurement	value_as_number	\N	\N	\N	BMI	\N	\N	t	252
+4	topcat.t005	copd	topcat_yes_no_to_concept	LOINC	45670-7	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	253
+5	paradigm.test	sbp_b1	identity	LOINC	8480-6	measurement	value_as_number	\N	\N	\N	Systolic blood pressure	\N	\N	t	254
+1	best.muga	mulve	identity	LOINC	10230-1	measurement	value_as_number	\N	\N	\N	LV ejection fraction	\N	\N	t	255
+2	hfaction.analysis	bestlvef	identity	LOINC	10230-1	measurement	value_as_number	\N	\N	\N	LV ejection fraction	\N	\N	t	256
+5	paradigm.test	ejf_b1	identity	LOINC	10230-1	measurement	value_as_number	\N	\N	\N	LV ejection fraction	\N	\N	t	257
+5	paradigm.test	race	paradigm_race_to_concept	SNOMED	103579009	observation	value_as_concept_id	\N	\N	\N	Race	\N	\N	t	258
+23	allhat.basic_with_outcomes	sbp6m12	identity	UCD.Kao	UCD-Kao-39	measurement	value_as_number	\N	\N	\N	\N	\N	\N	\N	596
+5	paradigm.test	mi_flg1	paradigm_yes_no_to_concept	SNOMED	22298006	observation	value_as_concept_id	\N	\N	\N	Myocardial Infarction	\N	\N	t	259
+5	paradigm.test	stk_flg1	paradigm_yes_no_to_concept	SNOMED	230690007	observation	value_as_concept_id	\N	\N	\N	Stroke	\N	\N	t	260
+5	paradigm.test	wbc_1	identity	LOINC	30406-3	measurement	value_as_number	\N	\N	\N	WBC	\N	\N	t	261
+5	paradigm.test	cursmk1c	paradigm_yes_no_to_concept	LOINC	39240-7	observation	value_as_concept_id	\N	\N	\N	Tobacco use	\N	\N	t	262
+5	paradigm.test	pci_flg1	paradigm_yes_no_to_concept	SNOMED	41339005	observation	value_as_concept_id	\N	\N	\N	Prior PCI	\N	\N	t	263
+5	paradigm.test	af_flg1	paradigm_yes_no_to_concept	SNOMED	49436004	observation	value_as_concept_id	\N	\N	\N	Atrial fibrillation/flutter	\N	\N	t	264
+5	paradigm.test	lip_flg2	paradigm_yes_no_to_concept	SNOMED	55822004	observation	value_as_concept_id	\N	\N	\N	Hyperlipidemia	\N	\N	t	265
+5	paradigm.test	cbg_flg1	paradigm_yes_no_to_concept	SNOMED	81266008	observation	value_as_concept_id	\N	\N	\N	Prior CABG	\N	\N	t	266
+5	paradigm.test	eqv_tfl2	identity	SNOMED	273447005	observation	value_as_number	\N	\N	\N	EQ5D euroqol	\N	\N	t	269
+5	paradigm.test	icd_flg1	paradigm_yes_no_to_concept	UCD.Kao	UCD-Kao-14	observation	value_as_concept_id	\N	\N	\N	ICD	\N	\N	t	271
+5	paradigm.test	ctd_flg1	paradigm_yes_no_to_concept	UCD.Kao	UCD-Kao-12	observation	value_as_concept_id	\N	\N	\N	CTD	\N	\N	t	272
+5	paradigm.test	pp_b1	identity	SNOMED	87179004	measurement	value_as_number	\N	\N	\N	Pulse pressure	\N	mm/hg	t	273
+2	hfaction.analysis	egfr	identity	SNOMED	442407001	measurement	value_as_number	\N	\N	\N	CrCl == gfr ?	\N	\N	t	274
+5	paradigm.test	tbil_1	identity	LOINC	1975-2	measurement	value_as_number	\N	\N	\N	Total billirubin, * educated guess *	parnam1c	\N	t	275
+5	paradigm.test	age_1n	identity	SNOMED	424144002	observation	value_as_number	\N	\N	\N	Age, risk model	\N	\N	t	276
+4	topcat.t008	gfr	identity	SNOMED	442407001	measurement	value_as_number	\N	\N	\N	CrCl == gfr ?	\N	\N	t	277
+5	paradigm.test	hyp_flg1	paradigm_yes_no_to_concept	SNOMED	38341003	observation	value_as_concept_id	\N	\N	\N	Hypertension	\N	\N	t	278
+5	paradigm.test	ich_flg1	paradigm_yes_no_to_concept	SNOMED	414545008	observation	value_as_concept_id	\N	\N	\N	Ischemic Heart Disease	\N	\N	t	279
+5	paradigm.test	dbt_flg1	paradigm_yes_no_to_concept	SNOMED	161445009	observation	value_as_concept_id	\N	\N	\N	Diabetes mellitus	\N	\N	t	281
+5	paradigm.test	lbbb_ecg	paradigm_yes_no_to_concept	SNOMED	63467002	observation	value_as_concept_id	\N	\N	\N	Left bundle branch block	\N	boolean	t	282
+5	paradigm.test	rbbb_ecg	paradigm_yes_no_to_concept	SNOMED	59118001	observation	value_as_concept_id	\N	\N	\N	Right bundle branch block	\N	boolean	t	283
+3	scdheft.baseline_new	crclear	identity	SNOMED	442407001	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	284
+1	best.clab1	clacrex	identity	LOINC	2160-0	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	285
+1	best.clab1	clahgbx	identity	LOINC	4635-9	measurement	value_as_number	\N	\N	\N	\N	\N	\N	t	286
+5	paradigm.test	hct_1	decimal_to_percent	SNOMED	365616005	measurement	value_as_number	\N	\N	\N	Hematocrit	\N	\N	t	287
+5	paradigm.test	hf_flg1	years_to_months	UCD.Kao	UCD-Kao-1	observation	value_as_number	\N	\N	\N	Time since diagnosis (years)	\N	\N	t	288
+5	paradigm.test	ang_flg1	paradigm_yes_no_to_concept	UCD.Kao	UCD-Kao-15	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	289
+5	paradigm.test	angiosten	paradigm_yes_no_to_concept	UCD.Kao	UCD-Kao-16	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	290
+5	paradigm.test	vhd_flg1	paradigm_yes_no_to_concept	SNOMED	368009	observation	value_as_concept_id	\N	\N	\N	Valvular Disease	\N	boolean	t	291
+1	best.br	randate	identity	UCD.Kao	UCD-Kao-6	observation	value_as_string	\N	\N	\N	PHI?	\N	date	t	292
+2	dual	2000-01-01	identity	UCD.Kao	UCD-Kao-6	observation	value_as_string	\N	\N	\N	no absolute dates, assuming here	\N	date	f	293
+3	dual	2000-01-01	identity	UCD.Kao	UCD-Kao-6	observation	value_as_string	\N	\N	\N	no absolute dates, assuming here	\N	date	f	294
+4	topcat.t030	term_dt_1	years_to_days	UCD.Kao	UCD-Kao-20	observation	value_as_number	\N	\N	\N	topcat eos years, may be >; death_dt	\N	days	f	295
+1	best.eos	eos_dt	identity	UCD.Kao	UCD-Kao-21	observation	value_as_string	\N	\N	\N	eos date	\N	date	t	296
+1	best.t	group	best_yes_no_to_concept	UCD.Kao	UCD-Kao-19	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	f	297
+5	paradigm.test	tend_1o	identity	UCD.Kao	UCD-Kao-21	observation	value_as_string	\N	\N	\N	eos date	\N	date	f	298
+2	hfaction.studcomp	visitdays	identity	UCD.Kao	UCD-Kao-20	observation	value_as_number	\N	\N	\N	eos days	\N	days	f	299
+3	scdheft.endpt_new	lastdt_days	identity	UCD.Kao	UCD-Kao-20	observation	value_as_number	\N	\N	\N	eos days	\N	days	f	300
+4	topcat.t079	site_dt3	years_to_days	UCD.Kao	UCD-Kao-23	observation	value_as_number	\N	\N	\N	topcat site years to death	\N	\N	f	301
+4	dual	2000-01-01	identity	UCD.Kao	UCD-Kao-6	observation	value_as_string	\N	\N	\N	no absolute dates, assuming here	\N	date	f	302
+5	paradigm.test	randate	identity	UCD.Kao	UCD-Kao-6	observation	value_as_string	\N	\N	\N	rand date	\N	date	f	303
+3	scdheft.death	deathdt_days	identity	UCD.Kao	UCD-Kao-18	observation	value_as_number	\N	\N	\N	\N	\N	date	f	304
+5	paradigm.test	t2dth	identity	UCD.Kao	UCD-Kao-18	observation	value_as_number	\N	\N	\N	\N	\N	date	f	305
+5	paradigm.test	trtnrand	topcat_yes_no_to_concept	UCD.Kao	UCD-Kao-19	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	f	307
+2	hfaction.randvit	tassign	topcat_yes_no_to_concept	UCD.Kao	UCD-Kao-19	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	f	308
+5	paradigm.test	bnp_b1_pg	identity	LOINC	42637-9	measurement	value_as_number	\N	\N	\N	BNP	\N	\N	t	268
+5	paradigm.test	ntp_b1_pg	identity	LOINC	33762-6	measurement	value_as_number	\N	\N	\N	NTBNP	\N	\N	t	267
+5	paradigm.test	hgba_1	identity	LOINC	4635-9	measurement	value_as_number	\N	\N	\N	Hemoglobin	\N	\N	t	280
+4	topcat.t011	drug	topcat_yes_no_to_concept	UCD.Kao	UCD-Kao-19	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	f	309
+4	topcat.t079	date_death	years_to_days	UCD.Kao	UCD-Kao-25	observation	value_as_number	\N	\N	\N	topcat site vs cec death	\N	\N	f	310
+4	topcat.t079	cec_dt3	years_to_days	UCD.Kao	UCD-Kao-24	observation	value_as_number	\N	\N	\N	topcate cec years to death	\N	\N	f	311
+2	hfaction.labs	labval	identity	SNOMED	365616005	measurement	value_as_number	\N	\N	10	Hcrit	labtest	\N	t	312
+2	hfaction.analysis	deathfu	identity	UCD.Kao	UCD-Kao-18	observation	value_as_number	\N	\N	\N	analysis.deathfu vs cecdeath.dthdays	\N	days	f	313
+2	hfaction.analysis	lftvdiad	identity	SNOMED	250933001	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	314
+2	hfaction.analysis	lftvmass	identity	SNOMED	373941003	observation	value_as_number	\N	\N	\N	\N	\N	\N	t	315
+3	scdheft.basecrf	bmi	scdheft_yes_no_to_concept	SNOMED	22298006	observation	value_as_concept_id	\N	\N	\N	THIS IS REALLY MI, not bmi!!	\N	\N	t	167
+1	best.mort1	modate1	identity	SNOMED	399753006	observation	value_as_string	\N	\N	\N	\N	\N	\N	t	318
+1	best.wd	wddate	identity	UCD.Kao	UCD-Kao-21	observation	value_as_string	\N	\N	1	patients that withdrew	wdreport	date	t	321
+6	paradigm.test	sgpt_1	identity	LOINC	1920-8	measurement	value_as_number	\N	\N	\N	AST	\N	\N	t	322
+6	paradigm.test	sex1c	paradigm_sex_to_concept	SNOMED	263495000	observation	value_as_concept_id	\N	\N	\N	Gender	\N	\N	t	323
+6	paradigm.test	sod_1	identity	LOINC	2951-2	measurement	value_as_number	\N	\N	\N	Sodium	\N	mmol/L	t	324
+6	paradigm.test	bun_1	identity	LOINC	6299-2	measurement	value_as_number	\N	\N	\N	BUN	\N	mg/dl	t	325
+6	paradigm.test	sgot_1	identity	LOINC	76625-3	measurement	value_as_number	\N	\N	\N	ALT	\N	\N	t	326
+6	paradigm.test	alb_1	identity	LOINC	1751-7	measurement	value_as_number	\N	\N	\N	Albumin	\N	\N	t	327
+6	paradigm.test	qrs_ecg	identity	SNOMED	251208001	measurement	value_as_number	\N	\N	\N	QRS interval	\N	\N	t	328
+6	paradigm.test	wgt_b1	kg_to_lb	LOINC	29463-7	measurement	value_as_number	\N	\N	\N	Weight Kg	\N	\N	t	329
+6	paradigm.test	nyh_b1	identity	SNOMED	420816009	observation	value_as_number	\N	\N	\N	NYHA	\N	\N	t	330
+6	paradigm.test	kcqscans_baseline	identity	LOINC	71940-1	observation	value_as_number	\N	\N	\N	KCCQ	\N	\N	t	331
+6	paradigm.test	dbp_b1	identity	LOINC	8462-4	measurement	value_as_number	\N	\N	\N	Diastolic blood pressure	\N	\N	t	332
+6	paradigm.test	copd_flg1	paradigm_yes_no_to_concept	LOINC	45670-7	observation	value_as_concept_id	\N	\N	\N	COPD	\N	\N	t	333
+6	paradigm.test	hr_b2	identity	LOINC	8867-4	measurement	value_as_number	\N	\N	\N	Heart Rate	\N	\N	t	334
+6	paradigm.test	hgt_b1	identity	LOINC	8302-2	measurement	value_as_number	\N	\N	\N	Height cm	\N	\N	t	335
+6	paradigm.test	stabang	paradigm_yes_no_to_concept	SNOMED	194828000	observation	value_as_concept_id	\N	\N	\N	Angina	\N	\N	t	336
+6	paradigm.test	gfr_b1	identity	SNOMED	442407001	measurement	value_as_number	\N	\N	\N	CrCl == gfr ?	\N	\N	t	337
+6	paradigm.test	bmi_b1	identity	LOINC	39156-5	measurement	value_as_number	\N	\N	\N	BMI	\N	\N	t	338
+6	paradigm.test	sbp_b1	identity	LOINC	8480-6	measurement	value_as_number	\N	\N	\N	Systolic blood pressure	\N	\N	t	339
+6	paradigm.test	ejf_b1	identity	LOINC	10230-1	measurement	value_as_number	\N	\N	\N	LV ejection fraction	\N	\N	t	340
+6	paradigm.test	race	paradigm_race_to_concept	SNOMED	103579009	observation	value_as_concept_id	\N	\N	\N	Race	\N	\N	t	341
+6	paradigm.test	mi_flg1	paradigm_yes_no_to_concept	SNOMED	22298006	observation	value_as_concept_id	\N	\N	\N	Myocardial Infarction	\N	\N	t	342
+6	paradigm.test	stk_flg1	paradigm_yes_no_to_concept	SNOMED	230690007	observation	value_as_concept_id	\N	\N	\N	Stroke	\N	\N	t	343
+6	paradigm.test	wbc_1	identity	LOINC	30406-3	measurement	value_as_number	\N	\N	\N	WBC	\N	\N	t	344
+6	paradigm.test	cursmk1c	paradigm_yes_no_to_concept	LOINC	39240-7	observation	value_as_concept_id	\N	\N	\N	Tobacco use	\N	\N	t	345
+6	paradigm.test	pci_flg1	paradigm_yes_no_to_concept	SNOMED	41339005	observation	value_as_concept_id	\N	\N	\N	Prior PCI	\N	\N	t	346
+6	paradigm.test	af_flg1	paradigm_yes_no_to_concept	SNOMED	49436004	observation	value_as_concept_id	\N	\N	\N	Atrial fibrillation/flutter	\N	\N	t	347
+6	paradigm.test	lip_flg2	paradigm_yes_no_to_concept	SNOMED	55822004	observation	value_as_concept_id	\N	\N	\N	Hyperlipidemia	\N	\N	t	348
+6	paradigm.test	cbg_flg1	paradigm_yes_no_to_concept	SNOMED	81266008	observation	value_as_concept_id	\N	\N	\N	Prior CABG	\N	\N	t	349
+6	paradigm.test	ntp_b1_pg	identity	LOINC	33762-6	measurement	value_as_number	\N	\N	\N	n-terminal pro bnp	\N	\N	t	350
+6	paradigm.test	eqv_tfl2	identity	SNOMED	273447005	observation	value_as_number	\N	\N	\N	EQ5D euroqol	\N	\N	t	352
+6	paradigm.test	icd_flg1	paradigm_yes_no_to_concept	UCD.Kao	UCD-Kao-14	observation	value_as_concept_id	\N	\N	\N	ICD	\N	\N	t	354
+6	paradigm.test	ctd_flg1	paradigm_yes_no_to_concept	UCD.Kao	UCD-Kao-12	observation	value_as_concept_id	\N	\N	\N	CTD	\N	\N	t	355
+6	paradigm.test	pp_b1	identity	SNOMED	87179004	measurement	value_as_number	\N	\N	\N	Pulse pressure	\N	mm/hg	t	356
+6	paradigm.test	tbil_1	identity	LOINC	1975-2	measurement	value_as_number	\N	\N	\N	Total billirubin, * educated guess *	parnam1c	\N	t	357
+6	paradigm.test	age_1n	identity	SNOMED	424144002	observation	value_as_number	\N	\N	\N	Age, risk model	\N	\N	t	358
+6	paradigm.test	hyp_flg1	paradigm_yes_no_to_concept	SNOMED	38341003	observation	value_as_concept_id	\N	\N	\N	Hypertension	\N	\N	t	359
+6	paradigm.test	ich_flg1	paradigm_yes_no_to_concept	SNOMED	414545008	observation	value_as_concept_id	\N	\N	\N	Ischemic Heart Disease	\N	\N	t	360
+6	paradigm.test	hgba_1	identity	LOINC	4635-9	measurement	value_as_number	\N	\N	\N	Hemoglobin, * educated guess *	\N	\N	t	361
+6	paradigm.test	dbt_flg1	paradigm_yes_no_to_concept	SNOMED	161445009	observation	value_as_concept_id	\N	\N	\N	Diabetes mellitus	\N	\N	t	362
+6	paradigm.test	lbbb_ecg	paradigm_yes_no_to_concept	SNOMED	63467002	observation	value_as_concept_id	\N	\N	\N	Left bundle branch block	\N	boolean	t	363
+6	paradigm.test	rbbb_ecg	paradigm_yes_no_to_concept	SNOMED	59118001	observation	value_as_concept_id	\N	\N	\N	Right bundle branch block	\N	boolean	t	364
+6	paradigm.test	hct_1	decimal_to_percent	SNOMED	365616005	measurement	value_as_number	\N	\N	\N	Hematocrit	\N	\N	t	365
+6	paradigm.test	hf_flg1	years_to_months	UCD.Kao	UCD-Kao-1	observation	value_as_number	\N	\N	\N	Time since diagnosis (years)	\N	\N	t	366
+6	paradigm.test	bnp_b1_pg	identity	LOINC	42637-9	measurement	value_as_number	\N	\N	\N	BNP	\N	\N	t	351
+6	paradigm.test	ang_flg1	paradigm_yes_no_to_concept	UCD.Kao	UCD-Kao-15	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	367
+6	paradigm.test	angiosten	paradigm_yes_no_to_concept	UCD.Kao	UCD-Kao-16	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	368
+6	paradigm.test	vhd_flg1	paradigm_yes_no_to_concept	SNOMED	368009	observation	value_as_concept_id	\N	\N	\N	Valvular Disease	\N	boolean	t	369
+6	paradigm.test	tend_1o	identity	UCD.Kao	UCD-Kao-21	observation	value_as_string	\N	\N	\N	eos date	\N	date	f	370
+6	paradigm.test	randate	identity	UCD.Kao	UCD-Kao-6	observation	value_as_string	\N	\N	\N	rand date	\N	date	f	371
+6	paradigm.test	t2dth	identity	UCD.Kao	UCD-Kao-18	observation	value_as_number	\N	\N	\N	\N	\N	date	f	372
+6	paradigm.test	trtnrand	topcat_yes_no_to_concept	UCD.Kao	UCD-Kao-19	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	f	373
+5	paradigm.test	crt_flg1	paradigm_yes_no_to_concept	SNOMED	69031000119105	observation	value_as_concept_id	\N	\N	\N	CTD	\N	\N	t	270
+6	paradigm.test	crt_flg1	paradigm_yes_no_to_concept	SNOMED	69031000119105	observation	value_as_concept_id	\N	\N	\N	CTD	\N	\N	t	353
+5	paradigm.test	gfr_b1	identity	SNOMED	442407001	measurement	value_as_number	\N	\N	\N	CrCl	\N	\N	t	251
+10	test.data	a	identity	UCD.Kao	test-1	measurement	value_as_number	\N	\N	\N	\N	\N	\N	f	375
+10	test.data	b	identity	UCD.Kao	test-2	measurement	value_as_number	\N	\N	\N	\N	\N	\N	f	376
+10	test.data	c	identity	UCD.Kao	test-3	observation	value_as_string	\N	\N	\N	\N	\N	\N	f	377
+10	test.data	e	string_yes_no_to_concept	UCD.Kao	test-5	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	f	378
+10	test.data	d	kg_to_lb	UCD.Kao	test-4	measurement	value_as_number	\N	\N	\N	\N	\N	\N	f	380
+10	test.data	sex	sex_to_concept_m1f2	UCD.Kao	test-6	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	f	379
+3	scdheft.basecrf	btx	scdheft_btx_to_placebo	UCD.Kao	UCD-Kao-19	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	306
+22	aimhigh.PATIENT	age	identity	SNOMED	424144002	observation	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	407
+22	aimhigh.HX	hx_angina	yes_no_to_concept	SNOMED	194828000	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	408
+22	aimhigh.HX	hx_afib	yes_no_to_concept	SNOMED	49436004	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	409
+22	aimhigh.PATIENT	bmi	identity	LOINC	39156-5	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	410
+22	aimhigh.HX	hx_cpd	yes_no_to_concept	LOINC	45670-7	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	411
+22	aimhigh.PATIENT	race	aimhigh_race_to_concept	SNOMED	103579009	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	420
+22	aimhigh.HX	hx_diabetes	yes_no_to_concept	SNOMED	161445009	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	413
+22	aimhigh.PATIENT	diasbp	identity	LOINC	8462-4	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	414
+22	aimhigh.HX	hx_ef	identity	LOINC	10230-1	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	415
+22	aimhigh.HX	hx_hyper	yes_no_to_concept	SNOMED	38341003	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	416
+22	aimhigh.HX	hx_mi	yes_no_to_concept	SNOMED	22298006	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	417
+22	aimhigh.HX	hx_cabg	yes_no_to_concept	SNOMED	261240000	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	418
+22	aimhigh.HX	hx_pci	yes_no_to_concept	SNOMED	415070008	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	419
+22	aimhigh.PATIENT	sysbp	identity	LOINC	8480-6	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	422
+23	allhat.basic_with_outcomes	dbp6m12	identity	UCD.Kao	UCD-Kao-40	measurement	value_as_number	\N	\N	\N	\N	\N	\N	\N	597
+22	aimhigh.HX	hx_stroke	yes_no_to_concept	SNOMED	230690007	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	426
+22	aimhigh.PATIENT	sex	sex_to_concept_f0m1	SNOMED	263495000	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	421
+21	accord.ACCORD_KEY	baseline_age	identity	SNOMED	424144002	observation	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	428
+21	accord.ACCORD_KEY	female	sex_to_concept_m0f1	SNOMED	263495000	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	435
+24	bari2d.BARI2D_BL	age	identity	SNOMED	424144002	observation	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	441
+24	bari2d.BARI2D_BL	bmi	identity	LOINC	39156-5	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	442
+24	bari2d.BARI2D_BL	dbp_sit	identity	LOINC	8462-4	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	443
+24	bari2d.BARI2D_BL	pulse60_sit	identity	LOINC	8867-4	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	444
+24	bari2d.BARI2D_BL	sbp_sit	identity	LOINC	8480-6	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	447
+24	bari2d.BARI2D_BL	smkcat	yes_no_to_concept	LOINC	39240-7	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	449
+24	bari2d.BARI2D_BL	height	identity	LOINC	8302-2	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	450
+24	bari2d.BARI2D_BL	sex	sex_to_concept_m1f2	SNOMED	263495000	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	445
+21	accord.F01_INCLUSIONEXCLUSIONSUMMARY	x2qhba1c	identity	SNOMED	313835008	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	451
+21	accord.ACCORD_KEY	female	sex_to_concept_m0f1	SNOMED	263495000	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	435
+21	accord.F01_INCLUSIONEXCLUSIONSUMMARY	x1diab	yes_no_to_concept_12	SNOMED	161445009	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	431
+21	accord.F01_INCLUSIONEXCLUSIONSUMMARY	x2stroke	yes_no_to_concept_12	SNOMED	230690007	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	437
+22	aimhigh.PATIENT	smoke	aimhigh_smoke_to_concept	LOINC	39240-7	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	423
+22	aimhigh.DEMO	demo_alcohol	yes_no_to_concept	SNOMED	219006	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	427
+10	test.data	sex	sex_to_concept_m1f2	UCD.Kao	test-6	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	f	379
+24	bari2d.BARI2D_BL	sex	sex_to_concept_m1f2	SNOMED	263495000	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	445
+21	accord.F07_BASELINEHISTORYPHYSICALEXAM	ht_cm	identity	LOINC	8302-2	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	438
+21	accord.OTHERLABS_201604	alt	identity	LOINC	76625-3	measurement	value_as_number	\N	\N	BLR	added by the code	visit	\N	\N	429
+21	accord.OTHERLABS_201604	gfr	identity	SNOMED	80274001	measurement	value_as_number	\N	\N	BLR	added by the code	visit	\N	\N	439
+22	aimhigh.PE	pe_wt	identity	LOINC	29463-7	measurement	value_as_number	\N	\N	Baseline	added by the code	visit	\N	\N	424
+22	aimhigh.PE	pe_ht	identity	LOINC	8302-2	measurement	value_as_number	\N	\N	Baseline	added by the code	visit	\N	\N	425
+22	aimhigh.LAB	crcl	identity	LOINC	2160-0	measurement	value_as_number	\N	\N	0	added by the code	visit	\N	\N	412
+22	aimhigh.LAB	egfr	identity	SNOMED	80274001	measurement	value_as_number	\N	\N	0	added by the code	visit	\N	\N	440
+21	accord.CONCOMITANTMEDS	acei	yes_no_to_concept	ATC	C09A	observation	value_as_concept_id	\N	\N	BLR	added by the code	visit	\N	\N	463
+22	aimhigh.PATIENT	glucose_base	identity	SNOMED	167094009	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	469
+22	aimhigh.PATIENT	hdl_c_base	identity	SNOMED	166832000	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	470
+22	aimhigh.PATIENT	ldl_c_base	identity	SNOMED	166833005	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	471
+22	aimhigh.PATIENT	trig_base	identity	SNOMED	14740000	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	472
+22	aimhigh.INCL	incl_cvd	yes_no_to_concept	SNOMED	266995000	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	482
+22	aimhigh.INCL	incl_mi	yes_no_to_concept	LOINC	8611-6	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	484
+24	bari2d.BARI2D_BL	hba1c	identity	SNOMED	313835008	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	485
+21	accord.F01_INCLUSIONEXCLUSIONSUMMARY	x2angina	yes_no_to_concept_12	SNOMED	194828000	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	430
+21	accord.F01_INCLUSIONEXCLUSIONSUMMARY	x4smoke	yes_no_to_concept_12	LOINC	39240-7	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	436
+21	accord.F01_INCLUSIONEXCLUSIONSUMMARY	cvdhist	yes_no_to_concept_12	SNOMED	266995000	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	453
+2	hfaction.analysis	sex	sex_to_concept_m1f2	SNOMED	263495000	observation	value_as_concept_id	\N	\N	\N	\N	\N	\N	t	111
+22	aimhigh.PATIENT	sex	sex_to_concept_m1f2	SNOMED	263495000	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	421
+21	accord.BLOODPRESSURE_201604	dbp	identity	LOINC	8462-4	measurement	value_as_number	\N	\N	BLR	added by the code	visit	\N	\N	432
+21	accord.BLOODPRESSURE_201604	sbp	identity	LOINC	8480-6	measurement	value_as_number	\N	\N	BLR	added by the code	visit	\N	\N	433
+21	accord.BLOODPRESSURE_201604	hr	identity	LOINC	8867-4	measurement	value_as_number	\N	\N	BLR	added by the code	visit	\N	\N	434
+21	accord.CONCOMITANTMEDS	beta_blocker	yes_no_to_concept	ATC	C07	observation	value_as_concept_id	\N	\N	BLR	added by the code	visit	\N	\N	462
+21	accord.CONCOMITANTMEDS	platelet_agi	yes_no_to_concept	ATC	B01AB	observation	value_as_concept_id	\N	\N	BLR	added by the code	visit	\N	\N	467
+21	accord.CONCOMITANTMEDS	anti_coag	yes_no_to_concept	ATC	B01	observation	value_as_concept_id	\N	\N	BLR	added by the code	visit	\N	\N	468
+21	accord.CONCOMITANTMEDS	reg_insulin	yes_no_to_concept	ATC	A10AC01	observation	value_as_concept_id	\N	\N	BLR	added by the code	visit	\N	\N	466
+21	accord.CONCOMITANTMEDS	other_bpmed	yes_no_to_concept	UCD.Kao	UCD-Kao-38	observation	value_as_concept_id	\N	\N	BLR	added by the code	visit	\N	\N	464
+21	accord.CONCOMITANTMEDS	loop	yes_no_to_concept	SNOMED	29051009	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	497
+21	accord.CONCOMITANTMEDS	thiazide	yes_no_to_concept	ATC	C03AA	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	498
+21	accord.CONCOMITANTMEDS	ksparing	yes_no_to_concept	SNOMED	47755009	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	499
+21	accord.CONCOMITANTMEDS	potassium	yes_no_to_concept	ATC	A12B	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	500
+21	accord.CONCOMITANTMEDS	a2rb	yes_no_to_concept	ATC	C09C	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	501
+21	accord.CONCOMITANTMEDS	dhp_ccb	yes_no_to_concept	SNOMED	406769001	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	502
+21	accord.CONCOMITANTMEDS	alpha_blocker	yes_no_to_concept	NDFRT	N0000175553	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	504
+21	accord.CONCOMITANTMEDS	statin	yes_no_to_concept	ATC	C10AA	observation	value_as_concept_id	\N	\N	BLR	added by the code	visit	\N	\N	465
+21	accord.LIPIDS_201604	trig	identity	SNOMED	14740000	measurement	value_as_number	\N	\N	BLR	added by the code	visit	\N	\N	457
+21	accord.LIPIDS_201604	chol	identity	SNOMED	121868005	measurement	value_as_number	\N	\N	BLR	added by the code	visit	\N	\N	458
+22	aimhigh.CONMED	cm_beta	yes_no_to_concept	ATC	C07	observation	value_as_concept_id	\N	\N	Baseline	added by the code	visit	\N	\N	473
+22	aimhigh.CONMED	cm_diu	yes_no_to_concept	ATC	C03	observation	value_as_concept_id	\N	\N	Baseline	added by the code	visit	\N	\N	474
+22	aimhigh.CONMED	cm_ace	yes_no_to_concept	ATC	C09A	observation	value_as_concept_id	\N	\N	Baseline	added by the code	visit	\N	\N	475
+22	aimhigh.CONMED	cm_atii	yes_no_to_concept	ATC	C09C	observation	value_as_concept_id	\N	\N	Baseline	added by the code	visit	\N	\N	476
+24	bari2d.BARI2D_LONG	hdl	identity	SNOMED	166832000	measurement	value_as_number	\N	\N	-1	added by the code	fuper	\N	\N	486
+24	bari2d.BARI2D_LONG	ldl	identity	SNOMED	166833005	measurement	value_as_number	\N	\N	-1	added by the code	fuper	\N	\N	487
+24	bari2d.BARI2D_LONG	trig	identity	SNOMED	14740000	measurement	value_as_number	\N	\N	-1	added by the code	fuper	\N	\N	488
+24	bari2d.BARI2D_LONG	tchol	identity	SNOMED	121868005	measurement	value_as_number	\N	\N	-1	added by the code	fuper	\N	\N	489
+24	bari2d.BARI2D_LONG	betab	yes_no_to_concept	ATC	C07	observation	value_as_concept_id	\N	\N	-1	added by the code	fuper	\N	\N	490
+24	bari2d.BARI2D_LONG	diur	yes_no_to_concept	ATC	C03	observation	value_as_concept_id	\N	\N	-1	added by the code	fuper	\N	\N	491
+21	accord.CONCOMITANTMEDS	central_agent	yes_no_to_concept	NDFRT	N0000175554	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	505
+21	accord.CONCOMITANTMEDS	nondhp_ccb	yes_no_to_concept	UCD.Kao	UCD-Kao-35	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	506
+21	accord.CONCOMITANTMEDS	vasodilator	yes_no_to_concept	ATC	C01D	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	508
+21	accord.CONCOMITANTMEDS	reserpine	yes_no_to_concept	ATC	C02AA02	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	509
+21	accord.CONCOMITANTMEDS	la_insulin	yes_no_to_concept	ATC	A10AB01	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	511
+21	accord.CONCOMITANTMEDS	premix_insulin	yes_no_to_concept	UCD.Kao	UCD-Kao-32	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	513
+21	accord.CONCOMITANTMEDS	nphl_insulin	yes_no_to_concept	ATC	A10AE01	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	514
+21	accord.CONCOMITANTMEDS	other_diabmed	yes_no_to_concept	UCD.Kao	UCD-Kao-33	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	515
+21	accord.CONCOMITANTMEDS	sulfonylurea	yes_no_to_concept	ATC	A10BB	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	516
+21	accord.CONCOMITANTMEDS	biguanide	yes_no_to_concept	ATC	A10BA	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	517
+21	accord.CONCOMITANTMEDS	meglitinide	yes_no_to_concept	SNOMED	109075003	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	518
+21	accord.CONCOMITANTMEDS	ag_inhibitor	yes_no_to_concept	ATC	A10BF	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	519
+21	accord.CONCOMITANTMEDS	fibrate	yes_no_to_concept	ATC	C10AB	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	521
+21	accord.CONCOMITANTMEDS	other_lipidmed	yes_no_to_concept	UCD.Kao	UCD-Kao-36	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	522
+21	accord.CONCOMITANTMEDS	cholest_abi	yes_no_to_concept	SNOMED	468638005	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	523
+21	accord.CONCOMITANTMEDS	niacin	yes_no_to_concept	SNOMED	55013001	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	524
+21	accord.CONCOMITANTMEDS	othbol_insulin	yes_no_to_concept	UCD.Kao	UCD-Kao-31	observation	value_as_concept_id	\N	\N	BLR	\N	visit	\N	f	512
+21	accord.F07_BASELINEHISTORYPHYSICALEXAM	wt_kg	identity	LOINC	29463-7	measurement	value_as_number	\N	\N	\N	\N	\N	\N	f	528
+21	accord.OTHERLABS_201604	fpg	identity	SNOMED	167096006	measurement	value_as_number	\N	\N	BLR	added by the code	visit	\N	\N	452
+21	accord.LIPIDS_201604	ldl	identity	SNOMED	166833005	measurement	value_as_number	\N	\N	BLR	added by the code	visit	\N	\N	455
+21	accord.LIPIDS_201604	hdl	identity	SNOMED	166832000	measurement	value_as_number	\N	\N	BLR	added by the code	visit	\N	\N	454
+22	aimhigh.CONMED	cm_insulin	yes_no_to_concept	ATC	A10A	observation	value_as_concept_id	\N	\N	Baseline	added by the code	visit	\N	\N	477
+22	aimhigh.CONMED	cm_plavix	yes_no_to_concept	ATC	B01AB	observation	value_as_concept_id	\N	\N	Baseline	added by the code	visit	\N	\N	479
+24	bari2d.BARI2D_LONG	acei	yes_no_to_concept	ATC	C09A	observation	value_as_concept_id	\N	\N	-1	added by the code	fuper	\N	\N	492
+24	bari2d.BARI2D_LONG	arb	yes_no_to_concept	ATC	C09C	observation	value_as_concept_id	\N	\N	-1	added by the code	fuper	\N	\N	493
+24	bari2d.BARI2D_LONG	insulin	yes_no_to_concept	ATC	A10A	observation	value_as_concept_id	\N	\N	-1	added by the code	fuper	\N	\N	494
+24	bari2d.BARI2D_LONG	apa	yes_no_to_concept	ATC	B01AB	observation	value_as_concept_id	\N	\N	-1	added by the code	fuper	\N	\N	495
+4	topcat.q002	overall_sum_score	identity	LOINC	71940-1	observation	value_as_number	\N	\N	BASE	\N	visit	\N	t	225
+22	aimhigh.CONMED	cm_ccb	yes_no_to_concept	ATC	C08	observation	value_as_concept_id	\N	\N	Baseline	\N	visit	\N	f	529
+22	aimhigh.CONMED	cm_aspirin	yes_no_to_concept	ATC	B01AC06	observation	value_as_concept_id	\N	\N	Baseline	\N	visit	\N	f	530
+22	aimhigh.CONMED	cm_metformin	yes_no_to_concept	ATC	A10BA02	observation	value_as_concept_id	\N	\N	Baseline	\N	visit	\N	f	532
+22	aimhigh.CONMED	cm_tzd	yes_no_to_concept	SNOMED	109086001	observation	value_as_concept_id	\N	\N	Baseline	\N	visit	\N	f	533
+22	aimhigh.CONMED	cm_otdiab	yes_no_to_concept	UCD.Kao	UCD-Kao-37	observation	value_as_concept_id	\N	\N	Baseline	\N	visit	\N	f	535
+22	aimhigh.CONMED	cm_niacin	yes_no_to_concept	SNOMED	55013001	observation	value_as_concept_id	\N	\N	Baseline	\N	visit	\N	f	536
+22	aimhigh.CONMED	cm_fibric	yes_no_to_concept	NDFRT	N0000182116	observation	value_as_concept_id	\N	\N	Baseline	\N	visit	\N	f	537
+22	aimhigh.CONMED	cm_fishoil	yes_no_to_concept	SNOMED	226359003	observation	value_as_concept_id	\N	\N	Baseline	\N	visit	\N	f	538
+22	aimhigh.CONMED	cm_warfarin	yes_no_to_concept	ATC	B01AA03	observation	value_as_concept_id	\N	\N	Baseline	added by the code	visit	\N	\N	481
+21	accord.BLOODPRESSURE_201604	sbp	identity	UCD.Kao	UCD-Kao-39	measurement	value_as_number	\N	\N	F12	\N	visit	\N	f	526
+24	bari2d.BARI2D_LONG	sulf	yes_no_to_concept	SNOMED	34012005	observation	value_as_concept_id	\N	\N	-1	\N	fuper	\N	f	539
+24	bari2d.BARI2D_LONG	biguanide	yes_no_to_concept	ATC	A10BA	observation	value_as_concept_id	\N	\N	-1	\N	fuper	\N	f	540
+24	bari2d.BARI2D_LONG	tzd	yes_no_to_concept	SNOMED	109086001	observation	value_as_concept_id	\N	\N	-1	\N	fuper	\N	f	541
+24	bari2d.BARI2D_LONG	incrmim	yes_no_to_concept	SNOMED	417524005	observation	value_as_concept_id	\N	\N	-1	\N	fuper	\N	f	543
+24	bari2d.BARI2D_LONG	dpp	yes_no_to_concept	ATC	A10BH	observation	value_as_concept_id	\N	\N	-1	\N	fuper	\N	f	544
+24	bari2d.BARI2D_LONG	amylin	yes_no_to_concept	SNOMED	417736001	observation	value_as_concept_id	\N	\N	-1	\N	fuper	\N	f	545
+24	bari2d.BARI2D_LONG	nsgn	yes_no_to_concept	UCD.Kao	UCD-Kao-34	observation	value_as_concept_id	\N	\N	-1	\N	fuper	\N	f	546
+22	aimhigh.CONMED	cm_nit	yes_no_to_concept	ATC	C01DA	observation	value_as_concept_id	\N	\N	Baseline	\N	visit	\N	f	531
+21	accord.BLOODPRESSURE_201604	dbp	identity	UCD.Kao	UCD-Kao-40	measurement	value_as_number	\N	\N	F12	\N	visit	\N	f	527
+22	aimhigh.CONMED	cm_sulu	yes_no_to_concept	SNOMED	419204001	observation	value_as_concept_id	\N	\N	Baseline	\N	visit	\N	f	534
+23	allhat.basic_with_outcomes	hispanic	yes_no_to_concept_12	SNOMED	414408004	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	578
+24	bari2d.BARI2D_LONG	omega	yes_no_to_concept	NDFRT	N0000175583	observation	value_as_concept_id	\N	\N	-1	\N	fuper	\N	f	551
+24	bari2d.BARI2D_LONG	fibr	yes_no_to_concept	ATC	C10AB	observation	value_as_concept_id	\N	\N	-1	\N	fuper	\N	f	552
+24	bari2d.BARI2D_LONG	niac	yes_no_to_concept	SNOMED	55013001	observation	value_as_concept_id	\N	\N	-1	\N	fuper	\N	f	553
+24	bari2d.BARI2D_LONG	hmg	yes_no_to_concept	ATC	C10AA	observation	value_as_concept_id	\N	\N	-1	\N	fuper	\N	f	554
+23	allhat.basic_with_outcomes	race	allhat_race_to_concept	SNOMED	103579009	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	577
+23	allhat.basic_with_outcomes	blhgt	in_to_cm	LOINC	8302-2	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	580
+23	allhat.basic_with_outcomes	blwgt	lb_to_kg	LOINC	29463-7	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	579
+23	allhat.basic_with_outcomes	sex	sex_to_concept_m1f2	SNOMED	263495000	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	576
+22	aimhigh.PE	pe_bpsys	identity	UCD.Kao	UCD-Kao-39	measurement	value_as_number	\N	\N	12 Month Visit	\N	visit	\N	f	568
+22	aimhigh.PE	pe_bpdia	identity	UCD.Kao	UCD-Kao-40	measurement	value_as_number	\N	\N	12 Month Visit	\N	visit	\N	f	569
+24	bari2d.BARI2D_LONG	dbp_sit	identity	UCD.Kao	UCD-Kao-40	measurement	value_as_number	\N	\N	5	\N	fuper	\N	f	570
+24	bari2d.BARI2D_LONG	sbp_sit	identity	UCD.Kao	UCD-Kao-39	measurement	value_as_number	\N	\N	5	\N	fuper	\N	f	571
+4	topcat.t013	sbp	identity	UCD.Kao	UCD-Kao-39	measurement	value_as_number	\N	\N	MN12	\N	visit	\N	f	572
+4	topcat.t013	dbp	identity	UCD.Kao	UCD-Kao-40	measurement	value_as_number	\N	\N	MN12	\N	visit	\N	f	573
+4	topcat.t007_allvisits_bysub	ace_yn	yes_no_to_concept	ATC	C09A	observation	value_as_concept_id	\N	\N	BASE	\N	visit	\N	f	555
+4	topcat.t007_allvisits_bysub	arb_yn	yes_no_to_concept	ATC	C09C	observation	value_as_concept_id	\N	\N	BASE	\N	visit	\N	f	556
+4	topcat.t007_allvisits_bysub	bb_yn	yes_no_to_concept	ATC	C07	observation	value_as_concept_id	\N	\N	BASE	\N	visit	\N	f	557
+4	topcat.t007_allvisits_bysub	ccb_yn	yes_no_to_concept	ATC	C08	observation	value_as_concept_id	\N	\N	BASE	\N	visit	\N	f	558
+4	topcat.t007_allvisits_bysub	diur_yn	yes_no_to_concept	ATC	C03	observation	value_as_concept_id	\N	\N	BASE	\N	visit	\N	f	559
+4	topcat.t007_allvisits_bysub	hypog_yn	yes_no_to_concept	ATC	A10B	observation	value_as_concept_id	\N	\N	BASE	\N	visit	\N	f	560
+4	topcat.t007_allvisits_bysub	aspirin_yn	yes_no_to_concept	ATC	B01AC06	observation	value_as_concept_id	\N	\N	BASE	\N	visit	\N	f	561
+4	topcat.t007_allvisits_bysub	nitrate_yn	yes_no_to_concept	ATC	C01DA	observation	value_as_concept_id	\N	\N	BASE	\N	visit	\N	f	562
+4	topcat.t007_allvisits_bysub	warfarin_yn	yes_no_to_concept	ATC	B01AA03	observation	value_as_concept_id	\N	\N	BASE	\N	visit	\N	f	564
+4	topcat.t007_allvisits_bysub	lipidlowering_yn	yes_no_to_concept	LOINC	LP31452-3	observation	value_as_concept_id	\N	\N	BASE	\N	visit	\N	f	565
+4	topcat.t007_allvisits_bysub	statin_yn	yes_no_to_concept	ATC	C10AA	observation	value_as_concept_id	\N	\N	BASE	\N	visit	\N	f	563
+23	allhat.basic_with_outcomes	age	identity	SNOMED	424144002	observation	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	575
+23	allhat.basic_with_outcomes	blbmi	identity	LOINC	39156-5	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	581
+23	allhat.basic_with_outcomes	bv2sbp	identity	LOINC	8480-6	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	582
+23	allhat.basic_with_outcomes	blgfr	identity	SNOMED	442407001	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	590
+23	allhat.basic_with_outcomes	hxcabg	yes_no_to_concept_12	SNOMED	174911007	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	584
+23	allhat.basic_with_outcomes	diabetes	yes_no_to_concept_12	SNOMED	73211009	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	585
+23	allhat.basic_with_outcomes	chd	yes_no_to_concept_12	SNOMED	394034006	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	587
+23	allhat.basic_with_outcomes	cursmoke	yes_no_to_concept_12	LOINC	39240-7	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	588
+23	allhat.basic_with_outcomes	aspirin	yes_no_to_concept_12	ATC	B01AC06	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	589
+23	allhat.basic_with_outcomes	rzgroup	yes_no_to_concept_12	ATC	C03	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	592
+23	allhat.basic_with_outcomes	rzgroup	yes_no_to_concept_12	ATC	C08	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	593
+23	allhat.basic_with_outcomes	rzgroup	yes_no_to_concept_12	UCD.Kao	UCD-Kao-30	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	594
+23	allhat.basic_with_outcomes	rzgroup	yes_no_to_concept_12	ATC	C02A	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	595
+23	allhat.basic_with_outcomes	lrzgrp	yes_no_to_concept_12	ATC	C10AA	observation	value_as_concept_id	\N	\N	\N	added by the code	\N	\N	\N	591
+23	allhat.basic_with_outcomes	achol	identity	SNOMED	121868005	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	586
+23	allhat.basic_with_outcomes	bv2dbp	identity	LOINC	8462-4	measurement	value_as_number	\N	\N	\N	added by the code	\N	\N	\N	583
+\.
+
+
+--
+-- Name: study_to_ohdsi_mapping_id_seq; Type: SEQUENCE SET; Schema: public; Owner: docker
+--
+
+SELECT pg_catalog.setval('public.study_to_ohdsi_mapping_id_seq', 597, true);
+
+
+--
+-- Name: study_to_ohdsi_mapping_unique_table_column_not_null; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX study_to_ohdsi_mapping_unique_table_column_not_null ON public.study_to_ohdsi_mapping USING btree (study_id, from_table, from_column, from_where_clause, from_where_column) WHERE ((from_where_clause IS NOT NULL) AND (from_where_column IS NOT NULL));
+
+CREATE UNIQUE INDEX study_to_ohdsi_mapping_unique_table_column_null ON public.study_to_ohdsi_mapping USING btree (study_id, from_table, from_column) WHERE ((from_where_clause IS NULL) AND (from_where_column IS NULL));
+
+ALTER TABLE ONLY public.study_to_ohdsi_mapping
+    ADD CONSTRAINT study_to_ohdsi_mapping_study_id_fkey FOREIGN KEY (study_id) REFERENCES public.study(study_id);
+
+ALTER TABLE ONLY public.study_to_ohdsi_mapping
+    ADD CONSTRAINT study_to_ohdsi_mapping_to_table_fkey FOREIGN KEY (to_table, to_column) REFERENCES public.table_column(table_name, column_name);
+
+ALTER TABLE ONLY public.study_to_ohdsi_mapping
+    ADD CONSTRAINT study_to_ohdsi_mapping_vocabulary_id_fkey FOREIGN KEY (vocabulary_id, concept_code) REFERENCES public.vocabulary_concept(vocabulary_id, concept_code);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+
+
+
+

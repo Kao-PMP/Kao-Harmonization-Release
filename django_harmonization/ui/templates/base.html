@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head><title>Clinical Data Harmonization</title>
+            {% block scripts %}
+            {% endblock %}
+    </head>
+    <body onload="do_on_load();"> 
+        <link type="text/css" rel="stylesheet" href="{% static "ui/main.css" %}">
+        <div class="page-header">
+            <!-- <table border=0 class="wide_table"> -->
+            <table border=0 class="edit_table">
+            <tr>
+                <td style="width:110px" rowspan=2><img src="{% static "ui/piano.jpeg" %}" alt="Piano Keyboard Close-up"/></td>
+                <td style="width:540px" halign="center"><h2>Clinical Data Harmonization</h2></td>
+                <td style="width:200x" rowspan=2><img align="right" src="{% static "ui/CUAnschutz_sm_clr.png" %}" alt="University of Colorado Anschutz Medical Campus"/></td>
+            </tr>
+            <tr>
+                <td align="left">{% if user.is_authenticated %} User: {{ user.username }} </h2> {% endif %} </td>
+            </tr> 
+            </table>
+            <div> <a href="/ui/index.html">Index</a> </div>
+        </div>
+        <div class="content container">
+            {% block content %}
+            {% endblock %}
+            <hr>
+            <center> Research and Demonstration Software, not for production use. </center>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+
+<html>
+<body>
+<h2> OHDSI Mapping Function Form </h2>
+
+<!-- https://tutorial.djangogirls.org/en/django_forms/ -->
+<div>
+<!-- <a href="{% url 'study_to_ohdsi_mapping_function' %}" class="top-menu"><span class="glyphicon-plus"></span> -->
+</div>
+Container:
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% block content %}
+
+
+Form:
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="OK">
+</form>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+</body>
+</html>

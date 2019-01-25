@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+        <script type="text/javascript" src="{% static "ui/js/utility.js" %}"></script> 
+    
+        <script type="text/javascript" src="{% static "ui/js/edit_table_mapping_function.js" %}"></script>
+        <script type="text/javascript" src="{% static "ui/js/edit_extract_mapping_function.js" %}"></script>
+        <script type="text/javascript" src="{% static "ui/js/harmonization_sheet.js" %}"></script> 
+        <script type="text/javascript" src="{% static "ui/js/show_table_mappings.js" %}"></script>
+        <script type="text/javascript" src="{% static "ui/js/edit_table_mapping.js" %}"></script>
+    
+        <script type="text/javascript" src="{% static "ui/js/show_extract_mappings.js" %}"></script>
+        <script type="text/javascript" src="{% static "ui/js/edit_extract_mapping.js" %}"></script>
+        <script type="text/javascript" src="{% static "ui/js/extract_study_choice.js" %}"></script>
+        <script type="text/javascript" src="{% static "ui/js/study_choice.js" %}"></script>
+<script>
+    function do_on_load() {
+        createHarmonizationSheetModule().init();
+    }
+</script>
+
+<h2>Define Harmonization Mappings</h2>    
+    <div class="divider">Import to OHDSI<hr class="right"/></div>
+    {% include 'study_choice.html' %}
+    {% include 'edit_table_mapping.html' %}
+    {% include 'show_table_mappings.html' %} 
+    (need to show calculated values like BMI)
+    {% include 'edit_table_mapping_function.html' %}
+    
+    <div class="divider">Export to CSV<hr class="right"/></div>
+    {% include 'extract_study_choice.html' %} 
+    {% include 'edit_extract_mapping.html' %}
+    {% include 'show_extract_mappings.html' %} 
+    (need to show "wide table" mappings and related functions)
+    
+    <div class="divider">Export Function Detail<hr class="right"/></div>
+    {% include 'edit_extract_mapping_function.html' %}
+
+{% endblock %}
+

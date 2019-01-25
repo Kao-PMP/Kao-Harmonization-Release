@@ -1,0 +1,109 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.6
+-- Dumped by pg_dump version 9.6.10
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: mapping_function; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE mapping_function (
+    study_id integer,
+    name character varying(100),
+    id integer NOT NULL
+);
+
+
+--
+-- Name: mapping_function_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.mapping_function_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: mapping_function_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.mapping_function_id_seq OWNED BY public.mapping_function.id;
+
+
+--
+-- Name: mapping_function id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mapping_function ALTER COLUMN id SET DEFAULT nextval('public.mapping_function_id_seq'::regclass);
+
+
+--
+-- Data for Name: mapping_function; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY mapping_function (study_id, name, id) FROM stdin;
+1	identity	1
+0	sex_to_concept	2
+0	yes_no_to_concept	3
+0	race_to_concept	4
+0	lb_to_kg	5
+0	in_to_cm	6
+1	identity	7
+1	sex_to_concept	8
+1	yes_no_to_concept	9
+1	race_to_concept	10
+1	lb_to_kg	11
+1	in_to_cm	12
+2	identity	13
+2	sex_to_concept	14
+2	yes_no_to_concept	15
+2	race_to_concept	16
+2	lb_to_kg	17
+2	in_to_cm	18
+3	identity	19
+3	sex_to_concept	20
+3	yes_no_to_concept	21
+3	race_to_concept	22
+3	lb_to_kg	23
+3	in_to_cm	24
+\.
+
+
+--
+-- Name: mapping_function_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('mapping_function_id_seq', 24, true);
+
+
+--
+-- Name: mapping_function mapping_function_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY mapping_function
+    ADD CONSTRAINT mapping_function_pkey PRIMARY KEY (id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

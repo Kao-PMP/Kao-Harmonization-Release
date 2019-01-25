@@ -1,0 +1,439 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.3
+-- Dumped by pg_dump version 9.6.9
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: categorization_function_metadata; Type: TABLE; Schema: public; Owner: docker
+--
+
+CREATE TABLE public.categorization_function_metadata (
+    extract_study_id integer NOT NULL,
+    function_name character varying(100) NOT NULL,
+    long_name character varying(100) NOT NULL,
+    rule_id character varying(20) NOT NULL,
+    from_vocabulary_id character varying(100) NOT NULL,
+    from_concept_code character varying(100) NOT NULL,
+    comment character varying(256),
+    from_table character varying(20),
+    short_name character(6),
+    sequence integer
+);
+
+
+ALTER TABLE public.categorization_function_metadata OWNER TO docker;
+
+--
+-- Data for Name: categorization_function_metadata; Type: TABLE DATA; Schema: public; Owner: docker
+--
+
+COPY public.categorization_function_metadata (extract_study_id, function_name, long_name, rule_id, from_vocabulary_id, from_concept_code, comment, from_table, short_name, sequence) FROM stdin;
+1	map_concept_id	Gender	0	SNOMED	263495000	\N	observation	Sex   	\N
+1	map_concept_id	Tobacco use	0	LOINC	39240-7	\N	observation	Smoke 	\N
+1	map_concept_id	Prior PCI	0	SNOMED	41339005	\N	observation	PCI   	\N
+1	ranges_to_rank_asc	MLHF	0	LOINC	71938-5	\N	observation	MLHF  	\N
+1	x	Billirubin tertile	0	x	y	\N	measurement	Bill  	\N
+1	map_concept_id	Stroke	0	SNOMED	230690007	\N	observation	Stro  	\N
+1	identity_number	KCCQ	0	LOINC	71940-1	kccqosb	measurement	KCCQ  	\N
+1	identity_number	Total billirubin	0	LOINC	1975-2	\N	measurement	Tota  	\N
+1	identity_number	Weight	0	LOINC	29463-7	\N	measurement	Weig  	\N
+1	identity_number	EQ5D	0	SNOMED	273447005	eurother ESC hear score?	observation	EQ5D  	\N
+1	identity_number	RVEF value	0	LOINC	10231-9	\N	measurement	RVEF  	\N
+1	identity_number	HR value	0	LOINC	8867-4	\N	measurement	HR v  	\N
+1	ranges_to_rank_asc	WBC count	0	LOINC	30406-3	\N	measurement	WBC   	\N
+1	ranges_to_rank_asc	Albumin	0	LOINC	1751-7	\N	measurement	Albu  	\N
+1	ranges_to_rank_desc	AST	0	LOINC	1920-8	\N	measurement	AST   	\N
+1	ranges_to_rank_asc	Age	0	SNOMED	424144002	\N	observation	Age   	\N
+1	map_concept_id	Race	0	SNOMED	103579009	\N	observation	Race  	\N
+1	identity_number	NYHA	0	SNOMED	420816009	\N	observation	NYHA  	\N
+1	map_concept_id	ICD	0	SNOMED	19257004	\N	observation	ICD   	\N
+1	map_concept_id	CAD	0	SNOMED	53741008	\N	observation	CAD   	\N
+1	ranges_to_rank_asc	QRS interval	0	SNOMED	251208001	\N	measurement	QRS   	\N
+1	ranges_to_rank_asc	BMI	0	LOINC	39156-5	\N	measurement	BMI   	\N
+1	ranges_to_rank_asc	BUN	0	LOINC	6299-2	\N	measurement	BUN   	\N
+1	ranges_to_rank_desc	ALT	0	LOINC	76625-3	\N	measurement	ALT   	\N
+1	map_concept_id	Atrial fibrillation/flutter	0	SNOMED	49436004	\N	observation	Afib  	\N
+1	map_concept_id	Prior CABG	0	SNOMED	81266008	\N	observation	CABG  	\N
+1	map_concept_id	Myocardial infarction	0	SNOMED	22298006	\N	observation	MI    	\N
+1	ranges_to_rank_asc	Systolic blood pressure	0	LOINC	8480-6	\N	measurement	SBP   	\N
+1	ranges_to_rank_desc	Creatinine clearance	0	SNOMED	442407001	\N	measurement	CrCl  	\N
+1	ranges_to_rank_asc	Heart rate	0	LOINC	8867-4	\N	measurement	HR    	\N
+1	ranges_to_rank_asc	Diastolic blood pressure	0	LOINC	8462-4	\N	measurement	DBP   	\N
+1	ranges_to_rank_desc	Sodium	0	LOINC	2951-2	\N	measurement	Na    	\N
+20000	map_concept_id	Gender	0	SNOMED	263495000	\N	observation	Sex   	\N
+1	map_concept_id	Left bundle branch block	0	SNOMED	63467002	\N	observation	LBBB  	\N
+1	ranges_to_rank_asc	Hemoglobin	0	LOINC	4635-9	\N	measurement	HGlob 	\N
+1	map_concept_id	Right bundle branch block	0	SNOMED	59118001	\N	observation	RBBB  	\N
+1	map_concept_id	Diabetes mellitus	0	SNOMED	161445009	\N	observation	DM    	\N
+1	map_concept_id	Any BBB	0	SNOMED	6374002	\N	observation	ABBB  	\N
+1	ranges_to_rank_asc	Pulse pressure	0	SNOMED	87179004	\N	measurement	PulsP 	\N
+20000	map_concept_id	Tobacco use	0	LOINC	39240-7	\N	observation	Smoke 	\N
+20000	map_concept_id	Prior PCI	0	SNOMED	41339005	\N	observation	PCI   	\N
+1	map_concept_id	Angina	0	SNOMED	194828000	\N	measurement	Angi  	\N
+1	map_concept_id	COPD	0	LOINC	45670-7	copd	observation	COPD  	\N
+1	ranges_to_rank_asc	Time since diagnosis	0	UCD.Kao	UCD-Kao-1	\N	observation	Time  	\N
+1	identity_number	BMI value	0	LOINC	39156-5	\N	measurement	BMIv  	\N
+1	identity_number	DBP value	0	LOINC	8462-4	\N	measurement	DBPv  	\N
+1	identity_number	SBP value	0	LOINC	8480-6	\N	measurement	SBPv  	\N
+1	identity_number	LVEF value	0	LOINC	10230-1	\N	measurement	LVFv  	\N
+1	identity_number	CrCl value	0	SNOMED	442407001	\N	measurement	CrCv  	\N
+1	identity_string	Alt Patient ID	0	UCD.Kao	UCD-Kao-17	\N	observation	AID   	\N
+1	map_concept_id	Treatment Arm	0	UCD.Kao	UCD-Kao-19	\N	observation	plcbo 	\N
+1	identity_number	DeathDays	0	UCD.Kao	UCD-Kao-20	\N	observation	dthds 	\N
+1001	map_concept_id	Gender	0	SNOMED	263495000	\N	observation	Sex   	\N
+5001	map_concept_id	COPD	0	LOINC	45670-7	\N	observation	COPD  	\N
+5001	map_concept_id	CRT	0	SNOMED	69031000119105	pace maker	observation	CRT   	\N
+5001	identity_number	EQ5D	0	SNOMED	273447005	eurother ESC hear score?	observation	EQ5D  	\N
+5001	map_concept_id	Stroke	0	SNOMED	230690007	\N	observation	Stro  	\N
+1	ranges_to_rank_asc	NTBNP	0	LOINC	33762-6	probnp	measurement	NTBN  	\N
+1	ranges_to_rank_desc	Hematocrit	0	SNOMED	365616005	\N	measurement	HCrit 	\N
+5001	ranges_to_rank_asc	NTBNP	0	LOINC	33762-6	probnp	measurement	NTBN  	\N
+1	ranges_to_rank_asc	BNP	0	LOINC	42637-9	bnp	measurement	BNP   	\N
+5001	ranges_to_rank_asc	BNP	0	LOINC	42637-9	bnp	measurement	BNP   	\N
+5001	ranges_to_rank_desc	KCCQ	0	LOINC	71940-1	kccqosb	measurement	KCCQ  	\N
+1	identity_number	HF duration value	0	UCD.Kao	UCD-Kao-1	\N	observation	HFtm  	\N
+5001	identity_number	HF duration value	0	UCD.Kao	UCD-Kao-1	\N	observation	HFtm  	\N
+1	map_concept_id	Valvular disease	0	SNOMED	368009	\N	observation	Valv  	\N
+1	map_concept_id	Hypertension	0	SNOMED	38341003	\N	observation	HxTen 	\N
+1	map_concept_id	Hyperlipidemia	0	SNOMED	55822004	\N	observation	HxLip 	\N
+1002	ranges_to_rank_asc	NTBNP	0	LOINC	33762-6	probnp	measurement	NTBN  	\N
+1001	ranges_to_rank_asc	Age	0	SNOMED	424144002	\N	observation	Age   	\N
+1001	map_concept_id	Race	0	SNOMED	103579009	\N	observation	Race  	\N
+1001	identity_number	Death Days	0	UCD.Kao	UCD-Kao-18	\N	observation	DthDs 	\N
+1001	identity_number	DeathDays3	0	UCD.Kao	UCD-Kao-26	\N	observation	DthD3 	\N
+1001	map_concept_id	CAD	0	SNOMED	53741008	\N	observation	CAD   	\N
+1001	ranges_to_rank_asc	BMI	0	LOINC	39156-5	\N	measurement	BMI   	\N
+1001	map_concept_id	Hyperlipidemia	0	SNOMED	55822004	\N	observation	HxLip 	\N
+1001	map_concept_id	Atrial fibrillation/flutter	0	SNOMED	49436004	\N	observation	Afib  	\N
+1001	map_concept_id	Prior CABG	0	SNOMED	81266008	\N	observation	CABG  	\N
+5001	map_concept_id	Hyperlipidemia	0	SNOMED	55822004	\N	observation	HxLip 	\N
+1001	map_concept_id	Hypertension	0	SNOMED	38341003	\N	observation	HxTen 	\N
+5001	map_concept_id	Hypertension	0	SNOMED	38341003	\N	observation	HxTen 	\N
+1001	ranges_to_rank_desc	Creatinine clearance	0	SNOMED	442407001	\N	measurement	CrCl  	\N
+1009	map_concept_id	Valvular disease	0	SNOMED	368009	\N	observation	Valv  	\N
+1001	ranges_to_rank_asc	Left Ventricle Mass Value	0	SNOMED	373941003	\N	observation	LVm   	\N
+1001	ranges_to_rank_asc	Left Ventricle Diameter Value	0	SNOMED	250933001	\N	observation	LVd   	\N
+1001	map_concept_id	Left bundle branch block	0	SNOMED	63467002	\N	observation	LBBB  	\N
+1001	map_concept_id	Diabetes mellitus	0	SNOMED	161445009	\N	observation	DM    	\N
+1002	ranges_to_rank_asc	WBC count	0	LOINC	30406-3	\N	measurement	WBC   	\N
+1002	ranges_to_rank_asc	Systolic blood pressure	0	LOINC	8480-6	\N	measurement	SBP   	\N
+1002	ranges_to_rank_desc	Creatinine clearance	0	SNOMED	442407001	\N	measurement	CrCl  	\N
+1002	ranges_to_rank_asc	Heart rate	0	LOINC	8867-4	\N	measurement	HR    	\N
+1002	ranges_to_rank_desc	Sodium	0	LOINC	2951-2	\N	measurement	Na    	\N
+1001	ranges_to_rank_desc	Hemoglobin	0	LOINC	4635-9	Hb mg/dL	measurement	Hb    	\N
+1002	ranges_to_rank_asc	NYHA	0	SNOMED	420816009	\N	observation	NYHA  	\N
+1009	ranges_to_rank_desc	Hematocrit	0	SNOMED	365616005	\N	measurement	HCrit 	\N
+1009	ranges_to_rank_asc	Time since diagnosis	0	UCD.Kao	UCD-Kao-1	\N	observation	Time  	\N
+5001	map_concept_id	Gender	0	SNOMED	263495000	\N	observation	Sex   	\N
+5001	map_concept_id	Tobacco use	0	LOINC	39240-7	\N	observation	Smoke 	\N
+5001	map_concept_id	Prior PCI	0	SNOMED	41339005	\N	observation	PCI   	\N
+5001	ranges_to_rank_asc	WBC count	0	LOINC	30406-3	\N	measurement	WBC   	\N
+5001	ranges_to_rank_asc	Albumin	0	LOINC	1751-7	\N	measurement	Albu  	\N
+5001	ranges_to_rank_desc	AST	0	LOINC	1920-8	\N	measurement	AST   	\N
+5001	ranges_to_rank_asc	Age	0	SNOMED	424144002	\N	observation	Age   	\N
+5001	map_concept_id	Race	0	SNOMED	103579009	\N	observation	Race  	\N
+5001	identity_number	NYHA	0	SNOMED	420816009	\N	observation	NYHA  	\N
+5001	map_concept_id	ICD	0	SNOMED	19257004	\N	observation	ICD   	\N
+5001	map_concept_id	CAD	0	SNOMED	53741008	\N	observation	CAD   	\N
+5001	ranges_to_rank_asc	QRS interval	0	SNOMED	251208001	\N	measurement	QRS   	\N
+5001	ranges_to_rank_asc	BUN	0	LOINC	6299-2	\N	measurement	BUN   	\N
+5001	ranges_to_rank_desc	ALT	0	LOINC	76625-3	\N	measurement	ALT   	\N
+5001	map_concept_id	Atrial fibrillation/flutter	0	SNOMED	49436004	\N	observation	Afib  	\N
+5001	map_concept_id	Prior CABG	0	SNOMED	81266008	\N	observation	CABG  	\N
+5001	map_concept_id	Myocardial infarction	0	SNOMED	22298006	\N	observation	MI    	\N
+5001	ranges_to_rank_asc	Systolic blood pressure	0	LOINC	8480-6	\N	measurement	SBP   	\N
+5001	ranges_to_rank_desc	Creatinine clearance	0	SNOMED	442407001	\N	measurement	CrCl  	\N
+5001	ranges_to_rank_asc	Heart rate	0	LOINC	8867-4	\N	measurement	HR    	\N
+5001	ranges_to_rank_asc	Diastolic blood pressure	0	LOINC	8462-4	\N	measurement	DBP   	\N
+5001	ranges_to_rank_desc	Sodium	0	LOINC	2951-2	\N	measurement	Na    	\N
+5001	map_concept_id	Left bundle branch block	0	SNOMED	63467002	\N	observation	LBBB  	\N
+5001	map_concept_id	Right bundle branch block	0	SNOMED	59118001	\N	observation	RBBB  	\N
+5001	map_concept_id	Diabetes mellitus	0	SNOMED	161445009	\N	observation	DM    	\N
+5001	map_concept_id	Any BBB	0	SNOMED	6374002	\N	observation	ABBB  	\N
+5001	ranges_to_rank_asc	Pulse pressure	0	SNOMED	87179004	\N	measurement	PulsP 	\N
+5001	map_concept_id	Valvular disease	0	SNOMED	368009	\N	observation	Valv  	\N
+5001	ranges_to_rank_asc	Time since diagnosis	0	UCD.Kao	UCD-Kao-1	\N	observation	Time  	\N
+2	map_concept_id	Gender	0	SNOMED	263495000	\N	observation	Sex   	\N
+2	map_concept_id	Tobacco use	0	LOINC	39240-7	\N	observation	Smoke 	\N
+2	ranges_to_rank_asc	Age	0	SNOMED	424144002	\N	observation	Age   	\N
+2	map_concept_id	Race	0	SNOMED	103579009	\N	observation	Race  	\N
+2	map_concept_id	CAD	0	SNOMED	53741008	\N	observation	CAD   	\N
+2	ranges_to_rank_asc	BMI	0	LOINC	39156-5	\N	measurement	BMI   	\N
+2	ranges_to_rank_asc	Heart rate	0	LOINC	8867-4	\N	measurement	HR    	\N
+2	map_concept_id	Diabetes mellitus	0	SNOMED	161445009	\N	observation	DM    	\N
+2	identity_number	DeathDays	0	UCD.Kao	UCD-Kao-20	\N	observation	dthds 	\N
+20001	map_concept_id	ACCORD  non-dihydropyridine ca channel blocker UCD-Kao-3	0	UCD.Kao	UCD-Kao-35	\N	observation	AccCCB	\N
+2	identity_number	Weight value	0	LOINC	29463-7	\N	measurement	WeiVl 	\N
+2	ranges_to_rank_asc	Weight	0	LOINC	29463-7	\N	measurement	Weight	\N
+5001	identity_number	DeathDays	0	UCD.Kao	UCD-Kao-20	\N	observation	dthds 	\N
+5001	ranges_to_rank_asc	Weight	0	LOINC	29463-7	\N	measurement	Weight	\N
+5001	ranges_to_rank_asc	BMI	0	LOINC	39156-5	\N	measurement	BMI   	\N
+5001	map_concept_id	Treatment Arm	0	UCD.Kao	UCD-Kao-19	\N	observation	Plcbo 	\N
+20000	map_concept_id	Stroke	0	SNOMED	230690007	\N	observation	Stro  	\N
+1002	ranges_to_rank_desc	LV ejection fraction	0	LOINC	10230-1	\N	measurement	LVEF  	4
+5001	ranges_to_rank_desc	LV ejection fraction	0	LOINC	10230-1	\N	measurement	LVEF  	4
+5002	map_concept_id	PPM	0	SNOMED	69031000119105	pace maker	observation	ppm   	12
+20000	identity_number	KCCQ	0	LOINC	71940-1	kccqosb	measurement	KCCQ  	\N
+1	ranges_to_rank_asc	Anemia	m	SNOMED	365616005	\N	measurement	Anem  	\N
+1	ranges_to_rank_asc	Anemia	f	SNOMED	365616005	\N	measurement	Anem  	\N
+5001	ranges_to_rank_asc	Anemia	m	SNOMED	365616005	\N	measurement	Anem  	\N
+5001	ranges_to_rank_asc	Anemia	f	SNOMED	365616005	\N	measurement	Anem  	\N
+5002	map_concept_id	Hyperlipidemia	0	SNOMED	55822004	\N	observation	hld   	7
+5002	map_concept_id	Hypertension	0	SNOMED	38341003	\N	observation	htn   	8
+5002	map_concept_id	Myocardial infarction	0	SNOMED	22298006	\N	observation	mi    	9
+5002	map_concept_id	Prior PCI	0	SNOMED	41339005	\N	observation	pci   	10
+5002	map_concept_id	Prior CABG	0	SNOMED	81266008	\N	observation	cabg  	11
+20000	identity_number	Weight	0	LOINC	29463-7	\N	measurement	Weig  	\N
+20000	identity_number	HR value	0	LOINC	8867-4	\N	measurement	HR v  	\N
+20000	ranges_to_rank_asc	WBC count	0	LOINC	30406-3	\N	measurement	WBC   	\N
+20000	ranges_to_rank_asc	Albumin	0	LOINC	1751-7	\N	measurement	Albu  	\N
+20000	ranges_to_rank_desc	AST	0	LOINC	1920-8	\N	measurement	AST   	\N
+20000	ranges_to_rank_asc	Age	0	SNOMED	424144002	\N	observation	Age   	\N
+20000	map_concept_id	Race	0	SNOMED	103579009	\N	observation	Race  	\N
+20000	identity_number	NYHA	0	SNOMED	420816009	\N	observation	NYHA  	\N
+20000	map_concept_id	ICD	0	SNOMED	19257004	\N	observation	ICD   	\N
+20000	map_concept_id	CAD	0	SNOMED	53741008	\N	observation	CAD   	\N
+20000	ranges_to_rank_asc	QRS interval	0	SNOMED	251208001	\N	measurement	QRS   	\N
+20000	ranges_to_rank_asc	BUN	0	LOINC	6299-2	\N	measurement	BUN   	\N
+20000	ranges_to_rank_desc	ALT	0	LOINC	76625-3	\N	measurement	ALT   	\N
+5002	ranges_to_rank_asc	Age	0	SNOMED	424144002	\N	observation	age   	14
+5002	map_concept_id	Gender	0	SNOMED	263495000	\N	observation	sex   	15
+5002	map_concept_id	CAD	0	SNOMED	53741008	\N	observation	cad   	16
+20000	map_concept_id	Atrial fibrillation/flutter	0	SNOMED	49436004	\N	observation	Afib  	\N
+20000	map_concept_id	Prior CABG	0	SNOMED	81266008	\N	observation	CABG  	\N
+20000	map_concept_id	Myocardial infarction	0	SNOMED	22298006	\N	observation	MI    	\N
+20000	ranges_to_rank_desc	Sodium	0	LOINC	2951-2	\N	measurement	Na    	\N
+20000	map_concept_id	Left bundle branch block	0	SNOMED	63467002	\N	observation	LBBB  	\N
+20000	ranges_to_rank_asc	Hemoglobin	0	LOINC	4635-9	\N	measurement	HGlob 	\N
+20000	map_concept_id	Right bundle branch block	0	SNOMED	59118001	\N	observation	RBBB  	\N
+20000	map_concept_id	Diabetes mellitus	0	SNOMED	161445009	\N	observation	DM    	\N
+20000	map_concept_id	Any BBB	0	SNOMED	6374002	\N	observation	ABBB  	\N
+20000	ranges_to_rank_asc	Pulse pressure	0	SNOMED	87179004	\N	measurement	PulsP 	\N
+5002	map_concept_id	Tobacco use	0	LOINC	39240-7	\N	observation	smoke 	13
+5002	map_concept_id	ICD	0	SNOMED	19257004	\N	observation	icd   	36
+5002	ranges_to_rank_desc	AST	0	LOINC	1920-8	\N	measurement	ast   	19
+20000	map_concept_id	Angina	0	SNOMED	194828000	\N	measurement	Angi  	\N
+5002	ranges_to_rank_desc	ALT	0	LOINC	76625-3	\N	measurement	alt   	20
+5002	ranges_to_rank_asc	BUN	0	LOINC	6299-2	\N	measurement	bun   	21
+5002	ranges_to_rank_desc	Creatinine clearance	0	SNOMED	442407001	\N	measurement	crcl  	22
+5002	ranges_to_rank_asc	BNP	0	LOINC	42637-9	bnp	measurement	bnp   	23
+5002	ranges_to_rank_asc	NTBNP	0	LOINC	33762-6	probnp	measurement	ntbnp 	24
+5002	map_concept_id	COPD	0	LOINC	45670-7	\N	observation	copd  	26
+20000	map_concept_id	COPD	0	LOINC	45670-7	copd	observation	COPD  	\N
+20000	identity_number	BMI value	0	LOINC	39156-5	\N	measurement	BMIv  	\N
+20000	identity_number	DBP value	0	LOINC	8462-4	\N	measurement	DBPv  	\N
+20000	identity_number	SBP value	0	LOINC	8480-6	\N	measurement	SBPv  	\N
+20000	identity_number	LVEF value	0	LOINC	10230-1	\N	measurement	LVFv  	\N
+20000	identity_number	CrCl value	0	SNOMED	442407001	\N	measurement	CrCv  	\N
+20000	ranges_to_rank_asc	NTBNP	0	LOINC	33762-6	probnp	measurement	NTBN  	\N
+20000	ranges_to_rank_desc	Hematocrit	0	SNOMED	365616005	\N	measurement	HCrit 	\N
+20000	ranges_to_rank_asc	BNP	0	LOINC	42637-9	bnp	measurement	BNP   	\N
+5002	map_concept_id	Stroke	0	SNOMED	230690007	\N	observation	stroke	27
+5002	map_concept_id	Race	0	SNOMED	103579009	\N	observation	race  	28
+5002	identity_number	NYHA	0	SNOMED	420816009	\N	observation	nyha  	29
+20000	identity_number	Total billirubin	0	LOINC	1975-2	\N	measurement	Bili  	\N
+5002	ranges_to_rank_asc	WBC count	0	LOINC	30406-3	\N	measurement	wbc   	32
+5002	map_concept_id	CRT	0	SNOMED	69031000119105	pace maker	observation	crt   	35
+20000	map_concept_id	Valvular disease	0	SNOMED	368009	\N	observation	Valv  	\N
+20000	identity_number	Height	0	LOINC	8302-2	\N	measurement	Heig  	\N
+20000	ranges_to_rank_asc	Anemia	m	SNOMED	365616005	\N	measurement	Anem  	\N
+20000	ranges_to_rank_asc	Anemia	f	SNOMED	365616005	\N	measurement	Anem  	\N
+20000	map_concept_id	Hypertension	0	SNOMED	38341003	\N	observation	HTen  	\N
+20000	map_concept_id	Hyperlipidemia	0	SNOMED	55822004	\N	observation	HLip  	\N
+20000	identity_concept	antihypertensives	0	ATC	C02	\N	observation	xhtn  	\N
+20000	identity_concept	beta-blockers	0	ATC	C07	\N	observation	bblk  	\N
+20000	identity_concept	diuretics	0	ATC	C03	\N	observation	diur  	\N
+20000	identity_concept	aldosterone antatgonist	0	ATC	C03DA	\N	observation	aldo  	\N
+20000	identity_concept	ACE-Inhibitor	0	ATC	C09A	\N	observation	acei  	\N
+20000	identity_concept	ARB	0	ATC	C09C	\N	observation	arb   	\N
+20000	identity_concept	Statin	0	ATC	C10AA	\N	observation	stn   	\N
+20000	identity_concept	Insulin	0	ATC	A10A	\N	observation	isln  	\N
+20000	identity_concept	Non Insulin	0	ATC	A10B	\N	observation	nsln  	\N
+5002	map_concept_id	Left bundle branch block	0	SNOMED	63467002	\N	observation	lbbb  	1
+5002	map_concept_id	Right bundle branch block	0	SNOMED	59118001	\N	observation	rbbb  	2
+5002	map_concept_id	Any BBB	0	SNOMED	6374002	\N	observation	bbb   	3
+20000	identity_concept	Aspirin	0	ATC	N02BA01	\N	observation	aspn  	\N
+20000	identity_concept	p2y12 inhibitors	0	ATC	B01AC	\N	observation	pltl  	\N
+20000	identity_concept	anticoagulant	0	ATC	B01	\N	observation	xcog  	\N
+20000	identity_concept	cardiovascular disease	0	SNOMED	266995000	\N	observation	cvd   	\N
+5002	ranges_to_rank_asc	Systolic blood pressure	0	LOINC	8480-6	\N	measurement	sbp   	33
+5002	ranges_to_rank_asc	Diastolic blood pressure	0	LOINC	8462-4	\N	measurement	dbp   	34
+5002	ranges_to_rank_asc	BMI	0	LOINC	39156-5	\N	measurement	bmi   	17
+5002	ranges_to_rank_asc	Pulse pressure	0	SNOMED	87179004	\N	measurement	pupr  	18
+5002	ranges_to_rank_desc	Sodium	0	LOINC	2951-2	\N	measurement	na    	25
+20000	identity_concept	Transient Ischemic Attack	0	SNOMED	161511000	\N	observation	tia   	\N
+20000	identity_concept	Carotid Stenosis	0	SNOMED	64586001	\N	observation	cstn  	\N
+5002	map_concept_id	Atrial fibrillation/flutter	0	SNOMED	49436004	\N	observation	af    	5
+5002	map_concept_id	Diabetes mellitus	0	SNOMED	161445009	\N	observation	dm    	6
+5002	identity_number	EQ5D	0	SNOMED	273447005	eurother ESC hear score?	observation	eq5d  	37
+5002	ranges_to_rank_desc	KCCQ	0	LOINC	71940-1	kccqosb	measurement	kccq  	38
+5002	ranges_to_rank_asc	Heart rate	0	LOINC	8867-4	\N	measurement	hr    	39
+20000	identity_concept	AAA	0	SNOMED	233985008	\N	observation	aaa   	\N
+20000	identity_concept	Systolic HF	0	SNOMED	417996009	\N	observation	sHF   	\N
+5002	ranges_to_rank_desc	Anemia	f	SNOMED	365616005	\N	measurement	anemia	31
+5002	ranges_to_rank_desc	Anemia	m	SNOMED	365616005	\N	measurement	anemia	31
+5002	ranges_to_rank_desc	Albumin	0	LOINC	1751-7	\N	measurement	alb   	30
+20000	identity_concept	Diastolic HF	0	SNOMED	418304008	\N	observation	dHF   	\N
+1	ranges_to_rank_desc	LV ejection fraction	0	LOINC	10230-1	\N	measurement	LVEF  	4
+5002	ranges_to_rank_desc	LV ejection fraction	0	LOINC	10230-1	\N	measurement	LVEF  	4
+20001	identity_number	NHLBI delta sbp	0	UCD.Kao	UCD-Kao-42	\N	measurement	dSBP  	\N
+20001	identity_number	NHLBI delta dbp	0	UCD.Kao	UCD-Kao-43	\N	measurement	dDBP  	\N
+20001	identity_number	Body mass index 39156-5	0	LOINC	39156-5	\N	measurement	BMI   	\N
+20001	identity_number	Overall summary score [KCCQ] 71940-1	0	LOINC	71940-1	\N	observation	KCCQ  	\N
+20001	identity_number	Plasma fasting glucose measurement 167096006	0	SNOMED	167096006	\N	measurement	fGluc 	\N
+20001	identity_number	Plasma glucose level 167094009	0	SNOMED	167094009	\N	measurement	gluc  	\N
+20001	identity_number	Serum HDL cholesterol measurement 166832000	0	SNOMED	166832000	\N	measurement	HDL   	\N
+20001	identity_number	Serum LDL cholesterol measurement 166833005	0	SNOMED	166833005	\N	measurement	LDL   	\N
+20001	identity_number	Alanine aminotransferase [Enzymatic activity/volume] in Blood 76625-3	0	LOINC	76625-3	\N	measurement	Alan  	\N
+20001	identity_number	Albumin serum/plasma 1751-7	0	LOINC	1751-7	\N	measurement	Albu  	\N
+20001	identity_number	Aspartate aminotransferase serum/plasma 1920-8	0	LOINC	1920-8	\N	measurement	Aspa  	\N
+20001	identity_number	BP diastolic 8462-4	0	LOINC	8462-4	\N	measurement	BP d  	\N
+20001	identity_number	BP systolic 8480-6	0	LOINC	8480-6	\N	measurement	BP s  	\N
+20001	identity_number	Cardiac ejection fraction 10230-1	0	LOINC	10230-1	\N	measurement	Card  	\N
+20001	identity_number	Creatinine serum/plasma 2160-0	0	LOINC	2160-0	\N	measurement	Crea  	\N
+20001	identity_number	End Of Study Days UCD-Kao-2	0	UCD.Kao	UCD-Kao-20	\N	observation	End   	\N
+20001	identity_number	Glomerular filtration rate 80274001	0	SNOMED	80274001	\N	measurement	Glom  	\N
+20001	identity_number	HbA1c measurement 313835008	0	SNOMED	313835008	\N	measurement	HbA1  	\N
+20001	identity_number	Hematocrit - finding 365616005	0	SNOMED	365616005	\N	measurement	Hema  	\N
+20001	identity_number	Leukocytes other [#/volume] in Blood 30406-3	0	LOINC	30406-3	\N	measurement	Leuk  	\N
+20001	identity_number	QRS complex duration 251208001	0	SNOMED	251208001	\N	measurement	QRS   	\N
+20001	identity_number	Body height 8302-2	0	LOINC	8302-2	\N	measurement	height	\N
+20001	identity_number	Body weight 29463-7	0	LOINC	29463-7	\N	measurement	weight	\N
+20001	identity_number	Current chronological age 424144002	0	SNOMED	424144002	\N	observation	age   	\N
+20001	identity_number	Estimation of creatinine clearance by Cockcroft-Gault formula 442407001	0	SNOMED	442407001	\N	measurement	CrCl  	\N
+20001	identity_number	Free Hemoglobin [Mass/volume] in Serum 4635-9	0	LOINC	4635-9	\N	measurement	hgb   	\N
+20001	identity_number	Heart rate 8867-4	0	LOINC	8867-4	\N	measurement	HR    	\N
+20001	identity_number	New York Heart Association Classification 420816009	0	SNOMED	420816009	\N	observation	NYHAC 	\N
+20001	identity_number	NHLBI Pilot SBP-later UCD-Kao-3	0	UCD.Kao	UCD-Kao-39	\N	measurement	sbpFup	\N
+20001	identity_number	NHLBI Pilot DBP-later UCD-Kao-4	0	UCD.Kao	UCD-Kao-40	\N	measurement	dbpFup	\N
+20001	identity_number	Triglycerides measurement 14740000	0	SNOMED	14740000	\N	measurement	Trig  	\N
+20001	identity_number	Urea nitrogen [Mass/volume] in Blood 6299-2	0	LOINC	6299-2	\N	measurement	Urea  	\N
+20001	identity_string	Randomization UCD-Kao-6	0	UCD.Kao	UCD-Kao-6	\N	observation	Rand  	\N
+20001	map_concept_id	ACE INHIBITORS, PLAIN C09A	0	ATC	C09A	\N	observation	ACE   	\N
+20001	map_concept_id	AIM-HIGH other diabetes treatments UCD-Kao-3	0	UCD.Kao	UCD-Kao-37	\N	observation	AIM-  	\N
+20001	map_concept_id	alpha-Adrenergic Blocker N00001755	0	NDFRT	N0000175553	\N	observation	alph  	\N
+20001	map_concept_id	Alpha glucosidase inhibitors A10BF	0	ATC	A10BF	\N	observation	Alph  	\N
+20001	map_concept_id	Amylin 417736001	0	SNOMED	417736001	\N	observation	Amyl  	\N
+20001	map_concept_id	Angina pectoris 194828000	0	SNOMED	194828000	\N	observation	Angi  	\N
+20001	map_concept_id	ANGIOTENSIN II ANTAGONISTS, PLAIN C09C	0	ATC	C09C	\N	observation	ANGI  	\N
+20001	map_concept_id	Arterial graft 261240000	0	SNOMED	261240000	\N	observation	Arte  	\N
+20001	map_concept_id	Atrial fibrillation 49436004	0	SNOMED	49436004	\N	observation	Atri  	\N
+20001	map_concept_id	BARI-2D nonsublingual nitrate UCD-Kao-3	0	UCD.Kao	UCD-Kao-34	\N	observation	BARI  	\N
+20001	map_concept_id	BETA BLOCKING AGENTS C07	0	ATC	C07	\N	observation	BETA  	\N
+20001	map_concept_id	Biguanides A10BA	0	ATC	A10BA	\N	observation	Bigu  	\N
+20001	map_concept_id	Central alpha-2 Adrenergic Agonist N00001755	0	NDFRT	N0000175554	\N	observation	Cent  	\N
+20001	map_concept_id	Cerebrovascular accident 230690007	0	SNOMED	230690007	\N	observation	Cere  	\N
+20001	map_concept_id	Defibrillator 19257004	0	SNOMED	19257004	\N	observation	Defi  	\N
+20001	map_concept_id	Dihydropyridine derivative calcium channel blocker 406769001	0	SNOMED	406769001	\N	observation	Dihy  	\N
+20001	map_concept_id	Dipeptidyl peptidase 4 (DPP-4) inhibitors A10BH	0	ATC	A10BH	\N	observation	Dipe  	\N
+20001	map_concept_id	DIURETICS C03	0	ATC	C03	\N	observation	DIUR  	\N
+20001	map_concept_id	Emphysema or COPD [Minimum Data Set] 45670-7	0	LOINC	45670-7	\N	observation	Emph  	\N
+20001	map_concept_id	Fibric Acids N00001821	0	NDFRT	N0000182116	\N	observation	Fibr  	\N
+20001	map_concept_id	Fish oil 226359003	0	SNOMED	226359003	\N	observation	Fish  	\N
+20001	map_concept_id	Heparin group B01AB	0	ATC	B01AB	\N	observation	Hepa  	\N
+20001	map_concept_id	HMG CoA reductase inhibitors C10AA	0	ATC	C10AA	\N	observation	HMG   	\N
+20001	map_concept_id	Incretin 417524005	0	SNOMED	417524005	\N	observation	Incr  	\N
+20001	map_concept_id	INSULINS AND ANALOGUES A10A	0	ATC	A10A	\N	observation	INSU  	\N
+20001	map_concept_id	Lipid lowering agents LP31452-3	0	LOINC	LP31452-3	\N	observation	Lipi  	\N
+20001	map_concept_id	Loop diuretic 29051009	0	SNOMED	29051009	\N	observation	Loop  	\N
+20001	map_concept_id	Meglitinide 109075003	0	SNOMED	109075003	\N	observation	Megl  	\N
+20001	map_concept_id	metformin A10BA02	0	ATC	A10BA02	\N	observation	metf  	\N
+20001	map_concept_id	ACCORD other bp med UCD-Kao-3	0	UCD.Kao	UCD-Kao-38	\N	observation	AccOBP	\N
+20001	map_concept_id	ACCORD  other lipid med UCD-Kao-3	0	UCD.Kao	UCD-Kao-36	\N	observation	AccOLM	\N
+20001	map_concept_id	ACCORD other bolus insulines UCD-Kao-3	0	UCD.Kao	UCD-Kao-31	\N	observation	AccOBI	\N
+20001	map_concept_id	ACCORD other diabetes treatments UCD-Kao-3	0	UCD.Kao	UCD-Kao-33	\N	observation	AccDt 	\N
+20001	map_concept_id	ACCORD premixed insulins UCD-Kao-3	0	UCD.Kao	UCD-Kao-32	\N	observation	AccpDt	\N
+20001	map_concept_id	acetylsalicylic acid B01AC06	0	ATC	B01AC06	\N	observation	asprin	\N
+20001	map_concept_id	ANTITHROMBOTIC AGENTS B01	0	ATC	B01	\N	observation	xThrm 	\N
+20001	map_concept_id	BLOOD GLUCOSE LOWERING DRUGS, EXCL. INSULINS A10B	0	ATC	A10B	\N	observation	GluLow	\N
+20001	map_concept_id	Bundle branch block 6374002	0	SNOMED	6374002	\N	observation	BBB   	\N
+20001	map_concept_id	Dietary cholesterol absorption inhibitor 468638005	0	SNOMED	468638005	\N	observation	xChol 	\N
+20001	map_concept_id	Coronary angioplasty 41339005	0	SNOMED	41339005	\N	observation	Angpy 	\N
+20001	map_concept_id	Current drinker 219006	0	SNOMED	219006	\N	observation	Alcohl	\N
+20001	map_concept_id	CALCIUM CHANNEL BLOCKERS C08	0	ATC	C08	\N	observation	CaCB  	\N
+20001	map_concept_id	Fibrates C10AB	0	ATC	C10AB	\N	observation	Fibrat	\N
+20001	map_concept_id	Gender 263495000	0	SNOMED	263495000	\N	observation	Sex   	\N
+20001	map_concept_id	Heart revascularization 81266008	0	SNOMED	81266008	\N	observation	Revasc	\N
+20001	map_concept_id	H/O: cardiovascular disease 266995000	0	SNOMED	266995000	\N	observation	HxCVD 	\N
+20001	map_concept_id	H/O: diabetes mellitus 161445009	0	SNOMED	161445009	\N	observation	HxDM  	\N
+20001	map_concept_id	Hypertensive disorder 38341003	0	SNOMED	38341003	\N	observation	Htn   	\N
+20001	map_concept_id	Hyperlipidemia 55822004	0	SNOMED	55822004	\N	observation	hyLip 	\N
+20001	map_concept_id	insulin (human) A10AB01	0	ATC	A10AB01	\N	observation	nslnB 	\N
+20001	map_concept_id	insulin (human) A10AC01	0	ATC	A10AC01	\N	observation	nslnC 	\N
+20001	map_concept_id	insulin (human) A10AE01	0	ATC	A10AE01	\N	observation	nslnE 	\N
+20001	map_concept_id	Myocardial infarction 22298006	0	SNOMED	22298006	\N	observation	MI    	\N
+20001	identity_number	Sodium serum/plasma 2951-2	0	LOINC	2951-2	\N	measurement	Na    	\N
+20001	identity_number	Topcat CEC death years UCD-Kao-2	0	UCD.Kao	UCD-Kao-24	\N	observation	TCdyr 	\N
+20001	identity_number	Topcat Site death years UCD-Kao-2	0	UCD.Kao	UCD-Kao-23	\N	observation	TCsdyr	\N
+20001	identity_number	Topcat Site vs CEC UCD-Kao-2	0	UCD.Kao	UCD-Kao-25	\N	observation	TCsite	\N
+20001	identity_number	Total cholesterol measurement 121868005	0	SNOMED	121868005	\N	measurement	TChol 	\N
+20001	identity_number	Total Bilirubin serum/plasma 1975-2	0	LOINC	1975-2	\N	measurement	TBili 	\N
+20001	map_concept_id	Niacin 55013001	0	SNOMED	55013001	\N	observation	Niac  	\N
+20001	map_concept_id	Omega-3 Fatty Acid N00001755	0	NDFRT	N0000175583	\N	observation	Omeg  	\N
+20001	map_concept_id	Race 103579009	0	SNOMED	103579009	\N	observation	Race  	\N
+20001	map_concept_id	reserpine C02AA02	0	ATC	C02AA02	\N	observation	rese  	\N
+20001	map_concept_id	Tmt is placebo/std of care UCD-Kao-1	0	UCD.Kao	UCD-Kao-19	\N	observation	Tmt   	\N
+20001	map_concept_id	Tobacco use status CPHS 39240-7	0	LOINC	39240-7	\N	observation	Toba  	\N
+20001	map_concept_id	VASODILATORS USED IN CARDIAC DISEASES C01D	0	ATC	C01D	\N	observation	VASO  	\N
+20001	map_concept_id	warfarin B01AA03	0	ATC	B01AA03	\N	observation	warf  	\N
+1	identity_number	Height	0	LOINC	8302-2	\N	measurement	height	\N
+2	identity_number	Height value	0	LOINC	8302-2	\N	measurement	height	\N
+2	ranges_to_rank_asc	Height	0	LOINC	8302-2	\N	measurement	height	\N
+20000	identity_number	Height	0	LOINC	8302-2	\N	measurement	height	\N
+20001	map_concept_id	Myocardial infarction age by EKG 8611-6	0	LOINC	8611-6	\N	observation	MIage 	\N
+20001	map_concept_id	Organic nitrates C01DA	0	ATC	C01DA	\N	observation	ONitra	\N
+20001	map_concept_id	Percutaneous coronary intervention 415070008	0	SNOMED	415070008	\N	observation	PCI   	\N
+20001	map_concept_id	Potassium-sparing diuretic 47755009	0	SNOMED	47755009	\N	observation	KDiur 	\N
+20001	map_concept_id	POTASSIUM A12B	0	ATC	A12B	\N	observation	K     	\N
+20001	map_concept_id	Sulfonylureas A10BB	0	ATC	A10BB	\N	observation	Sulfas	\N
+20001	map_concept_id	Sulfonylurea 34012005	0	SNOMED	34012005	\N	observation	Sulf2 	\N
+20001	map_concept_id	Sulfaurea 419204001	0	SNOMED	419204001	\N	observation	Sulf3 	\N
+20001	map_concept_id	Thiazolidinedione 109086001	0	SNOMED	109086001	\N	observation	TZD   	\N
+20001	map_concept_id	Thiazides, plain C03AA	0	ATC	C03AA	\N	observation	tzd   	\N
+\.
+
+
+--
+-- Name: categorization_function_metadata fk_cat_func_metadata_uk; Type: CONSTRAINT; Schema: public; Owner: docker
+--
+
+ALTER TABLE ONLY public.categorization_function_metadata
+    ADD CONSTRAINT fk_cat_func_metadata_uk UNIQUE (extract_study_id, function_name, long_name, rule_id);
+
+
+--
+-- Name: categorization_function_metadata pk_categorization_function_metadata; Type: CONSTRAINT; Schema: public; Owner: docker
+--
+
+ALTER TABLE ONLY public.categorization_function_metadata
+    ADD CONSTRAINT pk_categorization_function_metadata PRIMARY KEY (extract_study_id, function_name, long_name, rule_id);
+
+
+--
+-- Name: categorization_function_metadata categorization_function_metadata_extract_study_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: docker
+--
+
+ALTER TABLE ONLY public.categorization_function_metadata
+    ADD CONSTRAINT categorization_function_metadata_extract_study_id_fkey FOREIGN KEY (extract_study_id) REFERENCES public.extract_study(extract_study_id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

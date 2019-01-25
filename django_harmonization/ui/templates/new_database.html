@@ -1,0 +1,48 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<script type="text/javascript" src="{% static "ui/js/new_database.js" %}"></script>
+<script type="text/javascript" src="{% static "ui/js/utility.js" %}"></script> 
+
+<script>
+    function do_on_load() {
+        createNewDatabaseModule().init();
+    }
+</script>
+
+<h2>New Database</h2>
+
+<!--    <span>Database name:<input type="text" id="ndm_database_name"> </span> -->
+    <span><button type="button" id="ndm_button">Start</button> </span>
+    <table>
+<!--
+    <tr><td>Database creation:</td><td><span id="ndm_create_status">     </span></td></tr> 
+    (Database names should consist of letters, numbers or the underscore character.)
+-->
+    <tr><td>OHDSI load:</td><td><span id="ndm_ohdsi_status">      </span></td></tr>
+    <tr><td>Studies load:</td><td><span id="ndm_studies_status">    </span></td></tr>
+    <tr><td>Mapping load:</td><td><span id="ndm_mapping_status">    </span></td></tr>
+    </table>
+
+<!--
+    <table>
+    <tr>
+        <td>Study Name:<input type="text" id="ndm_migrate_study"></td>
+        <td><button type="button" id="ndm_migrate_button">Migrate</button> </td>
+    </tr>
+    <tr>
+        <td>Study Name:<input type="text" id="ndm_calculate_study"></td>
+        <td><button type="button" id="ndm_calculate_button">Calculate</button> </td>
+    </tr>
+    <tr>
+        <td>Study Name:<input type="text" id="ndm_"></td>
+        <td>Extract Config Id:<input type="text" id="ndm_"></td>
+        <td><button type="button" id="ndm_extract_button">Extract</button> </td>
+    </tr>
+    </table>
+-->
+    <div> <a href="/ui/index.html">Index</a> </div>
+    <div id=ndm_message></div>
+    <div> </div>
+{% endblock %}

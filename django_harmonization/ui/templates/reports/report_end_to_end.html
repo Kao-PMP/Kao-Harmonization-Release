@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block scripts %}
+    <script type="text/javascript">
+        console.log("report_end_to_end.html script 2")
+        function do_on_load() {
+            console.log("report_end_to_end.html do_on_load()")
+            createReportEndToEndModule().init();
+        }
+    </script>
+{% endblock %}
+{% block content %}
+        <link type="text/css" rel="stylesheet" href="{% static "ui/main.css" %}">
+    
+        <script type="text/javascript" src="{% static "/ui/js/utility.js"%}"></script>
+        <script type="text/javascript" src="{% static "/ui/js/study_choice.js"%}"></script>
+        <script type="text/javascript" src="{% static "/ui/js/reports/show_study_metrics.js"%}"></script>
+        <script type="text/javascript" src="{% static "/ui/js/reports/report_end_to_end.js"%}"></script>
+    <h2>Study to Ohdsi Reports</h2> 
+    {% include 'study_choice.html' %}
+    {% include 'reports/show_study_metrics.html' %}
+    {% include 'reports/show_ohdsi_metrics.html' %}
+    {% include 'reports/show_extract_metrics.html' %}
+
+{% endblock %}
+

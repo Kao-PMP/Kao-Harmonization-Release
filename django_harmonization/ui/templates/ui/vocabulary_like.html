@@ -1,0 +1,15 @@
+<!--
+    @param vocab_id
+    @param string
+    @param concept_list
+--> 
+Lookup in {{ vocab_id }} for string {{ string }} yielded:<br>
+{% if concept_list %}
+    <ul>
+    {% for c in concept_list %}
+        <li> {{c.concept_id}}  ({{c.vocabulary_id}}, {{c.concept_code}}) {{ c.concept_name }} </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    No results.
+{% endif %}

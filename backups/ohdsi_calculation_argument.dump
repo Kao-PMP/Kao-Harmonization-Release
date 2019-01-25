@@ -1,0 +1,342 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.6
+-- Dumped by pg_dump version 9.6.10
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: ohdsi_calculation_argument; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ohdsi_calculation_argument (
+    vocabulary_id character varying(100) NOT NULL,
+    concept_code character varying(100) NOT NULL,
+    study_id integer NOT NULL,
+    function_name character varying(100) NOT NULL,
+    argument_order integer,
+    argument_name character varying(30),
+    value_field character varying(20),
+    to_concept_code character varying(100) NOT NULL,
+    to_vocabulary_id character varying(100) NOT NULL,
+    from_table character varying(100)
+);
+
+
+--
+-- Data for Name: ohdsi_calculation_argument; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.ohdsi_calculation_argument (vocabulary_id, concept_code, study_id, function_name, argument_order, argument_name, value_field, to_concept_code, to_vocabulary_id, from_table) FROM stdin;
+SNOMED	424144002	1	best_creatinine_clearance	1	age	value_as_number	442407001	SNOMED	observation
+LOINC	8480-6	1	best_pulse_pressure	1	\N	value_as_number	87179004	SNOMED	measurement
+LOINC	8462-4	1	best_pulse_pressure	2	\N	value_as_number	87179004	SNOMED	measurement
+LOINC	8302-2	1	best_bmi	1	\N	value_as_number	39156-5	LOINC	measurement
+LOINC	29463-7	1	best_bmi	2	\N	value_as_number	39156-5	LOINC	measurement
+LOINC	2160-0	1	best_creatinine_clearance	4	cre	value_as_number	442407001	SNOMED	measurement
+LOINC	85598-1	1	sum	1	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85600-5	1	sum	2	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85603-9	1	sum	3	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85619-5	1	sum	4	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85620-3	1	sum	5	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85599-9	1	sum	7	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85604-7	1	sum	6	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85608-8	1	sum	8	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85602-1	1	sum	9	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85607-0	1	sum	10	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85601-3	1	sum	11	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85606-2	1	sum	12	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85605-4	1	sum	13	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85616-1	1	sum	14	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85612-0	1	sum	15	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85615-3	1	sum	16	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85617-9	1	sum	17	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85611-2	1	sum	18	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85614-6	1	sum	19	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85610-4	1	sum	20	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85613-8	1	sum	21	\N	value_as_number	71938-5	LOINC	observation
+SNOMED	22298006	2	concept_or_list	1	MI	value_as_concept_id	53741008	SNOMED	observation
+SNOMED	41339005	2	concept_or_list	1	PCI	value_as_concept_id	53741008	SNOMED	observation
+SNOMED	81266008	2	concept_or_list	1	CABG	value_as_concept_id	53741008	SNOMED	observation
+SNOMED	194828000	2	concept_or_list	1	Angina	value_as_concept_id	53741008	SNOMED	observation
+LOINC	8480-6	2	best_pulse_pressure	1	\N	value_as_number	87179004	SNOMED	measurement
+LOINC	8462-4	2	best_pulse_pressure	2	\N	value_as_number	87179004	SNOMED	measurement
+LOINC	8480-6	3	best_pulse_pressure	1	systolic blood pressure	value_as_number	87179004	SNOMED	measurement
+LOINC	8462-4	3	best_pulse_pressure	2	diastolic blood pressure	value_as_number	87179004	SNOMED	measurement
+SNOMED	410429000	1	concept_or_list	1	\N	value_as_concept_id	UCD-Kao-7	UCD.Kao	observation
+SNOMED	410430005	1	concept_or_list	2	\N	value_as_concept_id	UCD-Kao-7	UCD.Kao	observation
+SNOMED	40593004	1	concept_or_list	3	\N	value_as_concept_id	UCD-Kao-7	UCD.Kao	observation
+SNOMED	233915000	1	concept_or_list	4	\N	value_as_concept_id	UCD-Kao-7	UCD.Kao	observation
+SNOMED	71908006	1	concept_or_list	5	\N	value_as_concept_id	UCD-Kao-7	UCD.Kao	observation
+SNOMED	66657009	1	concept_or_list	6	\N	value_as_concept_id	UCD-Kao-7	UCD.Kao	observation
+SNOMED	31722008	1	concept_or_list	7	\N	value_as_concept_id	UCD-Kao-7	UCD.Kao	observation
+SNOMED	25569003	1	concept_or_list	8	\N	value_as_concept_id	UCD-Kao-7	UCD.Kao	observation
+SNOMED	22298006	3	concept_or_list	1	MI	value_as_concept_id	53741008	SNOMED	observation
+SNOMED	41339005	3	concept_or_list	1	PCI	value_as_concept_id	53741008	SNOMED	observation
+SNOMED	81266008	3	concept_or_list	1	CABG	value_as_concept_id	53741008	SNOMED	observation
+SNOMED	194828000	3	concept_or_list	1	Angina	value_as_concept_id	53741008	SNOMED	observation
+LOINC	85598-1	3	sum	1	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85600-5	3	sum	2	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85603-9	3	sum	3	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85619-5	3	sum	4	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85620-3	3	sum	5	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85599-9	3	sum	7	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85604-7	3	sum	6	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85608-8	3	sum	8	\N	value_as_number	71938-5	LOINC	observation
+SNOMED	63467002	1	best_logical_concept_or	1	Left BBB	value_as_concept_id	6374002	SNOMED	observation
+SNOMED	59118001	1	best_logical_concept_or	2	Right BBB	value_as_concept_id	6374002	SNOMED	observation
+SNOMED	11851006	1	best_logical_concept_or	1	mitral valvular disease	value_as_concept_id	368009	SNOMED	observation
+LOINC	85602-1	3	sum	9	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85607-0	3	sum	10	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85601-3	3	sum	11	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85606-2	3	sum	12	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85605-4	3	sum	13	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85616-1	3	sum	14	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85612-0	3	sum	15	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85615-3	3	sum	16	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85617-9	3	sum	17	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85611-2	3	sum	18	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85614-6	3	sum	19	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85610-4	3	sum	20	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85613-8	3	sum	21	\N	value_as_number	71938-5	LOINC	observation
+SNOMED	22298006	4	concept_or_list	1	MI	value_as_concept_id	53741008	SNOMED	observation
+SNOMED	41339005	4	concept_or_list	1	PCI	value_as_concept_id	53741008	SNOMED	observation
+SNOMED	81266008	4	concept_or_list	1	CABG	value_as_concept_id	53741008	SNOMED	observation
+SNOMED	194828000	4	concept_or_list	1	Angina	value_as_concept_id	53741008	SNOMED	observation
+LOINC	8302-2	4	best_bmi	1	\N	value_as_number	39156-5	LOINC	measurement
+LOINC	29463-7	4	best_bmi	2	\N	value_as_number	39156-5	LOINC	measurement
+LOINC	8480-6	4	best_pulse_pressure	1	systolic blood pressure	value_as_number	87179004	SNOMED	measurement
+LOINC	8462-4	4	best_pulse_pressure	2	diastolic blood pressure	value_as_number	87179004	SNOMED	measurement
+LOINC	85598-1	4	sum	1	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85600-5	4	sum	2	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85603-9	4	sum	3	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85619-5	4	sum	4	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85620-3	4	sum	5	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85599-9	4	sum	7	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85604-7	4	sum	6	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85608-8	4	sum	8	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85602-1	4	sum	9	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85607-0	4	sum	10	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85601-3	4	sum	11	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85606-2	4	sum	12	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85605-4	4	sum	13	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85616-1	4	sum	14	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85612-0	4	sum	15	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85615-3	4	sum	16	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85617-9	4	sum	17	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85611-2	4	sum	18	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85614-6	4	sum	19	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85610-4	4	sum	20	\N	value_as_number	71938-5	LOINC	observation
+LOINC	85613-8	4	sum	21	\N	value_as_number	71938-5	LOINC	observation
+SNOMED	30995000	3	concept_or_list	1	exertional angina	value_as_concept_id	194828000	SNOMED	observation
+SNOMED	59021001	3	concept_or_list	2	resting angina	value_as_concept_id	194828000	SNOMED	observation
+SNOMED	22298006	5	concept_or_list	1	MI	value_as_concept_id	53741008	SNOMED	observation
+SNOMED	41339005	5	concept_or_list	1	PCI	value_as_concept_id	53741008	SNOMED	observation
+SNOMED	194828000	5	concept_or_list	1	Angina	value_as_concept_id	53741008	SNOMED	observation
+UCD.Kao	UCD-Kao-12	5	concept_or_list	1	CTD	value_as_concept_id	19257004	SNOMED	observation
+UCD.Kao	UCD-Kao-14	5	concept_or_list	1	ICD	value_as_concept_id	19257004	SNOMED	observation
+UCD.Kao	UCD-Kao-13	5	concept_or_list	1	CTD	value_as_concept_id	69031000119105	SNOMED	observation
+UCD.Kao	UCD-Kao-15	5	concept_or_list	4	ang_flg1	value_as_concept_id	53741008	SNOMED	observation
+UCD.Kao	UCD-Kao-16	5	concept_or_list	5	angioten	value_as_concept_id	53741008	SNOMED	observation
+SNOMED	8722008	1	best_logical_concept_or	1	atrial valvular disease	value_as_concept_id	368009	SNOMED	observation
+SNOMED	103579009	1	best_creatinine_clearance	2	race	value_as_concept_id	442407001	SNOMED	observation
+SNOMED	263495000	1	best_creatinine_clearance	3	sex	value_as_concept_id	442407001	SNOMED	observation
+SNOMED	304914007	1	best_logical_concept_or	1	acute q wave MI	value_as_concept_id	22298006	SNOMED	observation
+SNOMED	314207007	1	best_logical_concept_or	2	non q wave MI	value_as_concept_id	22298006	SNOMED	observation
+SNOMED	63467002	5	best_logical_concept_or	1	Left BBB	value_as_concept_id	6374002	SNOMED	observation
+SNOMED	59118001	5	best_logical_concept_or	2	Right BBB	value_as_concept_id	6374002	SNOMED	observation
+SNOMED	414545008	5	concept_or_list	4	Ischemic Heart Disease	value_as_concept_id	53741008	SNOMED	observation
+UCD.Kao	UCD-Kao-6	5	eos_days	2	Randomization date	value_as_string	UCD-Kao-20	UCD.Kao	observation
+UCD.Kao	UCD-Kao-6	1	eos_days	2	Randomization date	value_as_string	UCD-Kao-20	UCD.Kao	observation
+UCD.Kao	UCD-Kao-18	1	eos_death_min_days	2	Death days	value_as_number	UCD-Kao-20	UCD.Kao	observation
+UCD.Kao	UCD-Kao-20	1	eos_death_min_days	1	End of study days	value_as_number	UCD-Kao-20	UCD.Kao	observation
+UCD.Kao	UCD-Kao-23	4	topcat_death	1	Site Death days	value_as_number	UCD-Kao-18	UCD.Kao	observation
+UCD.Kao	UCD-Kao-24	4	topcat_death	2	CEC Death days	value_as_number	UCD-Kao-18	UCD.Kao	observation
+UCD.Kao	UCD-Kao-25	4	topcat_death	3	Site vs CEC Death type	value_as_number	UCD-Kao-18	UCD.Kao	observation
+UCD.Kao	UCD-Kao-18	3	eos_death_max_days	2	Death days	value_as_number	UCD-Kao-20	UCD.Kao	observation
+UCD.Kao	UCD-Kao-20	3	eos_death_max_days	1	End of Study days	value_as_number	UCD-Kao-20	UCD.Kao	observation
+UCD.Kao	UCD-Kao-21	5	eos_days	1	End of Study date	value_as_string	UCD-Kao-20	UCD.Kao	observation
+UCD.Kao	UCD-Kao-21	1	eos_days	1	End of Study date	value_as_string	UCD-Kao-20	UCD.Kao	observation
+LOINC	8610-8	2	concept_or_list	5	Ischemic Etiology	value_as_concept_id	53741008	SNOMED	observation
+UCD.Kao	UCD-Kao-20	4	eos_death_min_days	2	End of Study days	value_as_number	UCD-Kao-20	UCD.Kao	observation
+UCD.Kao	UCD-Kao-18	4	eos_death_min_days	1	End of Study years	value_as_number	UCD-Kao-20	UCD.Kao	observation
+UCD.Kao	UCD-Kao-6	1	death_days	1	Randomization date	value_as_string	UCD-Kao-18	UCD.Kao	observation
+SNOMED	399753006	1	death_days	2	Death date	value_as_string	UCD-Kao-18	UCD.Kao	observation
+SNOMED	22298006	6	concept_or_list	1	MI	value_as_concept_id	53741008	SNOMED	observation
+SNOMED	41339005	6	concept_or_list	1	PCI	value_as_concept_id	53741008	SNOMED	observation
+SNOMED	194828000	6	concept_or_list	1	Angina	value_as_concept_id	53741008	SNOMED	observation
+UCD.Kao	UCD-Kao-12	6	concept_or_list	1	CTD	value_as_concept_id	19257004	SNOMED	observation
+UCD.Kao	UCD-Kao-14	6	concept_or_list	1	ICD	value_as_concept_id	19257004	SNOMED	observation
+UCD.Kao	UCD-Kao-13	6	concept_or_list	1	CTD	value_as_concept_id	69031000119105	SNOMED	observation
+UCD.Kao	UCD-Kao-15	6	concept_or_list	4	ang_flg1	value_as_concept_id	53741008	SNOMED	observation
+UCD.Kao	UCD-Kao-16	6	concept_or_list	5	angioten	value_as_concept_id	53741008	SNOMED	observation
+SNOMED	63467002	6	best_logical_concept_or	1	Left BBB	value_as_concept_id	6374002	SNOMED	observation
+SNOMED	59118001	6	best_logical_concept_or	2	Right BBB	value_as_concept_id	6374002	SNOMED	observation
+SNOMED	414545008	6	concept_or_list	4	Ischemic Heart Disease	value_as_concept_id	53741008	SNOMED	observation
+UCD.Kao	UCD-Kao-6	6	eos_days	2	Randomization date	value_as_string	UCD-Kao-20	UCD.Kao	observation
+UCD.Kao	UCD-Kao-21	6	eos_days	1	End of Study date	value_as_string	UCD-Kao-20	UCD.Kao	observation
+SNOMED	81266008	5	concept_or_list	6	cabg	value_as_concept_id	53741008	SNOMED	observation
+UCD.Kao	UCD-Kao-19	3	concept_identity	1	Concept in	value_as_concept_id	19257004	SNOMED	observation
+SNOMED	29051009	21	concept_or_list	1	\N	value_as_number	C03	ATC	observation
+SNOMED	47755009	21	concept_or_list	1	\N	value_as_number	C03	ATC	observation
+ATC	C03AA	21	concept_or_list	1	\N	value_as_number	C03	ATC	observation
+ATC	A12B	21	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+SNOMED	29051009	21	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+SNOMED	47755009	21	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C03AA	21	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C09C	21	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+SNOMED	406769001	21	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+UCD.Kao	UCD-Kao-35	21	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+SNOMED	406769001	21	concept_or_list	1	\N	value_as_number	C08	ATC	observation
+UCD.Kao	UCD-Kao-35	21	concept_or_list	1	\N	value_as_number	C08	ATC	observation
+NDFRT	N0000175553	21	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+NDFRT	N0000175554	21	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C07	21	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C01D	21	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C02AA02	21	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	A10AC01	21	concept_or_list	1	\N	value_as_number	A10A	ATC	observation
+ATC	A10AE01	21	concept_or_list	1	\N	value_as_number	A10A	ATC	observation
+UCD.Kao	UCD-Kao-31	21	concept_or_list	1	\N	value_as_number	A10A	ATC	observation
+UCD.Kao	UCD-Kao-32	21	concept_or_list	1	\N	value_as_number	A10A	ATC	observation
+ATC	A10AB01	21	concept_or_list	1	\N	value_as_number	A10A	ATC	observation
+ATC	A10BB	21	concept_or_list	1	\N	value_as_number	A10B	ATC	observation
+ATC	A10BA	21	concept_or_list	1	\N	value_as_number	A10B	ATC	observation
+ATC	A10BF	21	concept_or_list	1	\N	value_as_number	A10B	ATC	observation
+SNOMED	109075003	21	concept_or_list	1	\N	value_as_number	A10B	ATC	observation
+UCD.Kao	UCD-Kao-33	21	concept_or_list	1	\N	value_as_number	A10B	ATC	observation
+UCD.Kao	UCD-Kao-36	21	concept_or_list	1	\N	value_as_number	C10A	ATC	observation
+ATC	C10AA	21	concept_or_list	1	\N	value_as_number	C10A	ATC	observation
+ATC	C10AB	21	concept_or_list	1	\N	value_as_number	C10A	ATC	observation
+SNOMED	468638005	21	concept_or_list	1	\N	value_as_number	C10A	ATC	observation
+SNOMED	55013001	21	concept_or_list	1	\N	value_as_number	C10A	ATC	observation
+ATC	B01AC06	21	concept_or_list	1	\N	value_as_number	B01A	ATC	observation
+ATC	B01AC	21	concept_or_list	1	\N	value_as_number	B01A	ATC	observation
+ATC	B01AC06	21	concept_or_list	1	\N	value_as_number	B01AC	ATC	observation
+ATC	A10BA02	22	concept_or_list	1	\N	value_as_number	A10B	ATC	observation
+SNOMED	109086001	22	concept_or_list	1	\N	value_as_number	A10B	ATC	observation
+SNOMED	419204001	22	concept_or_list	1	\N	value_as_number	A10B	ATC	observation
+UCD.Kao	UCD-Kao-37	22	concept_or_list	1	\N	value_as_number	A10B	ATC	observation
+SNOMED	55013001	22	concept_or_list	1	\N	value_as_number	C10A	ATC	observation
+SNOMED	226359003	22	concept_or_list	1	\N	value_as_number	C10A	ATC	observation
+NDFRT	N0000182116	22	concept_or_list	1	\N	value_as_number	C10A	ATC	observation
+ATC	B01AA03	22	concept_or_list	1	\N	value_as_number	B01A	ATC	observation
+ATC	B01AC	22	concept_or_list	1	\N	value_as_number	B01A	ATC	observation
+NDFRT	N0000007647	22	concept_or_list	1	\N	value_as_number	C01DA	ATC	observation
+ATC	B01AC06	22	concept_or_list	1	\N	value_as_number	B01AC	ATC	observation
+ATC	C09A	22	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C09C	22	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C07	22	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C03	22	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C08	22	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	A10BA	24	concept_or_list	1	\N	value_as_number	A10B	ATC	observation
+ATC	A10BH	24	concept_or_list	1	\N	value_as_number	A10B	ATC	observation
+SNOMED	34012005	24	concept_or_list	1	\N	value_as_number	A10B	ATC	observation
+SNOMED	109086001	24	concept_or_list	1	\N	value_as_number	A10B	ATC	observation
+SNOMED	109075003	24	concept_or_list	1	\N	value_as_number	A10B	ATC	observation
+SNOMED	417524005	24	concept_or_list	1	\N	value_as_number	A10B	ATC	observation
+SNOMED	417736001	24	concept_or_list	1	\N	value_as_number	A10B	ATC	observation
+UCD.Kao	UCD-Kao-34	24	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C09A	24	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C09C	24	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C07	24	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C03	24	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+SNOMED	55013001	24	concept_or_list	1	\N	value_as_number	C10A	ATC	observation
+ATC	C10AA	24	concept_or_list	1	\N	value_as_number	C10A	ATC	observation
+ATC	C10AB	24	concept_or_list	1	\N	value_as_number	C10A	ATC	observation
+NDFRT	N0000175583	24	concept_or_list	1	\N	value_as_number	C10A	ATC	observation
+ATC	B01AC	24	concept_or_list	1	\N	value_as_number	B01A	ATC	observation
+ATC	B01AB	24	concept_or_list	1	\N	value_as_number	B01A	ATC	observation
+ATC	B01AC06	24	concept_or_list	1	\N	value_as_number	B01AC	ATC	observation
+ATC	B01AC	4	concept_or_list	1	\N	value_as_number	B01A	ATC	observation
+ATC	B01AA03	4	concept_or_list	1	\N	value_as_number	B01A	ATC	observation
+ATC	B01AC06	4	concept_or_list	1	\N	value_as_number	B01AC	ATC	observation
+ATC	C01AA	4	concept_or_list	1	\N	value_as_number	C10A	ATC	observation
+ATC	C10AA	4	concept_or_list	1	\N	value_as_number	C10A	ATC	observation
+LOINC	LP31452-3	4	concept_or_list	1	\N	value_as_number	C10A	ATC	observation
+ATC	C09A	4	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C09C	4	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C07	4	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C08	4	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+ATC	C03	4	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+UCD.Kao	UCD-Kao-41	4	concept_or_list	1	\N	value_as_number	UCD-Kao-30	UCD.Kao	observation
+UCD.Kao	UCD-Kao-40	4	subtract	1	dbp-fup	value_as_number	UCD-Kao-43	UCD.Kao	measurement
+LOINC	8462-4	4	subtract	2	dbp	value_as_number	UCD-Kao-43	UCD.Kao	measurement
+UCD.Kao	UCD-Kao-40	21	subtract	1	dbp-fup	value_as_number	UCD-Kao-43	UCD.Kao	measurement
+LOINC	8462-4	21	subtract	2	dbp	value_as_number	UCD-Kao-43	UCD.Kao	measurement
+UCD.Kao	UCD-Kao-40	22	subtract	1	dbp-fup	value_as_number	UCD-Kao-43	UCD.Kao	measurement
+LOINC	8462-4	22	subtract	2	dbp	value_as_number	UCD-Kao-43	UCD.Kao	measurement
+UCD.Kao	UCD-Kao-40	23	subtract	1	dbp-fup	value_as_number	UCD-Kao-43	UCD.Kao	measurement
+LOINC	8462-4	23	subtract	2	dbp	value_as_number	UCD-Kao-43	UCD.Kao	measurement
+UCD.Kao	UCD-Kao-40	24	subtract	1	dbp-fup	value_as_number	UCD-Kao-43	UCD.Kao	measurement
+LOINC	8462-4	24	subtract	2	dbp	value_as_number	UCD-Kao-43	UCD.Kao	measurement
+UCD.Kao	UCD-Kao-39	4	subtract	1	sbp-fup	value_as_number	UCD-Kao-42	UCD.Kao	measurement
+LOINC	8480-6	4	subtract	2	sbp	value_as_number	UCD-Kao-42	UCD.Kao	measurement
+UCD.Kao	UCD-Kao-39	21	subtract	1	sbp-fup	value_as_number	UCD-Kao-42	UCD.Kao	measurement
+LOINC	8480-6	21	subtract	2	sbp	value_as_number	UCD-Kao-42	UCD.Kao	measurement
+UCD.Kao	UCD-Kao-39	22	subtract	1	sbp-fup	value_as_number	UCD-Kao-42	UCD.Kao	measurement
+LOINC	8480-6	22	subtract	2	sbp	value_as_number	UCD-Kao-42	UCD.Kao	measurement
+UCD.Kao	UCD-Kao-39	23	subtract	1	sbp-fup	value_as_number	UCD-Kao-42	UCD.Kao	measurement
+LOINC	8480-6	23	subtract	2	sbp	value_as_number	UCD-Kao-42	UCD.Kao	measurement
+UCD.Kao	UCD-Kao-39	24	subtract	1	sbp-fup	value_as_number	UCD-Kao-42	UCD.Kao	measurement
+LOINC	8480-6	24	subtract	2	sbp	value_as_number	UCD-Kao-42	UCD.Kao	measurement
+\.
+
+
+--
+-- Name: ohdsi_calculation_argument pk_ohdsi_calculation_argument; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ohdsi_calculation_argument
+    ADD CONSTRAINT pk_ohdsi_calculation_argument PRIMARY KEY (study_id, function_name, to_concept_code, to_vocabulary_id, vocabulary_id, concept_code);
+
+
+--
+-- Name: ohdsi_calculation_argument ohdsi_calculation_argument_study_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ohdsi_calculation_argument
+    ADD CONSTRAINT ohdsi_calculation_argument_study_id_fkey FOREIGN KEY (study_id, function_name, to_concept_code, to_vocabulary_id) REFERENCES public.ohdsi_calculation_function(study_id, function_name, to_concept_code, to_vocabulary_id);
+
+
+--
+-- Name: ohdsi_calculation_argument ohdsi_calculation_argument_study_id_fkey1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ohdsi_calculation_argument
+    ADD CONSTRAINT ohdsi_calculation_argument_study_id_fkey1 FOREIGN KEY (study_id) REFERENCES public.study(study_id);
+
+
+--
+-- Name: ohdsi_calculation_argument ohdsi_calculation_argument_to_vocabulary_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ohdsi_calculation_argument
+    ADD CONSTRAINT ohdsi_calculation_argument_to_vocabulary_id_fkey FOREIGN KEY (to_vocabulary_id, to_concept_code) REFERENCES public.vocabulary_concept(vocabulary_id, concept_code);
+
+
+--
+-- Name: ohdsi_calculation_argument ohdsi_calculation_argument_vocabulary_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ohdsi_calculation_argument
+    ADD CONSTRAINT ohdsi_calculation_argument_vocabulary_id_fkey FOREIGN KEY (vocabulary_id, concept_code) REFERENCES public.vocabulary_concept(vocabulary_id, concept_code);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

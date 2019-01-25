@@ -1,0 +1,68 @@
+<!--
+module: edit_table_mapping
+prefix: etmm
+-->
+<div id="etmmm_spreadsheet_div">
+    <table border=0 id="etmm_spreadsheet_table" class="edit_table">
+    <thead >
+        <tr>
+            <th width=150px>Table (k)</th>
+            <th width=150px>Column (k)</th>
+            <th width=150px>Function</th>
+            <th width=150px>Where (k)</th>
+            <th width=150px>Action</th>
+        </tr>
+    </thead>
+    <tbody id="etmmm_spreadsheet_body_upper">
+        <tr>
+            <td><select id="etmm_table_choice"></td>
+            <td><select id="etmm_column_choice"></td>
+            <td><select id="etmm_function_choice"></td>
+            <td>(column_box)<br>(value_box)</td>
+            <td rowspan=2>
+                <button id="etmm_edit_button">Edit</button>
+                <button id="etmm_insert_button">Insert</button>
+                <button id="etmm_delete_button">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+    <thead >
+        <tr>
+            <th>Vocabulary Search</th>
+            <th colspan=2>Concept</th>
+            <th>Destination</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="etmmm_spreadsheet_body_lower">
+        <tr>
+            <td colspan=1> <div style="border:1px solid black;">
+                <select id="etmm_vocabulary_choice">  </select>
+                <button id="etmm_concept_button" name="search" style:"display:inline" valign="right">Search</button>
+                <br>
+                <input id="etmm_concept_mapped_checkbox" type="checkbox" name="Mapped" style:"display:inline" valign="right">Mapped</button>
+                <input id="etmm_concept_extract_checkbox" type="checkbox" name="Extract" style:"display:inline" valign="right">Extract</button>
+                <br>
+                <input id="etmm_concept_string" type="text" name="concept like:" style:"display:inline"></input>
+            </div></td>
+            <td colspan=2>
+                <select id="etmm_concept_choice"> </select>
+            </td>
+            <td>
+                to table:<select id="etmm_to_table_choice">
+                    <option>measurement</option>
+                    <option>observation</option>
+                    <option></option>
+                    <option></option>
+                </select> 
+                <br>
+                to column:<select id="etmm_to_column_choice">
+                    <option>value_as_number</option>
+                    <option>value_as_concept_id</option>
+                    <option>value_as_string (observation only)</option>
+                </select> 
+            </td>
+        </tr>
+    </tbody>
+    </table>
+</div>

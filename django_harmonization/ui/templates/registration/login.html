@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title%}Login{% endblock %}
+
+{% block content %}
+
+<script type="text/javascript">
+    function _cb(json_list) {
+        reponse_div.innerHTML = json_list; 
+    }
+
+    function do_login() {
+       url = "http://localhost:8000/ui/login"
+        post_url(url, _cb).then(_cb)
+    }
+
+    username_div = document.getElementById("login_username");
+    password_div = document.getElementById("login_password");
+    button_div = document.getElementById("login_button");
+    button_div.addEventListener('click', do_login, false);
+
+    response_div = document.getElementById("login_response");
+    
+</script>
+
+
+    {% if form.errors %}
+    Your username and password don't match. Try again. {{ form.errors }}
+    {% endif %}
+
+  <h2>Login</h2>
+
+  <div>Database name:<input type="text" id="login_username"> </div>
+  <div>Database name:<input type="password" id="login_password"> </div>
+  <div><button type="button" id="login_button">Login</button> </span>
+    <hr>
+  <div id="login_response"></div>
+
+  <h2>Old Login</h2>
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+     {{ form.username.label_tag  }}
+     {{ form.username  }}
+     {{ form.password.label_tag  }}
+     {{ form.password }}
+    <button type="submit">Login</button>
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+
+{% endblock %}
+

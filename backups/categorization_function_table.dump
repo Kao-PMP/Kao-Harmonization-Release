@@ -1,0 +1,98 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.6
+-- Dumped by pg_dump version 9.6.10
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: categorization_function_table; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.categorization_function_table (
+    extract_study_id integer NOT NULL,
+    function_name character varying(100) NOT NULL,
+    long_name character varying(100) NOT NULL,
+    from_table character varying(100),
+    from_column character varying(100),
+    from_vocabulary_id character varying(100),
+    from_concept_code character varying(100),
+    comment character varying(250)
+);
+
+
+--
+-- Data for Name: categorization_function_table; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.categorization_function_table (extract_study_id, function_name, long_name, from_table, from_column, from_vocabulary_id, from_concept_code, comment) FROM stdin;
+1	is_not_null	Transplant	procedure_occurrence	procedure_concept_id	SNOMED	32413006	\N
+1	is_not_null	Hospitalization	procedure_occurrence	procedure_concept_id	SNOMED	32485007	\N
+1	is_not_null	NonCVDeath	Death	cause_concept_id	UCD.Kao	UCD-Kao-4	\N
+1	is_not_null	PumpFailure	Death	cause_concept_id	UCD.Kao	UCD-Kao-2	\N
+1	x	Withdrawal	visit_occurrence	visit_concept_id	no_column	no_column	\N
+1	x	SuddenDeath	Death	cause_concept_id	no_column	no_column	\N
+1	x	HFHospitalization	procedure_occurrence	procedure_concept_id	no_column	no_column	\N
+1	is_not_null	DeathStatus	Death	cause_concept_id	no_column	no_column	\N
+5001	is_not_null	DeathStatus	Death	cause_concept_id	no_column	no_column	\N
+1001	is_not_null	DeathStatus	Death	cause_concept_id	no_column	no_column	\N
+1	is_not_null	CVDeath2	Death	cause_concept_id	UCD.Kao	UCD-Kao-3	dubious, possibly related to hockey stick survivability curves. TBD.
+5001	is_not_null	CVDeath2	Death	cause_concept_id	UCD.Kao	UCD-Kao-3	dubious, possibly related to hockey stick survivability curves. TBD.
+1002	is_not_null	CVDeath2	Death	cause_concept_id	UCD.Kao	UCD-Kao-3	dubious, possibly related to hockey stick survivability curves. TBD.
+1009	is_not_null	CVDeath2	Death	cause_concept_id	UCD.Kao	UCD-Kao-3	dubious, possibly related to hockey stick survivability curves. TBD.
+2	is_not_null	CVDeath2	Death	cause_concept_id	UCD.Kao	UCD-Kao-3	dubious, possibly related to hockey stick survivability curves. TBD.
+6001	is_not_null	CVDeath2	Death	cause_concept_id	UCD.Kao	UCD-Kao-3	dubious, possibly related to hockey stick survivability curves. TBD.
+1001	is_not_null	CVDeath2	Death	cause_concept_id	UCD.Kao	UCD-Kao-3	dubious, possibly related to hockey stick survivability curves. TBD.
+\.
+
+
+--
+-- Name: categorization_function_table categorization_function_table_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.categorization_function_table
+    ADD CONSTRAINT categorization_function_table_pkey PRIMARY KEY (extract_study_id, function_name, long_name);
+
+
+--
+-- Name: categorization_function_table categorization_function_table_extract_study_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.categorization_function_table
+    ADD CONSTRAINT categorization_function_table_extract_study_id_fkey FOREIGN KEY (extract_study_id) REFERENCES public.extract_study(extract_study_id);
+
+
+--
+-- Name: categorization_function_table categorization_function_table_from_table_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.categorization_function_table
+    ADD CONSTRAINT categorization_function_table_from_table_fkey FOREIGN KEY (from_table, from_column) REFERENCES public.table_column(table_name, column_name);
+
+
+--
+-- Name: categorization_function_table categorization_function_table_from_vocabulary_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.categorization_function_table
+    ADD CONSTRAINT categorization_function_table_from_vocabulary_id_fkey FOREIGN KEY (from_vocabulary_id, from_concept_code) REFERENCES public.vocabulary_concept(vocabulary_id, concept_code);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
