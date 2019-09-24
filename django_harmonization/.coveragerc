@@ -1,0 +1,9 @@
+[run]
+omit =
+    HeartData/__inti__
+    HeartData/entity/__inti__
+    HeartData/tests/__inti__
+    django_harmonization/__init__
+    ui/__inti__
+    ui/migrations/__init__
+    *__init__*

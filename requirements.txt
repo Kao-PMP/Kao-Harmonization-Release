@@ -1,0 +1,14 @@
+psycopg2-binary
+argh
+flask
+datetime
+django
+djangorestframework
+markdown
+django-filter
+pandas
+sqlalchemy
+django-cors-headers
+requests
+simpleeval
+coverage

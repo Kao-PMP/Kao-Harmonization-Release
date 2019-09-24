@@ -1,3 +1,33 @@
 from django.contrib import admin
 
-# Register your models here.
+from ui.models import Concept, ConceptAncestor, CategorizationFunctionParameters, CategorizationFunctionQualifiers, CategorizationFunctionTable, Concept, ConceptAncestor, ConceptClass, ConceptRelationship, ConceptSynonym, Death, Domain, EventsMapping, ExtractStudy, Location, Measurement, Note, Observation, OhdsiCalculationArgument, OhdsiCalculationFunction, Person, ProcedureOccurrence, Relationship, SourceToConceptMap, Study, StudyToOhdsiMapping, TableColumn, VisitOccurrence, Vocabulary, VocabularyConcept
+
+admin.site.register(CategorizationFunctionParameters)
+admin.site.register(CategorizationFunctionQualifiers)
+admin.site.register(CategorizationFunctionTable)
+admin.site.register(Concept)
+admin.site.register(ConceptAncestor)
+admin.site.register(ConceptClass)
+admin.site.register(ConceptRelationship)
+admin.site.register(ConceptSynonym)
+admin.site.register(Death)
+admin.site.register(Domain)
+admin.site.register(EventsMapping)
+admin.site.register(ExtractStudy)
+admin.site.register(Location)
+admin.site.register(Measurement)
+admin.site.register(Note)
+admin.site.register(Observation)
+admin.site.register(OhdsiCalculationArgument)
+admin.site.register(OhdsiCalculationFunction)
+admin.site.register(Person)
+admin.site.register(ProcedureOccurrence)
+admin.site.register(Relationship)
+admin.site.register(SourceToConceptMap)
+admin.site.register(Study)
+admin.site.register(StudyToOhdsiMapping)
+admin.site.register(TableColumn)
+admin.site.register(VisitOccurrence)
+admin.site.register(Vocabulary)
+admin.site.register(VocabularyConcept)
+

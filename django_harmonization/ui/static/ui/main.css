@@ -1,0 +1,176 @@
+
+body {
+    font-family:sans-serif;
+    background-color:rgb(250,250,255);
+    font-size:12px;
+}
+
+tr:hover {background-color:#d5d5d5;} /* TODO tune this to be just tables marked as scroller...the ones used to display mappings */
+
+# for cool fieldset names 
+#fieldset.section-border {
+#    background-color: rgb(240,240,250);
+#    border: 1px groove #ddd !important;
+#    padding: 0 1.4em 1.4em 1.4em !important;
+#    margin: 0 0 1.5em 0 !important;
+#    -webkit-box-shadow:  0px 0px 0px 0px #000;
+#            box-shadow:  0px 0px 0px 0px #000;
+#}
+#
+#legend.section-border {
+#    background-color: rgb(240,240,250);
+#        font-size: 1.2em !important;
+#        font-weight: bold !important;
+#        text-align: left !important;
+#        width:auto;
+#        padding:0 10px;
+#        border-bottom:none;
+#}
+# th { padding:5px; }
+# td { padding: 10px; }
+
+#.scroller {
+#    height:150px;
+#    overflow-y: scroll;
+#    white-space: nowrap;
+#}
+
+#.short-scroller {
+#    height:75px;
+#    overflow-y: auto;
+#}
+
+.divider {
+    font-size:15px;
+    font-weight:bold;
+    width:900px;
+    #height:50px;
+    #line-height:50px;
+    text-align:left;
+    vertical-align: bottom;
+    margin: 20px
+}
+
+.divider_small {
+    font-size:12px;
+    font-weight:bold;
+    width:900px;
+    #height:50px;
+    line-height:10px;
+    #text-align:left;
+    text-align:center;
+    vertical-align: bottom;
+    margin: 10px
+}
+
+.divider hr {
+    margin-left:auto;
+    margin-right:auto;
+    width:66%;
+}
+
+.divider_small hr {
+    margin-left:auto;
+    margin-right:auto;
+    line-height:10px;
+    width:36%;
+}
+
+table.wide_table {
+    bgcolor:"#FFFCEF";
+    width:1000px;
+}
+
+table.header_table {
+    #################border: 1px solid black;
+    border: 1px solid black;
+    bgcolor:"#FFFCEF";
+    width:1000px;
+    table-layout:fixed;
+}
+table.edit_table {
+    #################border: 1px solid black;
+    border: 0px solid black;
+    bgcolor:"#FFFCEF";
+    width:1000px;
+    table-layout:fixed;
+}
+
+.border_style {
+    border: 1px solid black;
+    bgcolor:"#FFFCEF";
+}
+
+table.edit_table tr th{
+    width:100px;
+    overflow-x: scroll; 
+}
+
+.small {
+    font-size:11px;
+}
+
+.left { float:left; }
+.right { float:right; }
+
+/*
+# Scroll the contents of a table, leaving the header fixed
+# http://jsfiddle.net/hashem/CrSpu/555/
+# The above separates the header and body so the body can scroll (A), but
+# the widths end up independent. Adding table-header-group, groups
+# the two together to fix the column widths, but then they scroll
+# together (B).
+# https://stackoverflow.com/questions/12153125/how-to-align-th-header-with-td-in-tbody
+*/
+
+table.scroll {    # used for the display tables: show_extract_mapping and show_table_mapping
+    border-spacing: 0;
+    ####border: 1px solid black;
+    border: 0px solid black;
+
+    width:1000px;
+    table-layout:fixed;
+}
+
+table.scroll tbody,
+table.scroll thead { 
+    display: block;  
+}
+
+thead tr th {
+    height: 30px;
+    line-height: 30px;
+
+    width:125px;
+    overflow:hidden; 
+}
+
+table.scroll tbody {
+    height: 100px;
+    overflow-y: scroll; 
+    overflow-x: hidden;
+}
+
+tbody { 
+    border-top: 0px solid black; 
+} 
+
+
+tbody td, thead th {
+    border-right: 0px solid black;
+    overflow:scroll;
+    text-align:left;
+
+    width:125px;
+    overflow:hidden; 
+}
+
+tbody td:last-child, thead th:last-child {
+    border-right: none;
+    max-width:100%;
+    overflow:scroll;
+    text-align:left;
+
+    width:125px;
+    overflow:hidden; 
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>harmonization_start.sh</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/anaconda3/bin/python3</string>
+        <string>/Users/christopherroeder/work/git/harmonization/django_harmonization/bin/harmonization_djang.sh</string>
+    </array>
+    <key>StandardErrorPath</key>
+    <string>/var/log/python_script.error</string>
+    <key>KeepAlive</key>
+    <true/>
+</dict>
+</plist>

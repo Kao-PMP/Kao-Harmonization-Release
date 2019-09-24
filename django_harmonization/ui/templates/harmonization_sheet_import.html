@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+        <script type="text/javascript" src="{% static "ui/js/utility.js" %}"></script> 
+    
+        <script type="text/javascript" src="{% static "ui/js/edit_table_mapping_function_arg.js" %}"></script>
+        <script type="text/javascript" src="{% static "ui/js/show_table_mapping_args.js" %}"></script>
+        <script type="text/javascript" src="{% static "ui/js/harmonization_sheet_import.js" %}"></script> 
+        <script type="text/javascript" src="{% static "ui/js/show_table_mappings.js" %}"></script>
+        <script type="text/javascript" src="{% static "ui/js/edit_table_mapping.js" %}"></script>
+    
+        <script type="text/javascript" src="{% static "ui/js/study_choice.js" %}"></script>
+<script>
+    function do_on_load() {
+        createHarmonizationSheetModule().init();
+    }
+</script>
+
+<h2>Define Harmonization Mappings: Import</h2>    
+    <!--<div class="divider">Import to OHDSI<hr class="right"/></div> -->
+
+    {% include 'study_choice.html' %}
+
+    {% include 'show_table_mappings.html' %} 
+
+    {% include 'edit_table_mapping.html' %}
+
+    {% include 'show_table_mapping_args.html' %}
+
+    {% include 'edit_table_mapping_function_arg.html' %}
+    
+
+{% endblock %}
+

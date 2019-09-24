@@ -1,9 +1,15 @@
 #!/usr/bin/env python
 import os
 import sys
+from django import db
+from django.db import connection
+from django.conf import settings
+import django
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_harmonization.settings")
+    print(db.connections.databases)
+    print(connection.settings_dict)
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -13,3 +19,8 @@ if __name__ == "__main__":
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
+
+
+#settings.configure()
+#django.setup()
+

@@ -1,0 +1,39 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<script type="text/javascript" src="{% static "ui/js/utility.js" %}"></script> 
+<script type="text/javascript" src="{% static "ui/js/extract_study_choice.js" %}"></script>
+<script type="text/javascript" src="{% static "ui/js/reports.js" %}"></script>
+<script>
+    function do_on_load() { 
+        createReportsModule().init(); 
+   }
+</script>
+
+<h2>Import Reports</h2>
+    <ul>
+        <li> <a href="/ui/report_end_to_end/"> Report Study-OHDSI</a></li>
+        <li> <a href="/ui/xxx/"> Report OHDSI-Ex.Matrix (TBD)</a></li>
+        <li> <a href="/ui/test_paradigm_csv/">Compare Paradigm extraction. Requires prior load and migrate and extract.</a></li>
+        <li> <a href="/ui/coverage_grid/">Imported Coverage Grid</a></li>
+        <li> <a href="/ui/spreadsheet_csv/">Imported Spreadsheet CSV</a></li>
+        <li> <a href="/ui/spreadsheet_txt/">Imported Spreadsheet text</a></li>
+        <li> Analysis Notebooks and Phenotyping (phenotyping_script.Rmd)
+    </ul> 
+
+<h2> Export Reports </h2> 
+These reports limit what they show to what is actually exported by the chosen extract configuration.
+    {% include 'extract_study_choice.html' %}
+    Report Type:
+    <input type="radio" id="rm_report_type_text" name="rm_report_type" value="TXT" checked="checked">Text
+    <input type="radio" id="rm_report_type_grid" name="rm_report_type" value="GRID">Grid
+    <input type="radio" id="rm_report_type_csv" name="rm_report_type" value="CSV">CSV
+    <input type="radio" id="rm_report_type_html" name="rm_report_type" value="HTML">HTML
+    <br>
+    Function Detail <input type="checkbox" id="rm_detail"  >
+    <br>
+    Show Unused <input type="checkbox" id="rm_used" >
+    <br>
+    <button type="button" id="rm_report_button">Report</button> 
+{% endblock %}

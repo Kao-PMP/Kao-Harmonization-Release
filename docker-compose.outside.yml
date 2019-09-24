@@ -1,0 +1,51 @@
+#
+# docker-compose.outside.yml
+# 
+# a docker-compose file for running with db_outside, a postrgesql image that
+# binds to an external directory so that the database lives beyond the life of the
+# image. Since that directory can be put somewhere durable, you can survive 
+# re-provisioning of the host.
+version: '3.5'
+services:
+    db:
+        image: db-outside
+        volumes:
+            - type: bind
+              source: /mnt/workspace/postgresql
+              target: /var/lib/postgresql-storage
+        env_file:
+            - env.list
+    ui:
+        image: harmonization_ui
+        volumes:
+# for local macos dev-box
+#              source: /media/sf_ubuntu_share/test
+# for ubuntu on virtual box
+#              source: /home/croeder/test
+# for AHA PMP on AWS:
+#    /mnt/workspace/test, created from test.tgz 
+            - type: bind
+              source: /mnt/workspace/test
+              target: /opt/local/harmonization/deployment
+              read_only: false
+#    /mnt/workspace/output, usually an empty dir from mkdir
+            - type: bind
+              source: /mnt/workspace/output
+              target: /opt/local/harmonization/output
+              read_only: false
+        ports:
+            - "8000:8000"
+        env_file:
+            - env.list
+        depends_on:
+            - db
+volumes:
+    pgdata:
+
+# docker-compose -f docker-compose-just_pg.yml run client /bin/bash
+# psql -h db -p 5432 -u docker
+
+# may need to download docker-compose from:
+#  sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+# docker-compose  up
+# docker run ui /bin/bash

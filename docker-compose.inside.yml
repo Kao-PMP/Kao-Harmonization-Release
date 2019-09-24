@@ -1,0 +1,53 @@
+#
+# docker-compose.yml
+#
+# sets up container-local storage for postgres (volume) and binds to external
+# directories for django code (read-only bind) and output (read/write bind)
+#
+version: '3.5'
+services:
+    db:
+        image: db
+        volumes:
+            - type: volume
+              source: pgdata
+              target: /var/lib/postgresql/9.6/main
+        env_file:
+            - env.list
+    ui:
+        image: harmonization_ui
+        volumes:
+# for local macos dev-box
+#              source: /media/sf_ubuntu_share/test
+# for ubuntu on virtual box
+#              source: /home/croeder/test
+# for AHA PMP on AWS:
+#    test directory created from test.tgz 
+#    test.tgz brought over by syncing the scratch_bucket/researcher_data
+#      into the /mnt/workspace (or your choice) directory.
+#    need to create /mnt/workspace/output
+#
+            - type: bind
+              source: /mnt/workspace/test
+              target: /opt/local/harmonization/deployment
+              read_only: true
+            - type: bind
+              source: /mnt/workspace/output
+              target: /opt/local/harmonization/output
+              read_only: false
+        ports:
+            - "8000:8000"
+        env_file:
+            - env.list
+        depends_on:
+            - db
+volumes:
+    pgdata:
+
+# docker-compose -f docker-compose-just_pg.yml run client /bin/bash
+# psql -h db -p 5432 -u docker
+
+# may need to download docker-compose from:
+#  sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+# docker-compose  up
+# docker run ui /bin/bash

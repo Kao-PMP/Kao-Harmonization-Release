@@ -1,0 +1,183 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.3
+-- Dumped by pg_dump version 9.6.3
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: ohdsi_calculation_function; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE ohdsi_calculation_function (
+    study_id integer NOT NULL,
+    function_name character varying(100) NOT NULL,
+    to_vocabulary_id character varying(100) NOT NULL,
+    to_concept_code character varying(100) NOT NULL,
+    to_table character varying(100) NOT NULL,
+    to_column character varying(100) NOT NULL,
+    function_order integer DEFAULT 1,
+    expression character varying(500),
+    module_name character varying(100) NOT NULL
+);
+
+
+--
+-- Data for Name: ohdsi_calculation_function; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY ohdsi_calculation_function (study_id, function_name, to_vocabulary_id, to_concept_code, to_table, to_column, function_order, expression, module_name) FROM stdin;
+24	true	SNOMED	161445009	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+22	true	ATC	C10AA	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+23	true	SNOMED	38341003	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+101	best_pulse_pressure	SNOMED	87179004	observation	value_as_number	1	\N	HeartData.calculate_functions
+101	best_logical_concept_or	SNOMED	6374002	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+21	concept_or_list	SNOMED	81266008	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+22	concept_or_list	SNOMED	81266008	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+23	concept_or_list	SNOMED	81266008	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+101	best_logical_concept_or	SNOMED	368009	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+101	best_logical_concept_or	SNOMED	22298006	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+101	sum	LOINC	71938-5	observation	value_as_number	1	\N	HeartData.calculate_functions
+101	best_bmi	LOINC	39156-5	measurement	value_as_number	1	\N	HeartData.calculate_functions
+101	concept_or_list	UCD.Kao	UCD-Kao-7	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+101	best_creatinine_clearance	SNOMED	442407001	measurement	value_as_number	1	\N	HeartData.calculate_functions
+1	best_pulse_pressure	SNOMED	87179004	observation	value_as_number	1	\N	HeartData.calculate_functions
+2	best_pulse_pressure	SNOMED	87179004	observation	value_as_number	1	\N	HeartData.calculate_functions
+3	best_pulse_pressure	SNOMED	87179004	observation	value_as_number	1	\N	HeartData.calculate_functions
+21	metric_bmi	LOINC	39156-5	measurement	value_as_number	1	\N	HeartData.calculate_functions
+101	death_days	UCD.Kao	UCD-Kao-18	observation	value_as_number	1	\N	HeartData.calculate_functions
+101	eos_death_min_days	UCD.Kao	UCD-Kao-20	observation	value_as_number	3	\N	HeartData.calculate_functions
+22	map_concept_id	LOINC	39240-7	observation	value_as_concept_id	0	\N	HeartData.calculate_functions
+101	eos_days	UCD.Kao	UCD-Kao-20	observation	value_as_number	2	\N	HeartData.calculate_functions
+1	best_logical_concept_or	SNOMED	6374002	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+1	best_logical_concept_or	SNOMED	368009	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+1	best_logical_concept_or	SNOMED	22298006	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+1	sum	LOINC	71938-5	observation	value_as_number	1	\N	HeartData.calculate_functions
+2	concept_or_list	SNOMED	53741008	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+1	best_bmi	LOINC	39156-5	measurement	value_as_number	1	\N	HeartData.calculate_functions
+1	concept_or_list	UCD.Kao	UCD-Kao-7	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+3	concept_or_list	SNOMED	53741008	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+4	concept_or_list	SNOMED	53741008	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+4	best_bmi	LOINC	39156-5	measurement	value_as_number	1	\N	HeartData.calculate_functions
+4	sum	LOINC	71938-5	observation	value_as_number	1	\N	HeartData.calculate_functions
+3	concept_or_list	SNOMED	194828000	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+5	best_logical_concept_or	SNOMED	6374002	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+5	concept_or_list	SNOMED	53741008	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+5	concept_or_list	SNOMED	19257004	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+1	best_creatinine_clearance	SNOMED	442407001	measurement	value_as_number	1	\N	HeartData.calculate_functions
+1	death_days	UCD.Kao	UCD-Kao-18	observation	value_as_number	1	\N	HeartData.calculate_functions
+5	eos_days	UCD.Kao	UCD-Kao-20	observation	value_as_number	1	\N	HeartData.calculate_functions
+1	eos_death_min_days	UCD.Kao	UCD-Kao-20	observation	value_as_number	3	\N	HeartData.calculate_functions
+1	eos_days	UCD.Kao	UCD-Kao-20	observation	value_as_number	2	\N	HeartData.calculate_functions
+4	eos_death_min_days	UCD.Kao	UCD-Kao-20	observation	value_as_number	1	\N	HeartData.calculate_functions
+3	eos_death_max_days	UCD.Kao	UCD-Kao-20	observation	value_as_number	1	\N	HeartData.calculate_functions
+4	topcat_death	UCD.Kao	UCD-Kao-18	observation	value_as_number	1	\N	HeartData.calculate_functions
+6	best_logical_concept_or	SNOMED	6374002	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+6	concept_or_list	SNOMED	53741008	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+6	concept_or_list	SNOMED	19257004	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+6	eos_days	UCD.Kao	UCD-Kao-20	observation	value_as_number	1	\N	HeartData.calculate_functions
+3	concept_identity	SNOMED	19257004	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+24	concept_or_list	ATC	B01A	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+4	concept_or_list	ATC	B01A	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+24	concept_or_list	ATC	A10B	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+21	concept_or_list	ATC	A10B	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+22	concept_or_list	ATC	A10B	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+4	concept_or_list	ATC	C10AA	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+21	concept_or_list	ATC	C03	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+21	concept_or_list	ATC	A10A	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+21	concept_or_list	ATC	B01AC	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+22	concept_or_list	ATC	B01AC	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+24	concept_or_list	UCD.Kao	UCD-Kao-30	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+4	concept_or_list	UCD.Kao	UCD-Kao-30	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+21	concept_or_list	UCD.Kao	UCD-Kao-30	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+22	concept_or_list	UCD.Kao	UCD-Kao-30	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+21	concept_or_list	ATC	B01A	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+4	concept_or_list	ATC	B01AC	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+24	concept_or_list	ATC	B01AC	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+22	concept_or_list	ATC	B01A	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+21	concept_or_list	ATC	C10A	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+22	concept_or_list	ATC	C10A	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+24	concept_or_list	ATC	C10A	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+4	concept_or_list	ATC	C10A	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+4	subtract	UCD.Kao	UCD-Kao-42	measurement	value_as_number	0	\N	HeartData.calculate_functions
+21	subtract	UCD.Kao	UCD-Kao-42	measurement	value_as_number	0	\N	HeartData.calculate_functions
+22	subtract	UCD.Kao	UCD-Kao-42	measurement	value_as_number	0	\N	HeartData.calculate_functions
+23	subtract	UCD.Kao	UCD-Kao-42	measurement	value_as_number	0	\N	HeartData.calculate_functions
+24	subtract	UCD.Kao	UCD-Kao-42	measurement	value_as_number	0	\N	HeartData.calculate_functions
+23	subtract	UCD.Kao	UCD-Kao-43	measurement	value_as_number	0	\N	HeartData.calculate_functions
+4	subtract	UCD.Kao	UCD-Kao-43	measurement	value_as_number	0	\N	HeartData.calculate_functions
+21	subtract	UCD.Kao	UCD-Kao-43	measurement	value_as_number	0	\N	HeartData.calculate_functions
+3	sum	LOINC	71938-5	observation	value_as_number	1	\N	HeartData.calculate_functions
+8	ranges_to_rank	UCD.Kao	UCD-Kao-57	measurement	value_as_number	1	\N	HeartData.calculate_functions
+8	ranges_to_rank	UCD.Kao	UCD-Kao-56	measurement	value_as_number	1	\N	HeartData.calculate_functions
+21	concept_or_list	SNOMED	373304005	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+4	best_pulse_pressure	SNOMED	87179004	observation	value_as_number	1	\N	HeartData.calculate_functions
+8	map_concept_id	UCD.Kao	UCD-Kao-59	observation	value_as_number	1	\N	HeartData.calculate_functions
+21	map_concept_id	UCD.Kao	UCD-Kao-64	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+8	ranges_to_rank	UCD.Kao	UCD-Kao-54	measurement	value_as_number	1	\N	HeartData.calculate_functions
+22	map_concept_id	UCD.Kao	UCD-Kao-64	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+22	subtract	UCD.Kao	UCD-Kao-43	measurement	value_as_number	0	\N	HeartData.calculate_functions
+24	subtract	UCD.Kao	UCD-Kao-43	measurement	value_as_number	0	\N	HeartData.calculate_functions
+7	concept_or_list	SNOMED	53741008	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+7	corona_smoking_to_yesno	LOINC	39240-7	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+23	map_concept_id	LOINC	39240-7	observation	value_as_concept_id	0	\N	HeartData.calculate_functions
+7	difference	SNOMED	87179004	observation	value_as_number	1	\N	HeartData.calculate_functions
+8	run_simple_eval	UCD.Kao	UCD-Kao-55	measurement	value_as_number	2	(gender - 1) * lvm_female + -1 * (gender -2) * lvm_male 	HeartData.calculate_functions
+8	run_simple_eval	LOINC	77904-1	measurement	value_as_number	1	laesaf * laesat * 0.85 / laapdm / bsa	HeartData.calculate_functions
+8	run_simple_eval	SNOMED	55827005	measurement	value_as_number	3	(rwt -1) + (lvmas -1) * 2	HeartData.calculate_functions
+23	concept_and_list	ATC	C10AA	observation	value_as_concept_id	0	\N	HeartData.calculate_functions
+8	run_simple_eval	UCD.Kao	UCD-Kao-60	measurement	value_as_number	3	((rwt_cat -1) + (min(2, lvm_cat) -1) *2) + 1	HeartData.calculate_functions
+4	concept_or_list	SNOMED	373304005	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+24	concept_or_list	SNOMED	308116003	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+4	concept_or_list	SNOMED	308116003	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+22	concept_or_list	SNOMED	308116003	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+21	concept_or_list	SNOMED	308116003	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+21	concept_or_list	UCD.Kao	UCD-Kao-63	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+22	concept_or_list	UCD.Kao	UCD-Kao-63	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+24	concept_or_list	UCD.Kao	UCD-Kao-63	observation	value_as_concept_id	1	\N	HeartData.calculate_functions
+\.
+
+
+--
+-- Name: ohdsi_calculation_function pk_ohdsi_calculation_function; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY ohdsi_calculation_function
+    ADD CONSTRAINT pk_ohdsi_calculation_function PRIMARY KEY (study_id, function_name, to_concept_code, to_vocabulary_id);
+
+
+--
+-- Name: ohdsi_calculation_function ohdsi_calculation_function_study_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY ohdsi_calculation_function
+    ADD CONSTRAINT ohdsi_calculation_function_study_id_fkey FOREIGN KEY (study_id) REFERENCES study(study_id);
+
+
+--
+-- Name: ohdsi_calculation_function ohdsi_calculation_function_to_vocabulary_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY ohdsi_calculation_function
+    ADD CONSTRAINT ohdsi_calculation_function_to_vocabulary_id_fkey FOREIGN KEY (to_vocabulary_id, to_concept_code) REFERENCES vocabulary_concept(vocabulary_id, concept_code);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

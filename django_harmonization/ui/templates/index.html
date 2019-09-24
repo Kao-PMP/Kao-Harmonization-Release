@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<script>
+    function do_on_load() { }
+</script>
+
+<h2>UCD Harmonization Main</h2>
+    <ul>
+    <li>Login
+    <li> <a href="/ui/harmonization_sheet_import/">Define Harmonization Mappings (import)</a> </li>
+    <li>Define Calculations  </li>
+    <li> <a href="/ui/harmonization_sheet_export/">Define Analysis Matrix (export)</a> </li>
+    <li><a href="/ui/pipeline.html">Run Pipeline</a>
+    <li><a href="/ui/reports.html">Run Reports, Tests</a>
+    <li><a href="/ui/peax.html">PEAX (stub)</a>
+    <li><a href="/ui/rstudio.html">RStudio (stub) </a>
+    <li>Logout
+    </ul>
+{% endblock %}

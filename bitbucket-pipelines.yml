@@ -1,0 +1,31 @@
+# This is a pipeline for the MASTER branch. It is intended to run with a postgresql instance and do
+# more than just unit testing as the pipeline in develop does.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: python:3.6
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - pip
+        script: # Modify the commands below to build your repository.
+          - pip install -r requirements.txt
+          - cd django_harmonization
+          - python3 -m django --version
+          - python3 ./manage.py test
+        services:
+          - postgres
+        after-script:
+          - echo "after script has run"`
+    - step:
+        script:
+          - echo "step 2"
+
+definitions:
+  services:
+    postgres:
+      image: postgres
+      environment:
+        POSTGRES_DB: heart_db_v3
+        POSTGRES_USER: christopherroeder

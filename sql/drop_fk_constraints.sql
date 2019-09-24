@@ -1,0 +1,74 @@
+
+
+--alter table study_to_ohdsi_mapping 
+--  drop constraint study_to_ohdsi_mapping_to_table_fkey;
+
+--CREATE unique INDEX  idx_table_columns
+--  ON ema.columns (table_name, column_name) ;
+
+--alter table study_to_ohdsi_mapping
+--    add constraint fpk_study_to_ohdsi_mapping_to_columns
+--    foreign key (from_table, from_column) references information_schema.columns (table_name, column_name)
+
+-- select attname, relname from pg_attribute a join pg_class c on a.attrelid = c.oid;
+
+--these constraints make sure you're using concepts that exist in the concept table
+-- EXCEPT, you can't create an index suitable for FKs on concept(vocabulary_id, concept_code)
+-- because concept_code is not unique for some vocabularies.
+--
+--CREATE unique INDEX  idx_concept_vocabulary_id_concept_code 
+--  ON concept (vocabulary_id, concept_code) 
+--  WHERE (concept_code != 'OMOP generated');
+--
+--alter table categorization_function_table 
+--  drop  constraint categorization_function_table_from_vocabulary_id_fkey;
+--
+--alter table categorization_function_table 
+--  add constraint fpk_categorization_function_table_to_concept_fk
+--FOREIGN KEY (from_vocabulary_id, from_concept_code) REFERENCES 
+--concept (vocabulary_id, concept_code);
+--
+--
+--alter table ohdsi_calculation_argument 
+--  drop constraint ohdsi_calculation_argument_vocabulary_id_fkey;
+--alter table ohdsi_calculation_argument 
+--  add constraint fpk_ohdsi_calculation_argument_to_concept
+--FOREIGN KEY (to_vocabulary_id, to_concept_code) REFERENCES 
+--concept (vocabulary_id, concept_code);
+--
+--alter table ohdsi_calculation_function 
+--  drop constraint ohdsi_calculation_function_to_vocabulary_id_fkey;
+--alter table ohdsi_calculation_function 
+--  add constraint fpk_ohdsi_calculation_function_to_concept
+--FOREIGN KEY (to_vocabulary_id, to_concept_code) REFERENCES 
+--concept (vocabulary_id, concept_code);
+--
+--alter table study_to_ohdsi_mapping 
+--  drop constraint study_to_ohdsi_mapping_vocabuarly_id_fkey;
+--alter table study_to_ohdsi_mapping 
+--  add constraint fpk_study_to_ohdsi_mapping_to_concept
+--FOREIGN KEY (vocabulary_id, concept_code) REFERENCES 
+--concept (vocabulary_id, concept_code);
+--  
+--alter table study_mapping_arguments 
+--  add constraint fpk_study_mapping_arguments_to_concept
+--FOREIGN KEY (to_vocabulary_id, to_concept_code) REFERENCES 
+--concept (vocabulary_id, concept_code);
+--
+--alter table study_mapping_arguments 
+--  add constraint fpk_study_mapping_arguments_to_concept
+--FOREIGN KEY (mapped_concept_vocabulary_id, mapped_concept_code) REFERENCES 
+--concept (vocabulary_id, concept_code);
+--
+--alter table categorization_function_metadata
+--  add constraint fpk_study_mapping_arguments_to_concept
+--FOREIGN KEY (from_vocabulary_id, from_concept_code) REFERENCES 
+--concept (vocabulary_id, concept_code);
+--
+--alter table categorization_function_parameters
+--  add constraint fpk_study_mapping_arguments_to_concept
+--FOREIGN KEY (from_concept_id) REFERENCES 
+--concept (concept_id);
+--
+--
+--

@@ -1,0 +1,44 @@
+<!--
+module: edit_extract_mapping
+prefix: eemm
+-->
+    <form>
+        <fieldset>
+            <legend>Edit Extract Mapping</legend>
+			<div id="hsm_spreadsheet_div">
+			    <table border=0 id="hsm_spreadsheet_table" class="edit_table">
+			    <thead >
+			        <tr>
+			            <th>Vocabulary</th>
+			            <th>Concept</th>
+			            <th>Function</th>
+			            <th>Name</th>
+			            <th>Short name</th>
+			            <th></th>
+			        </tr>
+			    </thead>
+			    <tbody id="hsm_spreadsheet_body">
+			        <tr>
+			            <td colspan=1> <div style="border:1px solid black;">
+			                <select id="eemm_vocabulary_choice">  </select>
+			                <button id="eemm_concept_button" name="search" style:"display:inline" valign="right">Search</button>
+			                <br>
+			                <input id="eemm_concept_string" type="text" name="concept like:" style:"display:inline"></input>
+			            </div></td>
+			            <td>
+			                <select id="eemm_concept_choice"> </select>
+			            </td>
+			            <td><select id="eemm_cat_function_choice"></td>
+			            <td><input id="eemm_long_name"></td>
+			            <td><input id="eemm_short_name"></td>
+			            <td>
+			                <button id="eemm_submit">Edit</button>
+			                <button id="eemm_submit">Insert</button>
+			            </td>
+			
+			        </tr>
+			    </tbody>
+			    </table>
+			</div>
+        </fieldset>
+    </form>

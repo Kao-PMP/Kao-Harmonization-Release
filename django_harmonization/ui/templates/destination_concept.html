@@ -1,0 +1,20 @@
+
+<!-- Destination Concept Module : dcm-->
+<div>
+    <table>
+        <tr>
+            <td valign="top" align="left">Vocabulary Name: </td>
+            <td>
+                <input type="radio" id="dcm_vocabulary_id" name="dcm_vocabulary_id" value="SNOMED"> SNOMED 
+                <input type="radio" id="dcm_vocabulary_id" name="dcm_vocabulary_id" value="LOINC"> LOINC 
+                <input type="radio" id="dcm_vocabulary_id" name="dcm_vocabulary_id" value="UCD.Kao"> UCD.Kao 
+            </td>
+        </tr>
+        <tr>
+            <td align="left">Search String:</td>
+            <td><input type="text" id="dcm_string"></td>
+            <td align="left" colspan=2><button type="button" id="dcm_button">Lookup</button></td>
+        </tr>
+    </table>
+    <div id="dcm_choice_box_div" class="scroller"></div>
+</div>

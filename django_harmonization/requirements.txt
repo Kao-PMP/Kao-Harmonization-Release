@@ -1,0 +1,3 @@
+django-webpack-loader
+requests
+django-cors-headers

@@ -1,0 +1,22 @@
+4:bbb 1  count_A:    4366  count_B:    4816  
+4:bbb 2  count_A:    1634  count_B:    1184  
+5:LVEF different values: "3 4" :  "1 3 4"
+5:LVEF 3  count_A:    2794  count_B:    2090  
+5:LVEF  nulls: 5999  5295
+13:ppm different values: "1 2" :  ""
+13:ppm 1  count_A:    5590  count_B:       0  
+13:ppm 2  count_A:     410  count_B:       0  
+13:ppm  nulls: 6000  0
+17:cad 1  count_A:    2058  count_B:    2602  
+17:cad 2  count_A:    3942  count_B:    3398  
+29:race different values: "1 2 4 7" :  "1 2 4 9"
+29:race 7  count_A:     636  count_B:       0  
+29:race  nulls: 6000  5364
+32:anemia 1  count_A:    4136  count_B:    4549  
+32:anemia 2  count_A:    1643  count_B:    1230  
+40:hr different values: "1 2 3 4" :  ""
+40:hr 1  count_A:    1031  count_B:       0  
+40:hr 2  count_A:    3671  count_B:       0  
+40:hr 3  count_A:    1210  count_B:       0  
+40:hr 4  count_A:      88  count_B:       0  
+40:hr  nulls: 6000  0

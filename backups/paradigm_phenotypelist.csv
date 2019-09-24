@@ -1,0 +1,40 @@
+column,phenotype,brief_name
+1,Left bundle branch block,lbbb
+2,Right bundle branch block,rbbb
+3,Any BBB,bbb
+4,LV ejection fraction,lvef
+5,Atrial fibrillation/flutter,af
+6,Diabetes mellitus,dm
+7,Hyperlipidemia,hld
+8,Hypertension,htn
+9,Myocardial infarction,mi
+10,Prior PCI,pci
+11,Prior CABG,cabg
+12,Pacemaker,ppm
+13,Tobacco use,smoke
+14,Age,age
+15,Gender,sex
+16,CAD,cad
+17,BMI,bmi
+18,Pulse pressure,pupr
+19,AST,ast
+20,ALT,alt
+21,BUN,bun
+22,Creatinine clearance,crcl
+23,BNP,bnp
+24,NTBNP,ntbnp
+25,Sodium,na
+26,COPD,copd
+27,Stroke,stroke
+28,Race,race
+29,NYHA,nyha
+30,Albumin,alb
+31,Anemia,anemia
+32,WBC count,wbc
+33,Systolic blood pressure,sbp
+34,Diastolic blood pressure,dbp
+35,CRT,crt
+36,ICD,icd
+37,EQ5D,eq5d
+38,KCCQ,kccq
+39,Heart rate,hr

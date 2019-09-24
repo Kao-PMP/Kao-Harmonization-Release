@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+    {% load static %}
+
+    <link type="text/css" rel="stylesheet" href="{% static "ui/main.css" %}">
+
+    <script type="text/javascript" src="{% static "ui/js/utility.js" %}"></script> 
+    <script type="text/javascript" src="{% static "ui/js/source_table_column.js" %}"></script>
+    <script type="text/javascript" src="{% static "ui/js/show_table_mappings.js" %}"></script>
+    <script type="text/javascript" src="{% static "ui/js/submit_mapping.js" %}"></script>
+    <script type="text/javascript" src="{% static "ui/js/function_choice.js" %}"></script>
+    <script type="text/javascript" src="{% static "ui/js/destination_concept.js" %}"></script> 
+
+    <title>Concept Lookup Demo</title>
+</head>
+<script>
+"use strict";
+   
+var sourceTableColumnModule;
+var submitMappingModule;
+var showTableMappingsModule;
+var functionChoiceModule;
+var destinationConceptModule;
+
+function do_on_load() {
+    // Table Mappings
+    showTableMappingsModule = createShowTableMappingsModule();
+    // Submit
+    submitMappingModule = createSubmitMappingModule();
+
+    // Function Choice
+    functionChoiceModule = createFunctionChoiceModule(
+        function(function_name) {
+            console.log("function_choice callback:" + function_name)
+            submitMappingModule.get_function_update(function_name); });
+
+    // Source
+    sourceTableColumnModule = createSourceTableColumnModule(
+        function (study_id, table_name, column_name) {
+            console.log("stcm_callback " + study_id + " " + table_name + " " + column_name);
+            submitMappingModule.get_source_update(study_id, table_name, column_name); 
+            showTableMappingsModule.get_study_id_update(study_id);
+            functionChoiceModule.get_study_id_update(study_id); });
+
+    // Destination
+    destinationConceptModule = createDestinationConceptModule(
+        function(concept_id, vocabulary_id, concept_code) {
+            submitMappingModule.get_destination_update(vocabulary_id, concept_code); });
+}
+
+</script>
+
+<body onload="javascript:do_on_load()">
+
+    <div class="container">
+        <h2>UCDenver Clinical HF Study Harmonization </h2>
+            <div class="divider">Source:<hr class="right"/></div>
+            {% include 'source_table_column.html' %}
+
+            <div class="divider">Conversion Function<hr class="right"/></div>
+            {% include 'function_choice.html' %} 
+
+            <div class="divider">Destination:<hr class="right"/></div>
+            {% include 'destination_concept.html' %} 
+
+            <div class="divider">Submit:<hr class="right"/></div>
+            {% include 'submit_mapping.html' %}  
+
+            <div class="divider">Mappings:<hr class="right"/></div>
+            {% include 'show_table_mapping.html' %} 
+
+    </div>
+
+{% endblock %}
+

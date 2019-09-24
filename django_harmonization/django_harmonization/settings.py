@@ -11,9 +11,13 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import requests
+#from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,14 +27,33 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ip_c50j=islgthcfelx35#rm4uoku5tw_z-anc)a!+soeq89fz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# CONFIG WARING: this changes where the static files are fetched from. Likely, we'll always run with debug.
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
+
+#### https://serverfault.com/questions/640809/aws-ec2-and-django-allowed-hosts
+#### http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html
+###url="http://169.254.169.254/latest/meta-data/local-ipv4"
+###try:
+###    r = requests.get(url, timeout=3)
+###    instance_ip = r.text
+###    ALLOWED_HOSTS += [instance_ip]
+###except Exception as e:
+###    print("error:" + str(e))
+###
+###print(ALLOWED_HOSTS)
+###
+#LOGIN_REDIRECT_URL=reverse_lazy('home')
+LOGIN_REDIRECT_URL=reverse_lazy('index')
+LOGIN_URL=reverse_lazy('login')
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'ui',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +64,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,6 +73,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_WHITELIST = ( 'localhost:3000', 'localhost:8000' )
+
 
 ROOT_URLCONF = 'django_harmonization.urls'
 
@@ -81,12 +108,38 @@ DATABASES = {
     },
     'default':{
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'heart_2018-01-05',
-        'USER': 'christopherroeder',
+        'NAME':   'heart_db_v3', 
+        'USER':   'christopherroeder',
         'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': 5432
+        'HOST':   'localhost',
+        'PORT':   5432
     }
+#,
+#    'PMP':{
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME':     os.environ.get('PGDATABASE'),
+#        'USER':     os.environ.get('PGUSER'),
+#        'PASSWORD': os.environ.get('PGPASSWORD'),
+#        'HOST':     os.environ.get('PGHOST'),
+#        'PORT':     os.environ.get('PGPORT'),
+#    }
+#    ,
+#    'dev':{
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'heart_2018-03-09',
+#        'USER': 'christopherroeder',
+#        'PASSWORD': '',
+#        'HOST': 'localhost',
+#        'PORT': 5432
+#    },
+#    'production':{
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'heart_db_v3', # reconcile with env vars and value somewhere else...views.py
+#        'USER': 'test',
+#        'PASSWORD': '',
+#        'HOST': 'localhost',
+#        'PORT': 5432
+#    }
 }
 
 
@@ -126,4 +179,66 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+# location for static files when DEBUG=False, to be copied to nginx or apache or whatever in production
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 STATIC_URL = '/static/'
+# location for static files when DEBUG=True
+
+STATICFILES_DIR = ( os.path.join(PROJECT_DIR, 'staticfiles'), )
+
+REST_FRAMEWORK={
+
+# https://michaelwashburnjr.com/django-user-authentication/
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+    ]
+}
+
+
+LOGGING = {
+    'version':1,
+    #'disable_existing_loggers': False,
+    'disable_existing_loggers': True,
+    'formatters':{
+        'standard_fmt':{
+            'format':"%(asctime)s:%(levelname).4s:%(name)s:%(message)s",
+            'datefmt': "%d/%b/%Y %H:%M:%s"
+        },
+        'debug_fmt':{
+            'format':"%(levelname).4s:%(asctime)s:%(name)s:%(filename)s:%(funcName)s():%(lineno)s\n    %(levelname).4s:%(message)s",
+            'datefmt': "%d/%b %H:%M:%S"
+        }
+    },
+    'handlers': {
+        'django_hdlr':{
+            #'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(PROJECT_DIR, 'django.log'),
+            'maxBytes': 1024*1024*15,
+            'backupCount': 3,
+            'formatter': 'standard_fmt',
+        },
+        'dev_hdlr':{
+            'level':'DEBUG',
+            'class':'logging.FileHandler',
+            'filename':os.path.join(PROJECT_DIR, 'HeartData.log'),
+            'formatter': 'debug_fmt',
+        },
+    },
+
+    'loggers':{
+        'django': {
+            'handlers':['dev_hdlr', 'django_hdlr'],
+            'level' : 'DEBUG',
+            'propagate': True,
+        },
+        'HeartData': {
+            'handlers':['dev_hdlr'],
+            'level' : 'DEBUG',
+            #'level' : 'INFO',
+            'propagate': True,
+        },
+    },
+}

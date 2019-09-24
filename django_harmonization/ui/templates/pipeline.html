@@ -1,0 +1,65 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<script type="text/javascript" src="{% static "ui/js/utility.js" %}"></script> 
+<script type="text/javascript" src="{% static "ui/js/study_choice.js" %}"></script>
+<script type="text/javascript" src="{% static "ui/js/extract_study_choice.js" %}"></script>
+<script type="text/javascript" src="{% static "ui/js/pipeline.js" %}"></script>
+<script>
+
+    function do_on_load() { 
+        createPipelineModule().init(); 
+   }
+</script>
+
+<h2>Run Pipeline</h2>
+<form>
+<fieldset>
+<legend>Initialize New Install</legend>
+<em>Do these steps first, then reload the page. A menu of studies should appear below under "Load, Migrate and Calculate Study".</em>
+<br>
+Some of these steps are long-running. Give them 5-10 minutes.
+    <table>
+    <tr>
+        <td><button type="button" id="pm_ohdsi_button">Load OHDSI OMOP</button></td>
+        <td><span id="pm_ohdsi_status">(OMOP Status TBD)</span></td>
+    </tr>
+    <tr>
+        <td><button type="button" id="pm_mapping_button">Load Mapping</button> (Warning: will overwrite any work from backup)</td>
+        <td><span id="pm_mapping_status"> - </span></td>
+    </tr>
+    <tr>
+        <td><button type="button" id="pm_studies_button">Load Studies</button></td>
+        <td><span id="pm_studies_status"> - </span></td>
+    </tr>
+    <tr>
+        <td><button type="button" id="pm_button">Combined Pipeline</button></td>
+    </tr>
+    </table>
+    DB Status:<span id=pm_message> - </div>
+    <span> 
+    </span>
+
+</fieldset>
+<br>
+<fieldset>
+<legend>Load, Migrate, Calculate  New  Study</legend>
+    {% include 'study_choice.html' %}
+    <button type="button" id="pm_migrate_button">Migrate</button> 
+    Migrate Status:<span id=pm_migrate_message> - </span> 
+    <br>
+    <button type="button" id="pm_calculate_button">Calculate</button> 
+    Calculate Status:<span id=pm_calculate_message> - </span> 
+</fieldset>
+<br>
+<fieldset>
+<legend>Extract Sudy</legend>
+    {% include 'extract_study_choice.html' %}
+    <button type="button" id="pm_extract_button">Extract</button> 
+    Extract Status:<span id=pm_extract_message> - </span> 
+    <div id="status_p"></dvi>
+</fieldset>
+</form>
+
+{% endblock %}

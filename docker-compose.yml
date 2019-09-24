@@ -1,0 +1,60 @@
+#
+# docker-compose.yml
+#
+# sets up only the single harmonization_ui_rds image and its' volumes.
+# The 'rds' in its name is about the AWS RDS service it uses in place
+# of the 'db' images other setups here use to have a local postrgres running.
+#
+version: '3.5'
+services:
+    ui:
+        image: harmonization_ui_rds
+        volumes:
+# for local macos dev-box
+#     duplicate the PMP setup by creating a local /mnt/workspace directory
+# for AHA PMP on AWS:
+#    test directory created from test.tgz 
+#    test.tgz brought over by syncing the scratch_bucket/researcher_data
+#      into the /mnt/workspace (or your choice) directory.
+#    need to create /mnt/workspace/output
+#
+            - type: bind
+              source: /mnt/workspace/test
+              target: /opt/local/harmonization/deployment
+              read_only: true
+            - type: bind
+              source: /mnt/workspace/output
+              target: /opt/local/harmonization/output
+              read_only: false
+        ports:
+            - "8000:8000"
+        env_file:
+            - env.list
+
+
+# You may need to download docker-compose from:
+#   sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+#
+# Delete the old image:
+#    docker image ls
+#    docker rmi <name>
+#
+# Load the new one:
+#    docker load < foo.rds.tar
+#
+# Start the container with:
+#   docker-compose up
+#
+# run a shell inside the container with:
+#   docker container ls
+#   docker exec -ti <container name> /bin/bash
+
+# Once there, edit settings.py then start django
+#   cd
+#   vi settings.py
+#   python3 manage.py runserver 0.0.0.0:8000
+
+# Point a brower at URLs depending on if you are on pmp, or a local mac
+#   10.10.51.152:8000/ui/index.html
+#   localhost:8000/ui/index.html
+
